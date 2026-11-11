@@ -1,0 +1,36 @@
+name: Afternoon Trade Evaluator
+
+on:
+  schedule:
+    - cron: '15 21 * * 1-5' # 21:15 UTC / 4:15 PM EST (Mon-Fri)
+  workflow_dispatch:
+
+jobs:
+  run-afternoon:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Afternoon Evaluator
+        run: python src/evaluator.py
+
+      - name: Commit and Push Results
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/results.json
+          git commit -m "📊 Auto-update EOD performance results [skip ci]" || exit 0
+          git push
