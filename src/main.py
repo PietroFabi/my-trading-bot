@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 from scanner import get_top_gappers, WATCHLIST
 from sentiment import get_sentiment_for_tickers
+from broker import execute_morning_trades
 
 # Dynamically find the root directory to create the data/ folder
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +46,8 @@ def run_morning_strategy():
         json.dump(targets, f, indent=4)
 
     print(f"\nMorning planning complete! Saved {len(targets)} targets to data/targets.json")
+
+    execute_morning_trades()
 
 
 if __name__ == "__main__":
