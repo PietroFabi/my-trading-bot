@@ -2,5 +2,23 @@
     {
         "date": "2026-11-11",
         "trades": []
+    },
+    {
+        "date": "2026-11-12",
+        "trades": [
+            {
+                "ticker": "SNOW",
+                "sentiment_score": 0.52,
+                "open_price": 307.3,
+                "performance_pct": {
+                    "1_min": 0.53,
+                    "10_min": -0.45,
+                    "30_min": -1.19,
+                    "1_hour": -0.22,
+                    "5_hour": -1.04,
+                    "EOD": -1.96
+                }
+            }
+        ]
     }
 ]
