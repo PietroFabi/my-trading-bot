@@ -2,5 +2,35 @@
     {
         "date": "2026-11-11",
         "trades": []
+    },
+    {
+        "date": "2026-11-13",
+        "starting_balance": 10000.0,
+        "ending_balance": 10021.37,
+        "portfolio_curve": {
+            "Open": 10000.0,
+            "1_min": 9992.5,
+            "10_min": 10015.38,
+            "30_min": 10009.54,
+            "1_hour": 9998.77,
+            "5_hour": 10021.23,
+            "EOD": 10021.37
+        },
+        "trades": [
+            {
+                "ticker": "SNOW",
+                "sentiment_score": 0.52,
+                "allocation_usd": 1000.0,
+                "open_price": 292.5,
+                "performance_pct": {
+                    "1_min": -0.75,
+                    "10_min": 1.54,
+                    "30_min": 0.95,
+                    "1_hour": -0.12,
+                    "5_hour": 2.12,
+                    "EOD": 2.14
+                }
+            }
+        ]
     }
 ]

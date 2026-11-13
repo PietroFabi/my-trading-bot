@@ -9,7 +9,10 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 TARGETS_FILE = os.path.join(DATA_DIR, "targets.json")
 RESULTS_FILE = os.path.join(DATA_DIR, "results.json")
 
-# Define our granularities in minutes (rows after open)
+INITIAL_CAPITAL = 10000.00
+POSITION_SIZE_USD = 1000.00
+
+# Define granularities in minutes (rows after open)
 TIMEFRAMES = {
     "1_min": 1,
     "10_min": 10,
@@ -22,18 +25,7 @@ TIMEFRAMES = {
 def evaluate_performance():
     print(f"--- STARTING POST-MARKET EVALUATION ({datetime.now().strftime('%Y-%m-%d')}) ---")
 
-    if not os.path.exists(TARGETS_FILE):
-        print("No targets.json found. Did the morning run execute?")
-        return
-
-    with open(TARGETS_FILE, "r") as f:
-        targets = json.load(f)
-
-    if not targets:
-        print("No targets were approved this morning. Nothing to evaluate.")
-        return
-
-    # We will compile today's results and append them to a master list
+    # Load existing results to carry forward the previous ending balance
     master_results = []
     if os.path.exists(RESULTS_FILE):
         with open(RESULTS_FILE, "r") as f:
@@ -42,62 +34,97 @@ def evaluate_performance():
             except json.JSONDecodeError:
                 master_results = []
 
+    starting_balance = INITIAL_CAPITAL
+    if master_results and isinstance(master_results[-1], dict):
+        starting_balance = master_results[-1].get("ending_balance", INITIAL_CAPITAL)
+
+    targets = []
+    if os.path.exists(TARGETS_FILE):
+        with open(TARGETS_FILE, "r") as f:
+            try:
+                targets = json.load(f)
+            except json.JSONDecodeError:
+                targets = []
+
     today_date = datetime.now().strftime("%Y-%m-%d")
+
+    # Initialize portfolio curve at the starting balance for every timeframe
+    all_keys = ["Open", "1_min", "10_min", "30_min", "1_hour", "5_hour", "EOD"]
+    portfolio_curve = {k: round(starting_balance, 2) for k in all_keys}
+
     daily_report = {
         "date": today_date,
+        "starting_balance": round(starting_balance, 2),
+        "ending_balance": round(starting_balance, 2),
+        "portfolio_curve": portfolio_curve,
         "trades": []
     }
 
-    for target in targets:
-        ticker = target["ticker"]
-        sentiment = target["sentiment_score"]
-        print(f"\nEvaluating {ticker} (Sentiment: {sentiment})...")
+    if not targets:
+        print(f"No targets approved today. Holding cash at ${starting_balance:,.2f}.")
+    else:
+        for target in targets:
+            ticker = target["ticker"]
+            sentiment = target["sentiment_score"]
+            print(f"\nEvaluating {ticker} (Sentiment: {sentiment})...")
 
-        try:
-            # Download exactly 1 day of data at 1-minute intervals
-            data = yf.download(ticker, period="1d", interval="1m", progress=False)
-            closes = data['Close'][ticker].dropna()
+            try:
+                data = yf.download(ticker, period="1d", interval="1m", progress=False)
+                # Handle both single-level and multi-level column structures from yfinance
+                close_col = data['Close'][ticker] if ticker in data['Close'] else data['Close']
+                closes = close_col.dropna()
 
-            if len(closes) < 300:
-                print(f"  -> Not enough intraday data for {ticker}. Skipping.")
-                continue
+                if len(closes) < 300:
+                    print(f"  -> Not enough intraday data for {ticker}. Skipping.")
+                    continue
 
-            # Row 0 is the market open price
-            open_price = closes.iloc[0]
+                open_price = float(closes.iloc[0])
+                trade_result = {
+                    "ticker": ticker,
+                    "sentiment_score": sentiment,
+                    "allocation_usd": POSITION_SIZE_USD,
+                    "open_price": round(open_price, 2),
+                    "performance_pct": {}
+                }
 
-            trade_result = {
-                "ticker": ticker,
-                "sentiment_score": sentiment,
-                "open_price": round(open_price, 2),
-                "performance_pct": {}
-            }
+                # Calculate % change and dollar P&L for each granularity
+                for label, minutes in TIMEFRAMES.items():
+                    if minutes < len(closes):
+                        price_at_time = float(closes.iloc[minutes])
+                        pct_change = ((price_at_time - open_price) / open_price) * 100
+                        dollar_pnl = POSITION_SIZE_USD * (pct_change / 100.0)
 
-            # Calculate % change for each specific minute granularity
-            for label, minutes in TIMEFRAMES.items():
-                if minutes < len(closes):
-                    price_at_time = closes.iloc[minutes]
-                    pct_change = ((price_at_time - open_price) / open_price) * 100
-                    trade_result["performance_pct"][label] = round(pct_change, 2)
-                    print(f"  -> {label}: {pct_change:+.2f}% (Price: ${price_at_time:.2f})")
+                        trade_result["performance_pct"][label] = round(pct_change, 2)
+                        portfolio_curve[label] = round(portfolio_curve[label] + dollar_pnl, 2)
+                        print(f"  -> {label}: {pct_change:+.2f}% (${dollar_pnl:+.2f})")
 
-            # EOD (End of Day) is simply the very last row available
-            eod_price = closes.iloc[-1]
-            eod_pct = ((eod_price - open_price) / open_price) * 100
-            trade_result["performance_pct"]["EOD"] = round(eod_pct, 2)
-            print(f"  -> EOD: {eod_pct:+.2f}% (Price: ${eod_price:.2f})")
+                # End of Day (EOD)
+                eod_price = float(closes.iloc[-1])
+                eod_pct = ((eod_price - open_price) / open_price) * 100
+                eod_pnl = POSITION_SIZE_USD * (eod_pct / 100.0)
 
-            daily_report["trades"].append(trade_result)
+                trade_result["performance_pct"]["EOD"] = round(eod_pct, 2)
+                portfolio_curve["EOD"] = round(portfolio_curve["EOD"] + eod_pnl, 2)
+                print(f"  -> EOD: {eod_pct:+.2f}% (${eod_pnl:+.2f})")
 
-        except Exception as e:
-            print(f"  -> Error evaluating {ticker}: {e}")
+                daily_report["trades"].append(trade_result)
 
-    # Append today's report to the master results file
-    master_results.append(daily_report)
+            except Exception as e:
+                print(f"  -> Error evaluating {ticker}: {e}")
+
+    daily_report["portfolio_curve"] = portfolio_curve
+    daily_report["ending_balance"] = portfolio_curve["EOD"]
+
+    # Overwrite today's entry if re-run on the same day, otherwise append
+    if master_results and master_results[-1].get("date") == today_date:
+        master_results[-1] = daily_report
+    else:
+        master_results.append(daily_report)
 
     with open(RESULTS_FILE, "w") as f:
         json.dump(master_results, f, indent=4)
 
-    print(f"\nEvaluation complete! Saved to {RESULTS_FILE}")
+    print(f"\nEvaluation complete! Ending Balance: ${daily_report['ending_balance']:,.2f}")
 
 
 if __name__ == "__main__":
