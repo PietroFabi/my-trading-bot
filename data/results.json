@@ -20,5 +20,23 @@
                 }
             }
         ]
+    },
+    {
+        "date": "2026-11-13",
+        "trades": [
+            {
+                "ticker": "UBER",
+                "sentiment_score": 0.23,
+                "open_price": 70.32,
+                "performance_pct": {
+                    "1_min": -0.77,
+                    "10_min": -1.12,
+                    "30_min": -0.78,
+                    "1_hour": -1.32,
+                    "5_hour": -1.02,
+                    "EOD": -1.71
+                }
+            }
+        ]
     }
 ]
