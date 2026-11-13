@@ -1,34 +1,75 @@
 [
     {
         "date": "2026-11-11",
+        "starting_balance": 10000.0,
+        "ending_balance": 10000.0,
+        "portfolio_curve": {
+            "Open": 10000.0,
+            "1_min": 10000.0,
+            "10_min": 10000.0,
+            "30_min": 10000.0,
+            "1_hour": 10000.0,
+            "5_hour": 10000.0,
+            "EOD": 10000.0
+        },
         "trades": []
     },
     {
-        "date": "2026-11-13",
+        "date": "2026-11-12",
         "starting_balance": 10000.0,
-        "ending_balance": 10021.37,
+        "ending_balance": 9980.4,
         "portfolio_curve": {
             "Open": 10000.0,
-            "1_min": 9992.5,
-            "10_min": 10015.38,
-            "30_min": 10009.54,
-            "1_hour": 9998.77,
-            "5_hour": 10021.23,
-            "EOD": 10021.37
+            "1_min": 10005.3,
+            "10_min": 9995.5,
+            "30_min": 9988.1,
+            "1_hour": 9997.8,
+            "5_hour": 9989.6,
+            "EOD": 9980.4
         },
         "trades": [
             {
                 "ticker": "SNOW",
                 "sentiment_score": 0.52,
                 "allocation_usd": 1000.0,
-                "open_price": 292.5,
+                "open_price": 307.3,
                 "performance_pct": {
-                    "1_min": -0.75,
-                    "10_min": 1.54,
-                    "30_min": 0.95,
-                    "1_hour": -0.12,
-                    "5_hour": 2.12,
-                    "EOD": 2.14
+                    "1_min": 0.53,
+                    "10_min": -0.45,
+                    "30_min": -1.19,
+                    "1_hour": -0.22,
+                    "5_hour": -1.04,
+                    "EOD": -1.96
+                }
+            }
+        ]
+    },
+    {
+        "date": "2026-11-13",
+        "starting_balance": 9980.4,
+        "ending_balance": 9963.3,
+        "portfolio_curve": {
+            "Open": 9980.4,
+            "1_min": 9972.7,
+            "10_min": 9969.2,
+            "30_min": 9972.6,
+            "1_hour": 9967.2,
+            "5_hour": 9970.2,
+            "EOD": 9963.3
+        },
+        "trades": [
+            {
+                "ticker": "UBER",
+                "sentiment_score": 0.23,
+                "allocation_usd": 1000.0,
+                "open_price": 70.32,
+                "performance_pct": {
+                    "1_min": -0.77,
+                    "10_min": -1.12,
+                    "30_min": -0.78,
+                    "1_hour": -1.32,
+                    "5_hour": -1.02,
+                    "EOD": -1.71
                 }
             }
         ]
