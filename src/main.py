@@ -77,20 +77,28 @@ def run_morning_strategy(now=None, plans_dir=PLANS_DIR) -> int:
         "market_open": session.open.isoformat(),
         "market_close": session.close.isoformat(),
         "planned_at": now.isoformat(),
-        "targets": [],
+        "sentiment_threshold": SENTIMENT_THRESHOLD,
+        "candidates": [],  # every top mover the model looked at, approved or not
+        "targets": [],     # the approved ones, which get orders
     }
     print("\n--- FINAL TRADING PLAN ---")
     for mover in top_movers:
         ticker = mover["ticker"]
-        score = sentiments.get(ticker, 0.0)
-        if score > SENTIMENT_THRESHOLD:
+        result = sentiments.get(ticker, {"score": 0.0, "headlines": []})
+        score = result["score"]
+        approved = score > SENTIMENT_THRESHOLD
+        evidence = {
+            "ticker": ticker,
+            "gap_percent": round(mover["gap_percent"], 2),
+            "prev_close": round(mover["yesterday_close"], 2),
+            "ref_price": round(mover["current_price"], 2),  # pre-market price, used to size whole shares
+            "sentiment_score": round(score, 2),
+            "headlines": result["headlines"],
+        }
+        plan["candidates"].append({**evidence, "decision": "approved" if approved else "rejected"})
+        if approved:
             print(f"✅ APPROVED: {ticker} (Sentiment: {score:+.2f})")
-            plan["targets"].append({
-                "ticker": ticker,
-                "gap_percent": round(mover["gap_percent"], 2),
-                "sentiment_score": round(score, 2),
-                "ref_price": round(mover["current_price"], 2),  # pre-market price, used to size whole shares
-            })
+            plan["targets"].append(dict(evidence))
         else:
             print(f"❌ REJECTED: {ticker} (Sentiment: {score:+.2f} is too low)")
 

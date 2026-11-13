@@ -41,7 +41,44 @@ For each finished session, the evaluator reads the real entry and exit fill pric
 | File | Written by | Purpose |
 |---|---|---|
 | `data/plans/<date>.json` | Morning | The day's targets, sentiment scores, share counts and order ids |
-| `data/results.json` | Afternoon | One entry per session: `date`, `starting_balance`, `ending_balance`, `portfolio_curve`, `trades[]`. **Read by the portfolio site, so keep these field names stable.** |
+| `data/results.json` | Afternoon | One entry per session, oldest first, never trimmed. **Read by the portfolio site, so keep field names stable (add, don't rename).** |
+
+### `results.json` entry
+
+```jsonc
+{
+  "date": "2026-11-16",                 // trading session (New York date)
+  "starting_balance": 100000.0,         // fund value at the open = previous ending_balance
+  "ending_balance": 100143.2,           // fund value after the closing fills
+  "portfolio_curve": {                  // fund value if every position were sold at that point
+    "Open": 100000.0, "1_min": 99980.1, "10_min": 100031.5, "30_min": 100060.0,
+    "1_hour": 100012.4, "5_hour": 100120.7, "EOD": 100143.2   // EOD = real closing fills
+  },
+  "invested_usd": 19842.0,              // money in positions that day (rest stays in cash)
+  "sentiment_threshold": 0.15,
+  "trades": [{
+    "ticker": "CRWD",
+    "gap_percent": 2.45,                // pre-market gap vs previous close
+    "sentiment_score": 0.55,            // average of the headline scores below
+    "headlines": [{
+      "headline": "...", "source": "benzinga", "url": "https://...", "created_at": "2026-11-16T11:02:00Z",
+      "label": "positive", "confidence": 0.93, "score": 0.93   // FinBERT output; score = ±confidence, neutral = 0
+    }],
+    "qty": 42, "allocation_usd": 9891.0,
+    "open_price": 235.5,                // real opening-auction fill
+    "exit_price": 238.9,                // real closing-auction fill (or official close if missed)
+    "exit_status": "filled",            // "filled" | "missed"
+    "performance_pct": { "1_min": -0.1, "...": 0, "EOD": 1.44 },
+    "pnl_usd":         { "1_min": -9.9, "...": 0, "EOD": 142.8 }
+  }],
+  "rejected": [{                        // stocks the model looked at but did not hold
+    "ticker": "MSFT", "gap_percent": -2.45, "sentiment_score": -0.49, "headlines": [ /* as above */ ],
+    "reason": "sentiment below threshold"  // or "price above budget", "order could not be placed", "buy order was not filled"
+  }]
+}
+```
+
+Only `EOD` is an executed result. The other `portfolio_curve` points answer "what if every position had been sold N minutes after the open?" for the same entries. Adding up each key's daily gain (`curve[key] − starting_balance`) across sessions compares holding periods.
 
 ## Tech stack
 

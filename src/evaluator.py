@@ -98,28 +98,40 @@ def _evaluate_trade(target: dict, plan: dict, client):
               for label, m in TIMEFRAMES.items()}
     prices["EOD"] = exit_price
 
+    pnl = {k: qty * (p - entry) for k, p in prices.items()}
     trade = {
         "ticker": ticker,
         "sentiment_score": target["sentiment_score"],
+        "gap_percent": target.get("gap_percent"),
+        "headlines": target.get("headlines", []),  # the evidence FinBERT scored
         "qty": qty,
         "allocation_usd": round(qty * entry, 2),
         "open_price": round(entry, 2),   # real opening fill
         "exit_price": round(exit_price, 2),
         "exit_status": exit_status,
         "performance_pct": {k: round((p - entry) / entry * 100, 2) for k, p in prices.items()},
+        "pnl_usd": {k: round(v, 2) for k, v in pnl.items()},
     }
-    pnl = {k: qty * (p - entry) for k, p in prices.items()}
     return trade, pnl
 
 
 def _evaluate_plan(plan: dict, starting_balance: float, client) -> dict:
     trades, curve = [], {k: starting_balance for k in CURVE_KEYS}
+    # Every stock the model looked at but did not end up holding, with the reason.
+    rejected = [
+        {**{k: c.get(k) for k in ("ticker", "gap_percent", "sentiment_score", "headlines")},
+         "reason": "sentiment below threshold"}
+        for c in plan.get("candidates", []) if c.get("decision") == "rejected"
+    ]
     for target in plan["targets"]:
+        evidence = {k: target.get(k) for k in ("ticker", "gap_percent", "sentiment_score", "headlines")}
         if not target.get("order_id"):
+            rejected.append({**evidence, "reason": target.get("skip_reason", "order could not be placed")})
             continue
         print(f"\nEvaluating {target['ticker']} (Sentiment: {target['sentiment_score']})...")
         scored = _evaluate_trade(target, plan, client)
         if scored is None:
+            rejected.append({**evidence, "reason": "buy order was not filled"})
             continue
         trade, pnl = scored
         for key, dollars in pnl.items():
@@ -135,7 +147,10 @@ def _evaluate_plan(plan: dict, starting_balance: float, client) -> dict:
         "starting_balance": round(starting_balance, 2),
         "ending_balance": curve["EOD"],
         "portfolio_curve": curve,
+        "invested_usd": round(sum(t["allocation_usd"] for t in trades), 2),
+        "sentiment_threshold": plan.get("sentiment_threshold"),
         "trades": trades,
+        "rejected": rejected,
     }
 
 
