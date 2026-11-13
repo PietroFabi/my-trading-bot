@@ -1,19 +1,23 @@
+"""
+Evaluator: turn each finished session's real Alpaca fills into an entry in results.json.
+
+- Entry price  = the buy's real fill (market-on-open auction).
+- Exit price   = the sell's real fill (market-on-close auction). If the exit was
+                 missed, the official close is used and the trade is flagged.
+- Curve points = the real share count valued at Yahoo 1-minute prices.
+
+The session date always comes from the plan file, never from the clock, so a
+run that GitHub starts hours late still records the right day.
+"""
 import datetime as dt
-import json
-import os
 
 import yfinance as yf
 
+import broker
 from market_session import now_ny
+from storage import RESULTS_FILE, PLANS_DIR, all_plan_paths, exit_order_id, load_json, save_json
 
-# Setup paths
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, "data")
-TARGETS_FILE = os.path.join(DATA_DIR, "targets.json")
-RESULTS_FILE = os.path.join(DATA_DIR, "results.json")
-
-INITIAL_CAPITAL = 10000.00
-POSITION_SIZE_USD = 1000.00
+INITIAL_CAPITAL = 10000.00  # the virtual fund shown on the site
 
 # Minutes after the open. On half days, points past the close use the closing price.
 TIMEFRAMES = {
@@ -26,20 +30,14 @@ TIMEFRAMES = {
 # Keys the portfolio site reads from portfolio_curve. Do not rename.
 CURVE_KEYS = ["Open", "1_min", "10_min", "30_min", "1_hour", "5_hour", "EOD"]
 
-# Wait this long after the close before trusting Yahoo's 1-minute bars to be complete.
+# Wait this long after the close before expecting closing fills and complete 1-minute bars.
 SETTLE_AFTER_CLOSE = dt.timedelta(minutes=10)
 # The first/last bar must be this close to the open/close, or the data has a hole.
 MAX_EDGE_GAP = dt.timedelta(minutes=5)
 
 
-def load_json(path, default):
-    if not os.path.exists(path):
-        return default
-    with open(path, "r") as f:
-        try:
-            return json.load(f)
-        except json.JSONDecodeError:
-            return default
+class NotReady(Exception):
+    """The session's orders have not reached a final state yet; try again later."""
 
 
 def _minute_bars(ticker: str, session_date: dt.date, session_open: dt.datetime, session_close: dt.datetime):
@@ -52,15 +50,15 @@ def _minute_bars(ticker: str, session_date: dt.date, session_open: dt.datetime, 
         progress=False,
     )
     if data.empty:
-        raise RuntimeError(f"no 1-minute data for {session_date}")
+        raise RuntimeError(f"{ticker}: no 1-minute data for {session_date}")
     bars = data.xs(ticker, axis=1, level="Ticker") if data.columns.nlevels > 1 else data
     bars = bars.dropna(subset=["Open", "Close"])
     # Keep regular hours only. A bar's timestamp is its start: 09:30 covers 09:30-09:31.
     bars = bars[(bars.index >= session_open) & (bars.index < session_close)]
     if bars.empty:
-        raise RuntimeError(f"no regular-hours bars for {session_date}")
+        raise RuntimeError(f"{ticker}: no regular-hours bars for {session_date}")
     if bars.index[0] - session_open > MAX_EDGE_GAP or session_close - bars.index[-1] > MAX_EDGE_GAP + dt.timedelta(minutes=1):
-        raise RuntimeError(f"incomplete session data ({bars.index[0]:%H:%M}-{bars.index[-1]:%H:%M})")
+        raise RuntimeError(f"{ticker}: incomplete session data ({bars.index[0]:%H:%M}-{bars.index[-1]:%H:%M})")
     return bars
 
 
@@ -69,102 +67,117 @@ def _price_at(bars, t: dt.datetime) -> float:
     return float(bars[bars.index < t]["Close"].iloc[-1])
 
 
-def _evaluate_trade(target: dict, session_date, session_open, session_close) -> dict:
+def _evaluate_trade(target: dict, plan: dict, client):
+    """Returns (trade_dict, {curve_key: dollar_pnl}) or None if the buy never filled."""
     ticker = target["ticker"]
-    bars = _minute_bars(ticker, session_date, session_open, session_close)
-    open_price = float(bars["Open"].iloc[0])  # market orders queued pre-market fill at the open
-
-    result = {
-        "ticker": ticker,
-        "sentiment_score": target["sentiment_score"],
-        "allocation_usd": POSITION_SIZE_USD,
-        "open_price": round(open_price, 2),
-        "performance_pct": {},
-    }
-    points = {label: session_open + dt.timedelta(minutes=m) for label, m in TIMEFRAMES.items()}
-    points["EOD"] = session_close
-    for label, t in points.items():
-        price = _price_at(bars, min(t, session_close))
-        result["performance_pct"][label] = round((price - open_price) / open_price * 100, 2)
-    return result
-
-
-def evaluate_performance(now=None, skip_if_done=False, targets_file=TARGETS_FILE, results_file=RESULTS_FILE) -> bool:
-    """
-    Score the session recorded in targets.json and write it to results.json.
-
-    The session date comes from the morning plan, never from the clock, so a
-    run that GitHub starts hours late (even after midnight) still labels and
-    prices the right day. Re-running for the same session overwrites its entry.
-    Returns True if results.json was written.
-    """
-    now = now or now_ny()
-    plan = load_json(targets_file, default={})
-    if not isinstance(plan, dict) or "session_date" not in plan:
-        print("No morning plan to evaluate.")
-        return False
-
     session_date = dt.date.fromisoformat(plan["session_date"])
     session_open = dt.datetime.fromisoformat(plan["market_open"])
     session_close = dt.datetime.fromisoformat(plan["market_close"])
-    print(f"--- EVALUATING SESSION {session_date} (now {now:%Y-%m-%d %H:%M %Z}) ---")
 
-    if now < session_close + SETTLE_AFTER_CLOSE:
-        print(f"Session {session_date} has not finished yet (closes {session_close:%H:%M %Z}). Nothing to do.")
-        return False
+    buy = client.get_order_by_id(target["order_id"])
+    if broker.status_of(buy) not in broker.FINAL_STATUSES:
+        raise NotReady(f"{ticker}: buy order is still '{broker.status_of(buy)}'")
+    qty = float(buy.filled_qty or 0)
+    if qty == 0:
+        print(f"  -> {ticker}: buy ended as '{broker.status_of(buy)}' with no fill. Not a trade.")
+        return None
+    entry = float(buy.filled_avg_price)
 
-    results = load_json(results_file, default=[])
-    if not isinstance(results, list):
-        raise RuntimeError("results.json is not a list; refusing to overwrite it")
-    dates = [r.get("date") for r in results if isinstance(r, dict)]
-    if plan["session_date"] in dates:
-        if skip_if_done:
-            print(f"Session {session_date} is already in results.json.")
-            return False
-        if dates[-1] != plan["session_date"]:
-            print(f"Session {session_date} is already recorded and is not the latest entry; leaving it alone.")
-            return False
-        results = results[:-1]  # re-run: replace the latest entry
+    sell = broker.existing_order(exit_order_id(plan["session_date"], ticker), client)
+    if sell is not None and broker.status_of(sell) not in broker.FINAL_STATUSES:
+        raise NotReady(f"{ticker}: exit order is still '{broker.status_of(sell)}'")
 
-    # Carry the balance forward from the previous session (not from this session's old entry).
-    starting_balance = INITIAL_CAPITAL
-    if results and isinstance(results[-1], dict):
-        starting_balance = float(results[-1].get("ending_balance", INITIAL_CAPITAL))
+    bars = _minute_bars(ticker, session_date, session_open, session_close)
+    if sell is not None and float(sell.filled_qty or 0) > 0:
+        exit_price, exit_status = float(sell.filled_avg_price), "filled"
+    else:
+        # No closing fill: value the position at the official close and say so.
+        exit_price, exit_status = _price_at(bars, session_close), "missed"
 
-    # Only score positions that were actually ordered.
-    ordered = [t for t in plan.get("targets", []) if t.get("order_id")]
-    skipped = [t["ticker"] for t in plan.get("targets", []) if not t.get("order_id")]
-    if skipped:
-        print(f"Not scoring {', '.join(skipped)}: no order was placed.")
+    prices = {label: _price_at(bars, min(session_open + dt.timedelta(minutes=m), session_close))
+              for label, m in TIMEFRAMES.items()}
+    prices["EOD"] = exit_price
 
-    trades = []
-    for target in ordered:
+    trade = {
+        "ticker": ticker,
+        "sentiment_score": target["sentiment_score"],
+        "qty": qty,
+        "allocation_usd": round(qty * entry, 2),
+        "open_price": round(entry, 2),   # real opening fill
+        "exit_price": round(exit_price, 2),
+        "exit_status": exit_status,
+        "performance_pct": {k: round((p - entry) / entry * 100, 2) for k, p in prices.items()},
+    }
+    pnl = {k: qty * (p - entry) for k, p in prices.items()}
+    return trade, pnl
+
+
+def _evaluate_plan(plan: dict, starting_balance: float, client) -> dict:
+    trades, curve = [], {k: starting_balance for k in CURVE_KEYS}
+    for target in plan["targets"]:
+        if not target.get("order_id"):
+            continue
         print(f"\nEvaluating {target['ticker']} (Sentiment: {target['sentiment_score']})...")
-        trade = _evaluate_trade(target, session_date, session_open, session_close)  # raises on bad data
-        for label, pct in trade["performance_pct"].items():
-            print(f"  -> {label}: {pct:+.2f}% (${POSITION_SIZE_USD * pct / 100:+.2f})")
+        scored = _evaluate_trade(target, plan, client)
+        if scored is None:
+            continue
+        trade, pnl = scored
+        for key, dollars in pnl.items():
+            curve[key] += dollars
+            print(f"  -> {key}: {trade['performance_pct'][key]:+.2f}% (${dollars:+.2f})")
+        if trade["exit_status"] == "missed":
+            print(f"  -> ⚠️  no closing fill for {trade['ticker']}; valued at the official close")
         trades.append(trade)
 
-    curve = {"Open": starting_balance}
-    for key in CURVE_KEYS[1:]:
-        pnl = sum(POSITION_SIZE_USD * t["performance_pct"][key] / 100 for t in trades)
-        curve[key] = starting_balance + pnl
     curve = {k: round(v, 2) for k, v in curve.items()}
-
-    results.append({
+    return {
         "date": plan["session_date"],
         "starting_balance": round(starting_balance, 2),
         "ending_balance": curve["EOD"],
         "portfolio_curve": curve,
         "trades": trades,
-    })
-    # allow_nan=False: NaN is not valid JSON and would break the site's response.json().
-    with open(results_file, "w") as f:
-        json.dump(results, f, indent=4, allow_nan=False)
+    }
 
-    print(f"\nEvaluation complete for {session_date}! Ending Balance: ${curve['EOD']:,.2f}")
-    return True
+
+def evaluate_pending(now=None, plans_dir=PLANS_DIR, results_file=RESULTS_FILE, client=None) -> int:
+    """
+    Evaluate every finished session that is not in results.json yet, oldest first.
+    Stops at the first session that is not ready, so balances always carry
+    forward in date order. Returns the number of sessions written.
+    """
+    now = now or now_ny()
+    client = client or broker.trading_client
+    results = load_json(results_file, default=[])
+    if not isinstance(results, list):
+        raise RuntimeError("results.json is not a list; refusing to overwrite it")
+    done = {r.get("date") for r in results if isinstance(r, dict)}
+
+    written = 0
+    for path in all_plan_paths(plans_dir):
+        plan = load_json(path, default=None)
+        if not plan or plan.get("session_date") in done:
+            continue
+        session_close = dt.datetime.fromisoformat(plan["market_close"])
+        print(f"--- EVALUATING SESSION {plan['session_date']} (now {now:%Y-%m-%d %H:%M %Z}) ---")
+        if now < session_close + SETTLE_AFTER_CLOSE:
+            print(f"Session has not finished settling (closes {session_close:%H:%M %Z}). Try later.")
+            break
+
+        starting_balance = float(results[-1]["ending_balance"]) if results else INITIAL_CAPITAL
+        try:
+            entry = _evaluate_plan(plan, starting_balance, client)
+        except NotReady as e:
+            print(f"Not ready yet: {e}. Try later.")
+            break
+        results.append(entry)
+        save_json(results_file, results)
+        written += 1
+        print(f"\nRecorded {plan['session_date']}: ending balance ${entry['ending_balance']:,.2f}")
+
+    if written == 0:
+        print("No new sessions to record.")
+    return written
 
 
 if __name__ == "__main__":
-    evaluate_performance()
+    evaluate_pending()

@@ -1,0 +1,51 @@
+name: Midday Exit Orders
+
+on:
+  schedule:
+    # Queue market-on-close sells for today's positions. The order must be placed after the
+    # opening fill and before Alpaca's closing-auction cutoff (~15:50 ET, 12:50 on half days).
+    # src/midday.py checks the real session times; extra attempts are harmless (idempotent).
+    #   UTC     winter (EST)   summer (EDT)
+    #   14:37   09:37          10:37
+    #   15:37   10:37          11:37
+    #   16:37   11:37          12:37
+    #   17:37   12:37          13:37
+    #   18:37   13:37          14:37
+    #   19:27   14:27          15:27
+    - cron: '37 14 * * 1-5'
+    - cron: '37 15 * * 1-5'
+    - cron: '37 16 * * 1-5'
+    - cron: '37 17 * * 1-5'
+    - cron: '37 18 * * 1-5'
+    - cron: '27 19 * * 1-5'
+  workflow_dispatch:
+
+concurrency:
+  group: trading-bot-midday
+  cancel-in-progress: false
+
+jobs:
+  run-midday:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # places orders via Alpaca, writes nothing to the repo
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        # Only the two packages this job needs (no torch), at the versions pinned in requirements.txt.
+        run: pip install $(grep -E '^(alpaca-py|python-dotenv)==' requirements.txt)
+
+      - name: Place Exit Orders
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        run: python src/midday.py

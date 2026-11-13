@@ -3,8 +3,8 @@ name: Afternoon Trade Evaluator
 on:
   schedule:
     # 21:15 UTC = 16:15 EST / 17:15 EDT, always after the close. Running late is fine:
-    # src/evaluator.py scores the session saved in targets.json, not "today". If this
-    # run never happens, the next morning run evaluates the missed session first.
+    # src/evaluator.py records every finished session in data/plans/ that is not in
+    # results.json yet, using the real Alpaca fills. The next morning run also catches up.
     - cron: '15 21 * * 1-5'
   workflow_dispatch:
 
@@ -32,6 +32,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Afternoon Evaluator
+        env: # read-only use: fetches the session's real fill prices
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
         run: python src/evaluator.py
 
       - name: Commit and Push Results
