@@ -2,8 +2,25 @@ name: Morning Trading Strategy
 
 on:
   schedule:
-    - cron: '30 13 * * 1-5' # 13:30 UTC / 8:30 AM EST (Mon-Fri)
-  workflow_dispatch: # This line adds a "Run Workflow" button in GitHub so you can test it manually
+    # GitHub cron is UTC and runs can start late, so we schedule several attempts.
+    # src/main.py checks Alpaca's market calendar: only an attempt inside the
+    # 07:00-09:25 New York pre-market window trades; the others exit quietly.
+    # Minutes are off the hour on purpose: :00 is GitHub's busiest (most delayed) slot.
+    #   UTC     winter (EST)   summer (EDT)
+    #   11:07   06:07 early    07:07 ok
+    #   12:07   07:07 ok       08:07 ok
+    #   13:07   08:07 ok       09:07 ok
+    #   13:47   08:47 ok       09:47 late (only matters if every earlier attempt failed)
+    - cron: '7 11 * * 1-5'
+    - cron: '7 12 * * 1-5'
+    - cron: '7 13 * * 1-5'
+    - cron: '47 13 * * 1-5'
+  workflow_dispatch: # "Run workflow" button for manual tests
+
+# One bot job at a time across both workflows, so runs never race on data/*.json or place duplicate orders.
+concurrency:
+  group: trading-bot-data
+  cancel-in-progress: false
 
 jobs:
   run-morning:
@@ -30,10 +47,12 @@ jobs:
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
         run: python src/main.py
 
-      - name: Commit and Push Targets
+      - name: Commit and Push Data
+        if: always() # save the plan even if an order failed
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/targets.json
+          git add data/targets.json data/results.json
           git commit -m "🤖 Auto-update morning targets [skip ci]" || exit 0
+          git pull --rebase origin main
           git push
