@@ -1,8 +1,8 @@
 [
     {
-        "ticker": "SNOW",
-        "gap_percent": 4.04,
-        "sentiment_score": 0.52,
-        "date": "2026-11-11"
+        "ticker": "UBER",
+        "gap_percent": -2.18,
+        "sentiment_score": 0.23,
+        "date": "2026-11-12"
     }
 ]
