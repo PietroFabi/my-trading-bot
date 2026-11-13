@@ -17,9 +17,13 @@ SECRET_KEY = os.getenv("ALPACA_SECRET_KEY")
 # Initialize the Trading Client (paper=True is critical: it always targets paper-api.alpaca.markets)
 trading_client = TradingClient(API_KEY, SECRET_KEY, paper=True)
 
-# Budget per approved stock. We buy whole shares (auction orders don't accept fractions),
-# so the real allocation is floor(budget / price) shares, slightly under the budget.
-POSITION_SIZE_USD = 1000.00
+# Fund size (matches the Alpaca paper account) and the budget per approved stock: 10% of the fund.
+# Up to 5 targets a day means at most 50% of the fund is invested at once.
+# We buy whole shares (auction orders don't accept fractions), so the real allocation is
+# floor(budget / price) shares, slightly under the budget.
+FUND_SIZE_USD = 100_000.00
+POSITION_FRACTION = 0.10
+POSITION_SIZE_USD = FUND_SIZE_USD * POSITION_FRACTION
 
 # Order states that will not change any more.
 FINAL_STATUSES = {"filled", "canceled", "expired", "rejected", "replaced"}

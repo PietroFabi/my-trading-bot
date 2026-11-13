@@ -17,7 +17,7 @@ import broker
 from market_session import now_ny
 from storage import RESULTS_FILE, PLANS_DIR, all_plan_paths, exit_order_id, load_json, save_json
 
-INITIAL_CAPITAL = 10000.00  # the virtual fund shown on the site
+INITIAL_CAPITAL = broker.FUND_SIZE_USD  # starting value of the fund shown on the site
 
 # Minutes after the open. On half days, points past the close use the closing price.
 TIMEFRAMES = {

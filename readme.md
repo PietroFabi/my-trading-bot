@@ -1,41 +1,92 @@
 # Quantitative AI Trading Bot & Performance Tracker
 
-An automated, serverless algorithmic trading system that executes paper trades based on real-time price action and Natural Language Processing (NLP) sentiment analysis. 
+An automated, serverless paper-trading system that combines pre-market price action with NLP sentiment analysis of financial news.
 
-The bot operates autonomously via GitHub Actions, scanning for high-volatility gaps, analyzing financial news with **FinBERT**, executing trades via the **Alpaca API**, and exporting end-of-day (EOD) performance metrics to a live **Astro / Cloudflare** frontend.
+Every trading day it scans a watchlist for pre-market gaps, scores the latest headlines with **FinBERT**, buys the approved stocks at the opening auction and sells them at the closing auction on an **Alpaca paper account**. It then records the real fills in `data/results.json`, which a live chart on an **Astro / Cloudflare** portfolio site reads.
 
-## System Architecture
+> Paper trading only: the Alpaca client is hard-coded to the paper endpoint (`paper=True`). No real money is involved.
 
-The system utilizes an event-driven, two-phase daily lifecycle:
+## Daily lifecycle
 
-### Phase 1: Morning Research & Execution (8:30 AM EST)
-1. **Dynamic Scanner:** Fetches a predefined watchlist of highly liquid stocks (e.g., AAPL, NVDA, SNOW) and calculates pre-market gap percentages using `yfinance`.
-2. **News Aggregator:** Fetches the latest institutional news headlines for the top 5 gappers via the Alpaca News API (Benzinga).
-3. **Sentiment Engine (NLP):** Passes headlines through `ProsusAI/finbert` (a financial-specific LLM) to generate a numeric sentiment score (-1.0 to +1.0).
-4. **Broker Execution:** If the sentiment exceeds the risk threshold (>+0.15), it submits a notional market order of $1,000 to the Alpaca Paper Trading API.
-5. **Data Artifact:** Saves the morning thesis to `data/targets.json`.
+Three GitHub Actions workflows run on weekdays. GitHub's cron is in UTC and runs can start late, so each job checks **Alpaca's market calendar** for the real session times. That covers US daylight saving, market holidays and half days. A job that lands outside its window does nothing.
 
-### Phase 2: Post-Market Evaluator (4:15 PM EST)
-1. **Data Ingestion:** Reads the morning `targets.json` and downloads the 1-minute interval historical data for the trading session.
-2. **Granular Backtesting:** Calculates the exact yield of the morning positions across multiple time horizons: `1-min`, `10-min`, `30-min`, `1-hour`, `5-hour`, and `EOD`.
-3. **Data Export:** Appends the results to `data/results.json`, which is consumed live by the portfolio frontend using Chart.js.
+| Window (New York time) | Workflow | What it does |
+|---|---|---|
+| 07:00 – 09:25 | **Morning** (`src/main.py`) | Scans, scores sentiment, queues **market-on-open** buys and saves the plan to `data/plans/<date>.json` |
+| open + 2 min – close − 12 min | **Midday** (`src/midday.py`) | Queues **market-on-close** sells for the shares actually held |
+| after the close | **Afternoon** (`src/evaluator.py`) | Reads the real fills and appends the session to `data/results.json` |
 
-## Tech Stack & Design Patterns
+### 1. Morning research & orders
+1. **Scanner:** for 15 liquid, news-sensitive stocks, computes the pre-market gap: the latest pre-market trade compared with the previous session's close (`yfinance`, both pinned to explicit dates).
+2. **News:** fetches the latest headlines for the top 5 movers from the Alpaca News API (Benzinga).
+3. **Sentiment:** scores each headline with [`ProsusAI/finbert`](https://huggingface.co/ProsusAI/finbert) on a scale of −1 to +1 and averages the scores per stock.
+4. **Orders:** stocks scoring above **+0.15** get a buy order for **10% of the $100,000 fund** ($10,000) in whole shares, as a market-on-open (`OPG`) order. It fills in the opening auction.
+
+### 2. Midday exits
+Once the opening buys have filled, the bot queues a market-on-close (`CLS`) sell for exactly the shares it holds. It never sells more than it owns, so it cannot open a short position by accident.
+
+### 3. Afternoon evaluation
+For each finished session, the evaluator reads the real entry and exit fill prices from Alpaca. It values the position at Yahoo 1-minute prices for the intraday curve (`Open`, `1_min`, `10_min`, `30_min`, `1_hour`, `5_hour`, `EOD`). If a closing order was missed, the official close is used and the trade is flagged `"exit_status": "missed"`. The next morning closes any leftover position.
+
+## Reliability by design
+
+* **Calendar, not clock:** session dates and times come from Alpaca's calendar, never from the time a job started. A run that GitHub starts hours late still records the right day.
+* **Idempotent:** every order has a deterministic `client_order_id` (`2026-11-16-CRWD`, `2026-11-16-CRWD-exit`), so repeated attempts can't place duplicate orders. Several cron attempts per window make a timely run likely.
+* **Fails loudly:** missed windows, failed orders and data outages fail the workflow, so GitHub sends a notification instead of the bot quietly recording a flat day.
+* **No lost sessions:** each plan is its own file, and the evaluator records sessions oldest first, so balances always carry forward in order.
+* **Least privilege:** each workflow only gets the permissions it needs (the midday job cannot write to the repo), and API keys come from GitHub Actions secrets.
+
+## Data files
+
+| File | Written by | Purpose |
+|---|---|---|
+| `data/plans/<date>.json` | Morning | The day's targets, sentiment scores, share counts and order ids |
+| `data/results.json` | Afternoon | One entry per session: `date`, `starting_balance`, `ending_balance`, `portfolio_curve`, `trades[]`. **Read by the portfolio site, so keep these field names stable.** |
+
+## Tech stack
 
 * **Language:** Python 3.12
-* **APIs:** Alpaca Trading API, Alpaca News API, Yahoo Finance (`yfinance`)
-* **AI / Machine Learning:** Hugging Face `transformers`, PyTorch, FinBERT
-* **CI/CD & Automation:** GitHub Actions (Cron scheduling)
-* **Frontend Integration:** JSON artifacts served via GitHub Raw Content to an Astro (SSG) web app.
+* **APIs:** Alpaca Trading API (paper), Alpaca News API, Yahoo Finance (`yfinance`)
+* **AI / ML:** Hugging Face `transformers`, PyTorch, FinBERT
+* **Automation:** GitHub Actions (cron schedules)
+* **Frontend:** JSON served via GitHub raw content to an Astro site with Chart.js
 
-### Highlight: The Adapter Pattern
-The `sentiment.py` module utilizes the **Adapter Design Pattern**. Currently, the `analyze_text()` function parses text locally using the open-source FinBERT model. The architecture is explicitly designed so the sentiment engine can be swapped to OpenAI's API (e.g., `gpt-4o`) in the future by modifying just one function, without breaking the downstream broker or evaluator logic.
+### Design note: the adapter pattern
+`analyze_text()` in `src/sentiment.py` is the only place that knows which model scores the text. Swapping FinBERT for another model, such as an LLM API, means changing that one function. The scanner, broker and evaluator stay the same.
 
-## Local Setup & Installation
+## Project structure
 
-To run this project locally:
+```
+src/
+  main.py            morning job: calendar checks, scan, sentiment, orders
+  scanner.py         pre-market gap scanner
+  sentiment.py       Alpaca news + FinBERT scoring
+  broker.py          Alpaca orders (open buys, close sells, leftover clean-up)
+  midday.py          midday job: queues the closing sells
+  evaluator.py       afternoon job: real fills -> results.json
+  market_session.py  Alpaca market calendar helpers
+  storage.py         file paths and JSON helpers
+.github/workflows/   morning.yml, midday.yml, afternoon.yml
+data/                plans/ and results.json
+```
+
+## Local setup
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git](https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git)
-   cd YOUR-REPO-NAME
+   git clone https://github.com/PietroFabi/my-trading-bot.git
+   cd my-trading-bot
+   ```
+2. **Create a virtual environment and install dependencies:**
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate        # Windows  (macOS/Linux: source venv/bin/activate)
+   pip install -r requirements.txt
+   ```
+3. **Add your Alpaca paper keys** to a `.env` file in the project root. The file is gitignored; never commit it.
+   ```
+   ALPACA_API_KEY=your_paper_key
+   ALPACA_SECRET_KEY=your_paper_secret
+   ```
+   For GitHub Actions, add the same two values as repository secrets.
+4. **Run a job by hand:** `python src/main.py`, `python src/midday.py` or `python src/evaluator.py`. Each one checks the market calendar and exits if it is outside its window.
