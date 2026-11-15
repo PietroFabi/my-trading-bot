@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "compatibility_date": "2026-10-29", // must not be newer than the pinned wrangler's runtime
 
-  // No public URL: the only way in is Cloudflare's own scheduler.
+  // No public URL (and no per-version preview URLs): the only way in is Cloudflare's own scheduler.
   "workers_dev": false,
+  "preview_urls": false,
 
   "vars": {
     "GITHUB_REPO": "PietroFabi/my-trading-bot"
