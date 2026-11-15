@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   run-afternoon:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # pinned: ubuntu-latest is moving to 26.04; upgrade on purpose, not by surprise
     permissions:
       contents: write
 

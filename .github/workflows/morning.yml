@@ -5,19 +5,13 @@ on:
     # PRIMARY TRIGGER: the Cloudflare Worker in scheduler/ starts this workflow on time via
     # workflow_dispatch. GitHub's own cron below is only a BACKUP: on this repo it has started
     # runs 4-7 hours late. A late backup run exits quietly if the work is already done.
-    # GitHub cron is UTC and runs can start late, so we schedule several attempts.
-    # src/main.py checks Alpaca's market calendar: only an attempt inside the
-    # 07:00-09:25 New York pre-market window trades; the others exit quietly.
-    # Minutes are off the hour on purpose: :00 is GitHub's busiest (most delayed) slot.
-    #   UTC     winter (EST)   summer (EDT)
-    #   11:07   06:07 early    07:07 ok
-    #   12:07   07:07 ok       08:07 ok
-    #   13:07   08:07 ok       09:07 ok
-    #   13:47   08:47 ok       09:47 late (only matters if every earlier attempt failed)
-    - cron: '7 11 * * 1-5'
-    - cron: '7 12 * * 1-5'
+    # One backup attempt only: morning and afternoon share a concurrency group, and GitHub keeps
+    # just ONE pending run per group (a newer arrival cancels the waiting one). Several late
+    # backups could cancel the afternoon run that the Worker queued.
+    # 13:07 UTC = 08:07 EST / 09:07 EDT, inside the 07:00-09:25 window if it ever runs on time.
+    # src/main.py checks Alpaca's market calendar, so a late run does nothing (or fails loudly
+    # if no plan exists for today, which means the Worker's runs failed too).
     - cron: '7 13 * * 1-5'
-    - cron: '47 13 * * 1-5'
   workflow_dispatch: # "Run workflow" button for manual tests
 
 # One bot job at a time across both workflows, so runs never race on data/*.json or place duplicate orders.
@@ -27,7 +21,7 @@ concurrency:
 
 jobs:
   run-morning:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # pinned: ubuntu-latest is moving to 26.04; upgrade on purpose, not by surprise
     permissions:
       contents: write
 
