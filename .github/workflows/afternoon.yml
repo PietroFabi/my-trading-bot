@@ -2,6 +2,9 @@ name: Afternoon Trade Evaluator
 
 on:
   schedule:
+    # PRIMARY TRIGGER: the Cloudflare Worker in scheduler/ starts this workflow on time via
+    # workflow_dispatch. GitHub's own cron below is only a BACKUP: on this repo it has started
+    # runs 4-7 hours late. A late backup run exits quietly if the work is already done.
     # 21:15 UTC = 16:15 EST / 17:15 EDT, always after the close. Running late is fine:
     # src/evaluator.py records every finished session in data/plans/ that is not in
     # results.json yet, using the real Alpaca fills. The next morning run also catches up.
@@ -20,10 +23,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
           cache: 'pip'

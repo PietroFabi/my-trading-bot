@@ -2,6 +2,9 @@ name: Morning Trading Strategy
 
 on:
   schedule:
+    # PRIMARY TRIGGER: the Cloudflare Worker in scheduler/ starts this workflow on time via
+    # workflow_dispatch. GitHub's own cron below is only a BACKUP: on this repo it has started
+    # runs 4-7 hours late. A late backup run exits quietly if the work is already done.
     # GitHub cron is UTC and runs can start late, so we schedule several attempts.
     # src/main.py checks Alpaca's market calendar: only an attempt inside the
     # 07:00-09:25 New York pre-market window trades; the others exit quietly.
@@ -30,10 +33,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
           cache: 'pip'

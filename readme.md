@@ -8,7 +8,7 @@ Every trading day it scans a watchlist for pre-market gaps, scores the latest he
 
 ## Daily lifecycle
 
-Three GitHub Actions workflows run on weekdays. GitHub's cron is in UTC and runs can start late, so each job checks **Alpaca's market calendar** for the real session times. That covers US daylight saving, market holidays and half days. A job that lands outside its window does nothing.
+Three GitHub Actions workflows run on weekdays. A small **Cloudflare Worker** (`scheduler/`) starts them on time through GitHub's API, because GitHub's own cron started runs 4-7 hours late on this repo. GitHub's schedules are kept as a backup. Each job also checks **Alpaca's market calendar** for the real session times, which covers US daylight saving, market holidays and half days. A job that lands outside its window does nothing.
 
 | Window (New York time) | Workflow | What it does |
 |---|---|---|
@@ -35,6 +35,30 @@ For each finished session, the evaluator reads the real entry and exit fill pric
 * **Fails loudly:** missed windows, failed orders and data outages fail the workflow, so GitHub sends a notification instead of the bot quietly recording a flat day.
 * **No lost sessions:** each plan is its own file, and the evaluator records sessions oldest first, so balances always carry forward in order.
 * **Least privilege:** each workflow only gets the permissions it needs (the midday job cannot write to the repo), and API keys come from GitHub Actions secrets.
+
+## Scheduler (Cloudflare Worker)
+
+`scheduler/` holds a Worker whose only job is to start the workflows on time. It has no public URL: Cloudflare Cron Triggers call it, and it calls GitHub's `workflow_dispatch` API, which starts a run immediately instead of queueing it like scheduled runs.
+
+| Trigger (UTC) | Winter (EST) | Summer (EDT) | Workflow |
+|---|---|---|---|
+| 12:45, 13:05 | 07:45, 08:05 | 08:45, 09:05 | morning (main attempt + retry) |
+| 15:00 | 10:00 | 11:00 | midday |
+| 21:30 | 16:30 | 17:30 | afternoon |
+
+One-time setup:
+1. On GitHub, create a **fine-grained personal access token** (Settings → Developer settings → Fine-grained tokens): repository access *Only select repositories* → this repo; permission **Actions: Read and write**. Nothing else.
+2. Deploy from the `scheduler/` folder:
+   ```bash
+   npm install
+   npx wrangler login
+   npx wrangler secret put GITHUB_TOKEN
+   npm run deploy
+   ```
+   `secret put` prompts for the token, so it never ends up in a file or in your shell history. `secret put` creates the Worker if it doesn't exist yet.
+3. Check it under Workers & Pages → trading-bot-scheduler: the four Cron Triggers are listed, and each run's logs show `Started <workflow>.yml`.
+
+Test locally: `npm run dev`, then `curl "http://127.0.0.1:8787/cdn-cgi/local/scheduled?cron=0+15+*+*+MON-FRI"`. This calls the real GitHub API unless you pass `--var GITHUB_API:<fake server>`.
 
 ## Data files
 
@@ -85,7 +109,7 @@ Only `EOD` is an executed result. The other `portfolio_curve` points answer "wha
 * **Language:** Python 3.12
 * **APIs:** Alpaca Trading API (paper), Alpaca News API, Yahoo Finance (`yfinance`)
 * **AI / ML:** Hugging Face `transformers`, PyTorch, FinBERT
-* **Automation:** GitHub Actions (cron schedules)
+* **Automation:** GitHub Actions, triggered on time by a Cloudflare Worker (Cron Triggers)
 * **Frontend:** JSON served via GitHub raw content to an Astro site with Chart.js
 
 ### Design note: the adapter pattern
@@ -104,6 +128,7 @@ src/
   market_session.py  Alpaca market calendar helpers
   storage.py         file paths and JSON helpers
 .github/workflows/   morning.yml, midday.yml, afternoon.yml
+scheduler/           Cloudflare Worker that starts the workflows on time
 data/                plans/ and results.json
 ```
 

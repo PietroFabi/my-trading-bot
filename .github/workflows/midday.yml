@@ -2,6 +2,9 @@ name: Midday Exit Orders
 
 on:
   schedule:
+    # PRIMARY TRIGGER: the Cloudflare Worker in scheduler/ starts this workflow on time via
+    # workflow_dispatch. GitHub's own cron below is only a BACKUP: on this repo it has started
+    # runs 4-7 hours late. A late backup run exits quietly if the work is already done.
     # Queue market-on-close sells for today's positions. The order must be placed after the
     # opening fill and before Alpaca's closing-auction cutoff (~15:50 ET, 12:50 on half days).
     # src/midday.py checks the real session times; extra attempts are harmless (idempotent).
@@ -32,10 +35,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
           cache: 'pip'

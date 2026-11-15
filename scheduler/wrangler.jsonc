@@ -1,0 +1,29 @@
+// Cloudflare Worker that starts the bot's GitHub Actions workflows on time.
+// Deploy from this folder: npm install, then npm run deploy (see ../readme.md, "Scheduler").
+{
+  "name": "trading-bot-scheduler",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-29", // must not be newer than the pinned wrangler's runtime
+
+  // No public URL: the only way in is Cloudflare's own scheduler.
+  "workers_dev": false,
+
+  "vars": {
+    "GITHUB_REPO": "PietroFabi/my-trading-bot"
+  },
+  // Secret, set once with: npx wrangler secret put GITHUB_TOKEN
+  // (fine-grained token, this repository only, permission "Actions: Read and write").
+
+  // UTC. Weekdays use names because Cloudflare numbers them 1 = Sunday.
+  //   UTC     winter (EST)   summer (EDT)
+  //   12:45   07:45          08:45     morning (window 07:00-09:25)
+  //   13:05   08:05          09:05     morning retry
+  //   15:00   10:00          11:00     midday exits (before the 15:48 / 12:48 cutoff)
+  //   21:30   16:30          17:30     afternoon evaluation
+  // Uses 4 of the 5 Cron Triggers on the Workers Free plan. Keep in sync with SCHEDULE in src/index.js.
+  "triggers": {
+    "crons": ["45 12 * * MON-FRI", "5 13 * * MON-FRI", "0 15 * * MON-FRI", "30 21 * * MON-FRI"]
+  },
+
+  "observability": { "enabled": true }
+}
