@@ -1,0 +1,234 @@
+{
+    "session_date": "2026-11-16",
+    "market_open": "2026-11-16T09:30:00-05:00",
+    "market_close": "2026-11-16T16:00:00-05:00",
+    "planned_at": "2026-11-16T07:46:46.665028-05:00",
+    "sentiment_threshold": 0.15,
+    "candidates": [
+        {
+            "ticker": "COIN",
+            "gap_percent": -7.27,
+            "prev_close": 127.65,
+            "ref_price": 118.37,
+            "sentiment_score": -0.32,
+            "headlines": [
+                {
+                    "headline": "H100 Group Partners With Coinbase for Balance Sheet Management",
+                    "created_at": "2026-11-16T12:31:50Z",
+                    "source": "fiscal.ai",
+                    "url": "https://news.futunn.com/post/1004608241/h100-group-partners-with-coinbase-to-bolster-balance-sheet",
+                    "label": "neutral",
+                    "confidence": 0.748,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Coinbase and Broadridge Publish Proposed Standard for Onchain Shareholder Communications",
+                    "created_at": "2026-11-16T12:31:50Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.moomoo.com/hans/news/post/1004744139/coinbase-and-broadridge-publish-proposed-standard-for-onchain-shareholder-communications",
+                    "label": "neutral",
+                    "confidence": 0.9317,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Crypto Market Crashes as Bitcoin and Altcoins Slide, Fear and Greed Index Sinks to 17 and Liquidations Surge",
+                    "created_at": "2026-11-14T14:30:07Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/crypto/26/11/63273824/crypto-market-crashes-as-bitcoin-and-altcoins-slide-fear-and-greed-index-sinks-to-17-and-liquidations-surge",
+                    "label": "negative",
+                    "confidence": 0.9582,
+                    "score": -0.9582
+                }
+            ],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "AMD",
+            "gap_percent": -4.76,
+            "prev_close": 534.06,
+            "ref_price": 508.62,
+            "sentiment_score": 0.0,
+            "headlines": [
+                {
+                    "headline": "NVIDIA Must Now Prove It's Bigger Than Jensen Huang",
+                    "created_at": "2026-11-16T11:41:40Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/markets/tech/26/11/63282757/nvidia-must-now-prove-its-bigger-than-jensen-huang",
+                    "label": "neutral",
+                    "confidence": 0.8275,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Nvidia's Jensen Huang Controversy Could Backfire on China, Chamath Palihapitiya Says \u2014 Washington May Get the Chip Controls It's Been Seeking",
+                    "created_at": "2026-11-16T08:51:14Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/markets/tech/26/11/63280028/nvidia-chamath-us-government-chip-control",
+                    "label": "neutral",
+                    "confidence": 0.6672,
+                    "score": 0.0
+                },
+                {
+                    "headline": "NVDA, AMD, CRWV and More: 5 Stocks Investors Couldn\u2019t Stop Buzzing About This Week",
+                    "created_at": "2026-11-14T12:17:58Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/markets/equities/26/11/63273727/nvda-amd-crwv-and-more-5-stocks-investors-couldnt-stop-buzzing-about-this-week",
+                    "label": "neutral",
+                    "confidence": 0.8531,
+                    "score": 0.0
+                }
+            ],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "NVDA",
+            "gap_percent": -3.04,
+            "prev_close": 162.85,
+            "ref_price": 157.9,
+            "sentiment_score": -0.79,
+            "headlines": [
+                {
+                    "headline": "DOJ Warns Elizabeth Warren of \u2018Significant Legal Consequences\u2019 Ahead of Potential Probes Into Trump, Corporate Allies: 'Strong Smoke \u200bSignal'",
+                    "created_at": "2026-11-16T12:17:27Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/news/politics/26/11/63284205/doj-warns-elizabeth-warren-of-significant-legal-consequences-ahead-of-potential-probes-into-trump-corporate-allies-strong-smoke-signal",
+                    "label": "negative",
+                    "confidence": 0.695,
+                    "score": -0.695
+                },
+                {
+                    "headline": "Mizuho Maintains Outperform on NVIDIA, Lowers Price Target to $220",
+                    "created_at": "2026-11-16T12:11:44Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/news/26/11/63283899/mizuho-maintains-outperform-nvidia-lowers-price-target-220",
+                    "label": "negative",
+                    "confidence": 0.7455,
+                    "score": -0.7455
+                },
+                {
+                    "headline": "'Soft Recession or Something More Dramatic:' Former SEC Chair Gary Gensler Warns AI Boom Could End in Dot-Com-Scale Bust \u2014 'They Loaned Too Much Money, Too Fast'",
+                    "created_at": "2026-11-16T12:05:59Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/markets/tech/26/11/63283689/soft-recession-or-something-more-dramatic-former-sec-chair-gary-gensler-warns-ai-boom-could-end-in-dot-com-scale-bust-they-loaned-too-much-money-too-fast",
+                    "label": "negative",
+                    "confidence": 0.9397,
+                    "score": -0.9397
+                }
+            ],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "SNOW",
+            "gap_percent": -2.71,
+            "prev_close": 291.0,
+            "ref_price": 283.1,
+            "sentiment_score": 0.55,
+            "headlines": [
+                {
+                    "headline": "Cyera Announces Expanded Integrations with Snowflake at Snowflake Summit 26",
+                    "created_at": "2026-11-13T11:31:43Z",
+                    "source": "fiscal.ai",
+                    "url": "https://stockanalysis.com/private/cyera/",
+                    "label": "positive",
+                    "confidence": 0.8352,
+                    "score": 0.8352
+                },
+                {
+                    "headline": "Snowflake Executive Discusses AI and Data Strategy",
+                    "created_at": "2026-11-13T01:01:55Z",
+                    "source": "fiscal.ai",
+                    "url": "https://cdotimes.com/2026/11/12/snowflake-believes-there-is-no-sustainable-ai-strategy-without-a-strong-data-strategy-rangarajan-srirangam-senior-regional-vp-of-solution-engineering-india-snowflake-a/",
+                    "label": "neutral",
+                    "confidence": 0.9417,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Evercore Maintains Buy Rating and Raises Snowflake Price Target to $430",
+                    "created_at": "2026-11-12T20:01:44Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.moomoo.com/news/post/1004462161/evercore-maintains-snowflake-snowus-with-buy-rating-raises-target-price",
+                    "label": "positive",
+                    "confidence": 0.8111,
+                    "score": 0.8111
+                }
+            ],
+            "decision": "approved"
+        },
+        {
+            "ticker": "CRWD",
+            "gap_percent": -1.24,
+            "prev_close": 226.61,
+            "ref_price": 223.8,
+            "sentiment_score": -0.01,
+            "headlines": [
+                {
+                    "headline": "Cantor Fitzgerald Maintains Overweight on CrowdStrike Holdings, Raises Price Target to $275",
+                    "created_at": "2026-11-16T11:55:14Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/news/26/11/63283077/cantor-fitzgerald-maintains-overweight-crowdstrike-holdings-raises-price-target-275",
+                    "label": "positive",
+                    "confidence": 0.8942,
+                    "score": 0.8942
+                },
+                {
+                    "headline": "CrowdStrike To Rally Around 21%? Here Are 10 Top Analyst Forecasts For Friday",
+                    "created_at": "2026-11-13T21:58:00Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/analyst-stock-ratings/price-target/26/11/63277248/crowdstrike-to-rally-around-21-here-are-10-top-analyst-forecasts-for-friday",
+                    "label": "neutral",
+                    "confidence": 0.9145,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Consumer Tech (Nov 9-13): Jensen Resigns From Nvidia Amid Affair Controvery, Microsoft Faces Massive Outage & More",
+                    "created_at": "2026-11-15T13:58:56Z",
+                    "source": "benzinga",
+                    "url": "https://www.benzinga.com/markets/tech/26/11/63277092/consumer-tech-nov-9-13-jensen-resigns-from-nvidia-amid-affair-controvery-microsoft-faces-massive-outage-more",
+                    "label": "negative",
+                    "confidence": 0.9347,
+                    "score": -0.9347
+                }
+            ],
+            "decision": "rejected"
+        }
+    ],
+    "targets": [
+        {
+            "ticker": "SNOW",
+            "gap_percent": -2.71,
+            "prev_close": 291.0,
+            "ref_price": 283.1,
+            "sentiment_score": 0.55,
+            "headlines": [
+                {
+                    "headline": "Cyera Announces Expanded Integrations with Snowflake at Snowflake Summit 26",
+                    "created_at": "2026-11-13T11:31:43Z",
+                    "source": "fiscal.ai",
+                    "url": "https://stockanalysis.com/private/cyera/",
+                    "label": "positive",
+                    "confidence": 0.8352,
+                    "score": 0.8352
+                },
+                {
+                    "headline": "Snowflake Executive Discusses AI and Data Strategy",
+                    "created_at": "2026-11-13T01:01:55Z",
+                    "source": "fiscal.ai",
+                    "url": "https://cdotimes.com/2026/11/12/snowflake-believes-there-is-no-sustainable-ai-strategy-without-a-strong-data-strategy-rangarajan-srirangam-senior-regional-vp-of-solution-engineering-india-snowflake-a/",
+                    "label": "neutral",
+                    "confidence": 0.9417,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Evercore Maintains Buy Rating and Raises Snowflake Price Target to $430",
+                    "created_at": "2026-11-12T20:01:44Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.moomoo.com/news/post/1004462161/evercore-maintains-snowflake-snowus-with-buy-rating-raises-target-price",
+                    "label": "positive",
+                    "confidence": 0.8111,
+                    "score": 0.8111
+                }
+            ],
+            "qty": 35,
+            "order_id": "6550d1ab-9829-44f7-8cd8-0a3f6c36a38d"
+        }
+    ]
+}
