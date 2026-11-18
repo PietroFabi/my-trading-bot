@@ -386,5 +386,192 @@
                 "reason": "sentiment below threshold"
             }
         ]
+    },
+    {
+        "date": "2026-11-18",
+        "starting_balance": 100000.0,
+        "ending_balance": 100060.2,
+        "portfolio_curve": {
+            "Open": 100000.0,
+            "1_min": 99971.72,
+            "10_min": 99860.84,
+            "30_min": 99885.48,
+            "1_hour": 99960.8,
+            "5_hour": 100026.49,
+            "EOD": 100060.2
+        },
+        "invested_usd": 7768.32,
+        "sentiment_threshold": 0.15,
+        "trades": [
+            {
+                "ticker": "SNOW",
+                "sentiment_score": 0.51,
+                "gap_percent": 1.43,
+                "headlines": [
+                    {
+                        "headline": "Noeri Secures $110 Million in Funding with Snowflake as Strategic Investor",
+                        "created_at": "2026-11-17T11:31:31Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.businesswire.com/newsroom/subject/funding",
+                        "label": "positive",
+                        "confidence": 0.6928,
+                        "score": 0.6928
+                    },
+                    {
+                        "headline": "Cyera Announces Expanded Integrations with Snowflake at Snowflake Summit 26",
+                        "created_at": "2026-11-13T11:31:43Z",
+                        "source": "fiscal.ai",
+                        "url": "https://stockanalysis.com/private/cyera/",
+                        "label": "positive",
+                        "confidence": 0.8352,
+                        "score": 0.8352
+                    },
+                    {
+                        "headline": "Snowflake Executive Discusses AI and Data Strategy",
+                        "created_at": "2026-11-13T01:01:55Z",
+                        "source": "fiscal.ai",
+                        "url": "https://cdotimes.com/2026/11/12/snowflake-believes-there-is-no-sustainable-ai-strategy-without-a-strong-data-strategy-rangarajan-srirangam-senior-regional-vp-of-solution-engineering-india-snowflake-a/",
+                        "label": "neutral",
+                        "confidence": 0.9417,
+                        "score": 0.0
+                    }
+                ],
+                "qty": 28.0,
+                "allocation_usd": 7768.32,
+                "open_price": 277.44,
+                "exit_price": 279.59,
+                "exit_status": "missed",
+                "performance_pct": {
+                    "1_min": -0.36,
+                    "10_min": -1.79,
+                    "30_min": -1.47,
+                    "1_hour": -0.5,
+                    "5_hour": 0.34,
+                    "EOD": 0.77
+                },
+                "pnl_usd": {
+                    "1_min": -28.28,
+                    "10_min": -139.16,
+                    "30_min": -114.52,
+                    "1_hour": -39.2,
+                    "5_hour": 26.49,
+                    "EOD": 60.2
+                }
+            }
+        ],
+        "rejected": [
+            {
+                "ticker": "NVDA",
+                "gap_percent": 2.83,
+                "sentiment_score": -0.28,
+                "headlines": [
+                    {
+                        "headline": "NVIDIA Co-Founder Jensen Huang Retains Director Nomination Rights",
+                        "created_at": "2026-11-18T12:31:53Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.marketscreener.com/news/nvidia-co-founder-jensen-huang-retains-right-to-nominate-two-directors-ce785eddd989f120",
+                        "label": "neutral",
+                        "confidence": 0.9163,
+                        "score": 0.0
+                    },
+                    {
+                        "headline": "NVIDIA Establishes Export Control Committee and Delays 10-Q Filing",
+                        "created_at": "2026-11-18T11:31:26Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.morningstar.com/news/marketwatch/2026111879/why-nvidia-broke-with-its-usual-practice-in-holding-back-its-quarterly-sec-report",
+                        "label": "negative",
+                        "confidence": 0.8394,
+                        "score": -0.8394
+                    },
+                    {
+                        "headline": "NVIDIA Reports Financial Results for Third Quarter Fiscal 2027",
+                        "created_at": "2026-11-18T00:01:31Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.globenewswire.com/news-release/2026/11/17/3405200/0/en/nvidia-announces-financial-results-for-third-quarter-fiscal-2027.html",
+                        "label": "neutral",
+                        "confidence": 0.679,
+                        "score": 0.0
+                    }
+                ],
+                "reason": "sentiment below threshold"
+            },
+            {
+                "ticker": "AMD",
+                "gap_percent": 1.41,
+                "sentiment_score": -0.01,
+                "headlines": [
+                    {
+                        "headline": "AMD Insider Executes $5.06 Million Share Sale",
+                        "created_at": "2026-11-17T22:31:59Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.marketscreener.com/news/advanced-micro-devices-insider-sold-shares-worth-5-060-653-according-to-a-recent-sec-filing-ce785edcdf89f625",
+                        "label": "neutral",
+                        "confidence": 0.946,
+                        "score": 0.0
+                    },
+                    {
+                        "headline": "AMD Gains Market Momentum Amid Nvidia Leadership Transition",
+                        "created_at": "2026-11-17T20:01:57Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.barchart.com/story/news/8881290/nvidias-leadership-crisis-could-be-a-major-opportunity-for-amd-stock",
+                        "label": "positive",
+                        "confidence": 0.9456,
+                        "score": 0.9456
+                    },
+                    {
+                        "headline": "AMD Shares Decline Following New Export Restrictions on AI Chips",
+                        "created_at": "2026-11-17T12:31:29Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.moomoo.com/community/feed/the-capital-breakdown-tuesday-november-17-2026-117631511494661",
+                        "label": "negative",
+                        "confidence": 0.9628,
+                        "score": -0.9628
+                    }
+                ],
+                "reason": "sentiment below threshold"
+            },
+            {
+                "ticker": "GOOGL",
+                "gap_percent": 0.79,
+                "sentiment_score": 0.0,
+                "headlines": [],
+                "reason": "sentiment below threshold"
+            },
+            {
+                "ticker": "CRWD",
+                "gap_percent": 1.19,
+                "sentiment_score": 0.3,
+                "headlines": [
+                    {
+                        "headline": "CrowdStrike Named Visionary Leader in Frost Radar\u2122: AI Security Operations Centers, 2026",
+                        "created_at": "2026-11-16T19:01:39Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.businesswire.com/newsroom/industry/technology/security",
+                        "label": "neutral",
+                        "confidence": 0.6469,
+                        "score": 0.0
+                    },
+                    {
+                        "headline": "Morgan Stanley Projects CrowdStrike to Exceed Annual Recurring Revenue Estimates",
+                        "created_at": "2026-11-13T19:01:56Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.marketscreener.com/news/crowdstrike-likely-to-top-annual-recurring-revenue-estimates-amid-rising-ai-cybersecurity-demand-mo-ce785ed9d180f422",
+                        "label": "positive",
+                        "confidence": 0.8927,
+                        "score": 0.8927
+                    },
+                    {
+                        "headline": "Rosenblatt Securities Adjusts CrowdStrike Price Target to $275",
+                        "created_at": "2026-11-13T14:32:20Z",
+                        "source": "fiscal.ai",
+                        "url": "https://www.marketscreener.com/news/rosenblatt-adjusts-price-target-on-crowdstrike-to-275-from-250-ce785ed9de80f720",
+                        "label": "neutral",
+                        "confidence": 0.8469,
+                        "score": 0.0
+                    }
+                ],
+                "reason": "buy order was not filled"
+            }
+        ]
     }
 ]
