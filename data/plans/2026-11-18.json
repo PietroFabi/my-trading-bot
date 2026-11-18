@@ -1,0 +1,244 @@
+{
+    "session_date": "2026-11-18",
+    "market_open": "2026-11-18T09:30:00-05:00",
+    "market_close": "2026-11-18T16:00:00-05:00",
+    "planned_at": "2026-11-18T07:46:51.507584-05:00",
+    "sentiment_threshold": 0.15,
+    "candidates": [
+        {
+            "ticker": "NVDA",
+            "gap_percent": 2.83,
+            "prev_close": 155.46,
+            "ref_price": 159.86,
+            "sentiment_score": -0.28,
+            "headlines": [
+                {
+                    "headline": "NVIDIA Co-Founder Jensen Huang Retains Director Nomination Rights",
+                    "created_at": "2026-11-18T12:31:53Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/nvidia-co-founder-jensen-huang-retains-right-to-nominate-two-directors-ce785eddd989f120",
+                    "label": "neutral",
+                    "confidence": 0.9163,
+                    "score": 0.0
+                },
+                {
+                    "headline": "NVIDIA Establishes Export Control Committee and Delays 10-Q Filing",
+                    "created_at": "2026-11-18T11:31:26Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.morningstar.com/news/marketwatch/2026111879/why-nvidia-broke-with-its-usual-practice-in-holding-back-its-quarterly-sec-report",
+                    "label": "negative",
+                    "confidence": 0.8394,
+                    "score": -0.8394
+                },
+                {
+                    "headline": "NVIDIA Reports Financial Results for Third Quarter Fiscal 2027",
+                    "created_at": "2026-11-18T00:01:31Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.globenewswire.com/news-release/2026/11/17/3405200/0/en/nvidia-announces-financial-results-for-third-quarter-fiscal-2027.html",
+                    "label": "neutral",
+                    "confidence": 0.679,
+                    "score": 0.0
+                }
+            ],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "SNOW",
+            "gap_percent": 1.43,
+            "prev_close": 272.94,
+            "ref_price": 276.83,
+            "sentiment_score": 0.51,
+            "headlines": [
+                {
+                    "headline": "Noeri Secures $110 Million in Funding with Snowflake as Strategic Investor",
+                    "created_at": "2026-11-17T11:31:31Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.businesswire.com/newsroom/subject/funding",
+                    "label": "positive",
+                    "confidence": 0.6928,
+                    "score": 0.6928
+                },
+                {
+                    "headline": "Cyera Announces Expanded Integrations with Snowflake at Snowflake Summit 26",
+                    "created_at": "2026-11-13T11:31:43Z",
+                    "source": "fiscal.ai",
+                    "url": "https://stockanalysis.com/private/cyera/",
+                    "label": "positive",
+                    "confidence": 0.8352,
+                    "score": 0.8352
+                },
+                {
+                    "headline": "Snowflake Executive Discusses AI and Data Strategy",
+                    "created_at": "2026-11-13T01:01:55Z",
+                    "source": "fiscal.ai",
+                    "url": "https://cdotimes.com/2026/11/12/snowflake-believes-there-is-no-sustainable-ai-strategy-without-a-strong-data-strategy-rangarajan-srirangam-senior-regional-vp-of-solution-engineering-india-snowflake-a/",
+                    "label": "neutral",
+                    "confidence": 0.9417,
+                    "score": 0.0
+                }
+            ],
+            "decision": "approved"
+        },
+        {
+            "ticker": "AMD",
+            "gap_percent": 1.41,
+            "prev_close": 503.41,
+            "ref_price": 510.5,
+            "sentiment_score": -0.01,
+            "headlines": [
+                {
+                    "headline": "AMD Insider Executes $5.06 Million Share Sale",
+                    "created_at": "2026-11-17T22:31:59Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/advanced-micro-devices-insider-sold-shares-worth-5-060-653-according-to-a-recent-sec-filing-ce785edcdf89f625",
+                    "label": "neutral",
+                    "confidence": 0.946,
+                    "score": 0.0
+                },
+                {
+                    "headline": "AMD Gains Market Momentum Amid Nvidia Leadership Transition",
+                    "created_at": "2026-11-17T20:01:57Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.barchart.com/story/news/8881290/nvidias-leadership-crisis-could-be-a-major-opportunity-for-amd-stock",
+                    "label": "positive",
+                    "confidence": 0.9456,
+                    "score": 0.9456
+                },
+                {
+                    "headline": "AMD Shares Decline Following New Export Restrictions on AI Chips",
+                    "created_at": "2026-11-17T12:31:29Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.moomoo.com/community/feed/the-capital-breakdown-tuesday-november-17-2026-117631511494661",
+                    "label": "negative",
+                    "confidence": 0.9628,
+                    "score": -0.9628
+                }
+            ],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "CRWD",
+            "gap_percent": 1.19,
+            "prev_close": 219.58,
+            "ref_price": 222.18,
+            "sentiment_score": 0.3,
+            "headlines": [
+                {
+                    "headline": "CrowdStrike Named Visionary Leader in Frost Radar\u2122: AI Security Operations Centers, 2026",
+                    "created_at": "2026-11-16T19:01:39Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.businesswire.com/newsroom/industry/technology/security",
+                    "label": "neutral",
+                    "confidence": 0.6469,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Morgan Stanley Projects CrowdStrike to Exceed Annual Recurring Revenue Estimates",
+                    "created_at": "2026-11-13T19:01:56Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/crowdstrike-likely-to-top-annual-recurring-revenue-estimates-amid-rising-ai-cybersecurity-demand-mo-ce785ed9d180f422",
+                    "label": "positive",
+                    "confidence": 0.8927,
+                    "score": 0.8927
+                },
+                {
+                    "headline": "Rosenblatt Securities Adjusts CrowdStrike Price Target to $275",
+                    "created_at": "2026-11-13T14:32:20Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/rosenblatt-adjusts-price-target-on-crowdstrike-to-275-from-250-ce785ed9de80f720",
+                    "label": "neutral",
+                    "confidence": 0.8469,
+                    "score": 0.0
+                }
+            ],
+            "decision": "approved"
+        },
+        {
+            "ticker": "GOOGL",
+            "gap_percent": 0.79,
+            "prev_close": 280.2,
+            "ref_price": 282.42,
+            "sentiment_score": 0.0,
+            "headlines": [],
+            "decision": "rejected"
+        }
+    ],
+    "targets": [
+        {
+            "ticker": "SNOW",
+            "gap_percent": 1.43,
+            "prev_close": 272.94,
+            "ref_price": 276.83,
+            "sentiment_score": 0.51,
+            "headlines": [
+                {
+                    "headline": "Noeri Secures $110 Million in Funding with Snowflake as Strategic Investor",
+                    "created_at": "2026-11-17T11:31:31Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.businesswire.com/newsroom/subject/funding",
+                    "label": "positive",
+                    "confidence": 0.6928,
+                    "score": 0.6928
+                },
+                {
+                    "headline": "Cyera Announces Expanded Integrations with Snowflake at Snowflake Summit 26",
+                    "created_at": "2026-11-13T11:31:43Z",
+                    "source": "fiscal.ai",
+                    "url": "https://stockanalysis.com/private/cyera/",
+                    "label": "positive",
+                    "confidence": 0.8352,
+                    "score": 0.8352
+                },
+                {
+                    "headline": "Snowflake Executive Discusses AI and Data Strategy",
+                    "created_at": "2026-11-13T01:01:55Z",
+                    "source": "fiscal.ai",
+                    "url": "https://cdotimes.com/2026/11/12/snowflake-believes-there-is-no-sustainable-ai-strategy-without-a-strong-data-strategy-rangarajan-srirangam-senior-regional-vp-of-solution-engineering-india-snowflake-a/",
+                    "label": "neutral",
+                    "confidence": 0.9417,
+                    "score": 0.0
+                }
+            ],
+            "qty": 36,
+            "order_id": "4d2f8ccd-c068-470d-8348-14c1559d28fe"
+        },
+        {
+            "ticker": "CRWD",
+            "gap_percent": 1.19,
+            "prev_close": 219.58,
+            "ref_price": 222.18,
+            "sentiment_score": 0.3,
+            "headlines": [
+                {
+                    "headline": "CrowdStrike Named Visionary Leader in Frost Radar\u2122: AI Security Operations Centers, 2026",
+                    "created_at": "2026-11-16T19:01:39Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.businesswire.com/newsroom/industry/technology/security",
+                    "label": "neutral",
+                    "confidence": 0.6469,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Morgan Stanley Projects CrowdStrike to Exceed Annual Recurring Revenue Estimates",
+                    "created_at": "2026-11-13T19:01:56Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/crowdstrike-likely-to-top-annual-recurring-revenue-estimates-amid-rising-ai-cybersecurity-demand-mo-ce785ed9d180f422",
+                    "label": "positive",
+                    "confidence": 0.8927,
+                    "score": 0.8927
+                },
+                {
+                    "headline": "Rosenblatt Securities Adjusts CrowdStrike Price Target to $275",
+                    "created_at": "2026-11-13T14:32:20Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/rosenblatt-adjusts-price-target-on-crowdstrike-to-275-from-250-ce785ed9de80f720",
+                    "label": "neutral",
+                    "confidence": 0.8469,
+                    "score": 0.0
+                }
+            ],
+            "qty": 45,
+            "order_id": "1ac22885-32c9-484a-af49-b9df3b6f411d"
+        }
+    ]
+}
