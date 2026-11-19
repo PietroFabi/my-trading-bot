@@ -1,0 +1,280 @@
+{
+    "session_date": "2026-11-19",
+    "market_open": "2026-11-19T09:30:00-05:00",
+    "market_close": "2026-11-19T16:00:00-05:00",
+    "planned_at": "2026-11-19T07:46:54.912421-05:00",
+    "sentiment_threshold": 0.15,
+    "candidates": [
+        {
+            "ticker": "CRWD",
+            "gap_percent": 6.3,
+            "prev_close": 237.03,
+            "ref_price": 251.97,
+            "sentiment_score": 0.52,
+            "headlines": [
+                {
+                    "headline": "Hitachi Systems India Launches Advanced Global Delivery Centre in Partnership with CrowdStrike",
+                    "created_at": "2026-11-18T14:31:29Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.varindia.com/news/hitachi-systems-india-inaugurates-advanced-global-delivery-centre-in-bengaluru-with-crowdstrike",
+                    "label": "positive",
+                    "confidence": 0.6577,
+                    "score": 0.6577
+                },
+                {
+                    "headline": "CrowdStrike Named Visionary Leader in Frost Radar\u2122: AI Security Operations Centers, 2026",
+                    "created_at": "2026-11-16T19:01:39Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.businesswire.com/newsroom/industry/technology/security",
+                    "label": "neutral",
+                    "confidence": 0.6469,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Morgan Stanley Projects CrowdStrike to Exceed Annual Recurring Revenue Estimates",
+                    "created_at": "2026-11-13T19:01:56Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/crowdstrike-likely-to-top-annual-recurring-revenue-estimates-amid-rising-ai-cybersecurity-demand-mo-ce785ed9d180f422",
+                    "label": "positive",
+                    "confidence": 0.8927,
+                    "score": 0.8927
+                }
+            ],
+            "decision": "approved"
+        },
+        {
+            "ticker": "GOOGL",
+            "gap_percent": 3.79,
+            "prev_close": 282.44,
+            "ref_price": 293.14,
+            "sentiment_score": 0.0,
+            "headlines": [],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "SNOW",
+            "gap_percent": 3.48,
+            "prev_close": 279.62,
+            "ref_price": 289.35,
+            "sentiment_score": 0.31,
+            "headlines": [
+                {
+                    "headline": "Analysts Issue Positive Outlooks on Snowflake's Fiscal Q3 Product Revenue",
+                    "created_at": "2026-11-19T00:02:23Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/snowflake-set-to-deliver-fiscal-q3-product-revenue-upside-oppenheimer-says-ce785edddd8bff22",
+                    "label": "positive",
+                    "confidence": 0.9343,
+                    "score": 0.9343
+                },
+                {
+                    "headline": "UBS Adjusts Price Target on Snowflake to $450",
+                    "created_at": "2026-11-18T16:02:19Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/ubs-adjusts-price-target-on-snowflake-to-450-from-500-keeps-buy-rating-ce785eddda8af12d",
+                    "label": "neutral",
+                    "confidence": 0.7774,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Daloopa Integrates Financial Data on Snowflake Marketplace",
+                    "created_at": "2026-11-18T16:02:19Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.prnewswire.com/news-releases/daloopa-delivers-audit-ready-financial-data-directly-on-snowflake-marketplace-to-accelerate-investment-workflows-302943974.html",
+                    "label": "neutral",
+                    "confidence": 0.9399,
+                    "score": 0.0
+                }
+            ],
+            "decision": "approved"
+        },
+        {
+            "ticker": "COIN",
+            "gap_percent": 3.11,
+            "prev_close": 110.51,
+            "ref_price": 113.95,
+            "sentiment_score": 0.29,
+            "headlines": [
+                {
+                    "headline": "Coinbase Expands Bitcoin-Backed Loan Availability to All 50 U.S. States",
+                    "created_at": "2026-11-18T19:02:13Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.moomoo.com/stock/COIN-US?chain_id=Name1K9-3FXPhg.1lfrmcg&global_content=%7B%22promote_id%22%3A13764%2C%22sub_promote_id%22%3A109%2C%22f%22%3A%22www.moomoo.com%2Fsectors%2FCrypto-BK20010%22%7D",
+                    "label": "positive",
+                    "confidence": 0.8826,
+                    "score": 0.8826
+                },
+                {
+                    "headline": "HSK Chain and Coinbase's Base Announce Strategic Collaboration",
+                    "created_at": "2026-11-18T14:31:49Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.manilatimes.net/2026/11/18/tmt-newswire/pr-newswire/hsk-chain-and-base-collaborate-to-connect-asias-premier-onchain-asset-with-global-liquidity/2472839/amp",
+                    "label": "neutral",
+                    "confidence": 0.6717,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Wirex Launches Tokenized Stocks Issued by Coinbase on Base Network",
+                    "created_at": "2026-11-17T19:01:43Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.prnewswire.com/news-releases/wirex-now-powers-tokenized-stocks-302942480.html",
+                    "label": "neutral",
+                    "confidence": 0.9346,
+                    "score": 0.0
+                }
+            ],
+            "decision": "approved"
+        },
+        {
+            "ticker": "PLTR",
+            "gap_percent": 2.51,
+            "prev_close": 156.67,
+            "ref_price": 160.6,
+            "sentiment_score": -0.31,
+            "headlines": [
+                {
+                    "headline": "Russian Espionage Case Involves Palantir Employees",
+                    "created_at": "2026-11-19T12:31:40Z",
+                    "source": "fiscal.ai",
+                    "url": "https://htsyndication.com/hindustan-times/article/russian-man-accused-of-spying-targeted-workers-of-palantir%2C-which-is-aiding-ukraine-s-war-effort%3A-report/106206927",
+                    "label": "negative",
+                    "confidence": 0.4864,
+                    "score": -0.4864
+                },
+                {
+                    "headline": "Palantir Technologies Director Executes Stock Sale",
+                    "created_at": "2026-11-18T11:31:57Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/palantir-technologies-insider-sold-shares-worth-2-693-099-according-to-a-recent-sec-filing-ce785edcd08ff026",
+                    "label": "neutral",
+                    "confidence": 0.9486,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Palantir Technologies Faces Potential Competition for NHS Data Contract",
+                    "created_at": "2026-11-16T16:01:31Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.moomoo.com/news/post/1004759091/market-chatter-palantir-technologies-faces-uk-competition-for-nhs-data",
+                    "label": "negative",
+                    "confidence": 0.4397,
+                    "score": -0.4397
+                }
+            ],
+            "decision": "rejected"
+        }
+    ],
+    "targets": [
+        {
+            "ticker": "CRWD",
+            "gap_percent": 6.3,
+            "prev_close": 237.03,
+            "ref_price": 251.97,
+            "sentiment_score": 0.52,
+            "headlines": [
+                {
+                    "headline": "Hitachi Systems India Launches Advanced Global Delivery Centre in Partnership with CrowdStrike",
+                    "created_at": "2026-11-18T14:31:29Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.varindia.com/news/hitachi-systems-india-inaugurates-advanced-global-delivery-centre-in-bengaluru-with-crowdstrike",
+                    "label": "positive",
+                    "confidence": 0.6577,
+                    "score": 0.6577
+                },
+                {
+                    "headline": "CrowdStrike Named Visionary Leader in Frost Radar\u2122: AI Security Operations Centers, 2026",
+                    "created_at": "2026-11-16T19:01:39Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.businesswire.com/newsroom/industry/technology/security",
+                    "label": "neutral",
+                    "confidence": 0.6469,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Morgan Stanley Projects CrowdStrike to Exceed Annual Recurring Revenue Estimates",
+                    "created_at": "2026-11-13T19:01:56Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/crowdstrike-likely-to-top-annual-recurring-revenue-estimates-amid-rising-ai-cybersecurity-demand-mo-ce785ed9d180f422",
+                    "label": "positive",
+                    "confidence": 0.8927,
+                    "score": 0.8927
+                }
+            ],
+            "qty": 39,
+            "order_id": "b4684a76-7e4d-4dad-8ca2-b5d5dce88c07"
+        },
+        {
+            "ticker": "SNOW",
+            "gap_percent": 3.48,
+            "prev_close": 279.62,
+            "ref_price": 289.35,
+            "sentiment_score": 0.31,
+            "headlines": [
+                {
+                    "headline": "Analysts Issue Positive Outlooks on Snowflake's Fiscal Q3 Product Revenue",
+                    "created_at": "2026-11-19T00:02:23Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/snowflake-set-to-deliver-fiscal-q3-product-revenue-upside-oppenheimer-says-ce785edddd8bff22",
+                    "label": "positive",
+                    "confidence": 0.9343,
+                    "score": 0.9343
+                },
+                {
+                    "headline": "UBS Adjusts Price Target on Snowflake to $450",
+                    "created_at": "2026-11-18T16:02:19Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/ubs-adjusts-price-target-on-snowflake-to-450-from-500-keeps-buy-rating-ce785eddda8af12d",
+                    "label": "neutral",
+                    "confidence": 0.7774,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Daloopa Integrates Financial Data on Snowflake Marketplace",
+                    "created_at": "2026-11-18T16:02:19Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.prnewswire.com/news-releases/daloopa-delivers-audit-ready-financial-data-directly-on-snowflake-marketplace-to-accelerate-investment-workflows-302943974.html",
+                    "label": "neutral",
+                    "confidence": 0.9399,
+                    "score": 0.0
+                }
+            ]
+        },
+        {
+            "ticker": "COIN",
+            "gap_percent": 3.11,
+            "prev_close": 110.51,
+            "ref_price": 113.95,
+            "sentiment_score": 0.29,
+            "headlines": [
+                {
+                    "headline": "Coinbase Expands Bitcoin-Backed Loan Availability to All 50 U.S. States",
+                    "created_at": "2026-11-18T19:02:13Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.moomoo.com/stock/COIN-US?chain_id=Name1K9-3FXPhg.1lfrmcg&global_content=%7B%22promote_id%22%3A13764%2C%22sub_promote_id%22%3A109%2C%22f%22%3A%22www.moomoo.com%2Fsectors%2FCrypto-BK20010%22%7D",
+                    "label": "positive",
+                    "confidence": 0.8826,
+                    "score": 0.8826
+                },
+                {
+                    "headline": "HSK Chain and Coinbase's Base Announce Strategic Collaboration",
+                    "created_at": "2026-11-18T14:31:49Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.manilatimes.net/2026/11/18/tmt-newswire/pr-newswire/hsk-chain-and-base-collaborate-to-connect-asias-premier-onchain-asset-with-global-liquidity/2472839/amp",
+                    "label": "neutral",
+                    "confidence": 0.6717,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Wirex Launches Tokenized Stocks Issued by Coinbase on Base Network",
+                    "created_at": "2026-11-17T19:01:43Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.prnewswire.com/news-releases/wirex-now-powers-tokenized-stocks-302942480.html",
+                    "label": "neutral",
+                    "confidence": 0.9346,
+                    "score": 0.0
+                }
+            ],
+            "qty": 87,
+            "order_id": "da033745-3c77-44ef-b17d-5bb489b92f9f"
+        }
+    ]
+}
