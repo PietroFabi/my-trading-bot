@@ -1,0 +1,272 @@
+{
+    "session_date": "2026-11-20",
+    "market_open": "2026-11-20T09:30:00-05:00",
+    "market_close": "2026-11-20T16:00:00-05:00",
+    "planned_at": "2026-11-20T07:47:02.075419-05:00",
+    "sentiment_threshold": 0.15,
+    "candidates": [
+        {
+            "ticker": "AMD",
+            "gap_percent": -6.93,
+            "prev_close": 489.19,
+            "ref_price": 455.27,
+            "sentiment_score": -0.11,
+            "headlines": [
+                {
+                    "headline": "Advanced Micro Devices Shares Decline Following Hunterbrook Media Report on China Ties",
+                    "created_at": "2026-11-19T19:01:52Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/advanced-micro-devices-shares-fall-amid-hunterbrook-media-report-on-china-ties-ce785ed2dd8ff126",
+                    "label": "negative",
+                    "confidence": 0.9614,
+                    "score": -0.9614
+                },
+                {
+                    "headline": "AMD CEO Lisa Su Comments on Nvidia Leadership Transition",
+                    "created_at": "2026-11-19T03:01:34Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.barchart.com/story/news/8899114/amd-shares-climb-as-ceo-lisa-su-brushes-off-nvidia-s-huang-turmoil-but-the-real-opening-isn-t-demand",
+                    "label": "neutral",
+                    "confidence": 0.8945,
+                    "score": 0.0
+                },
+                {
+                    "headline": "AMD Insider Executes Significant Share Sale",
+                    "created_at": "2026-11-18T22:32:02Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/advanced-micro-devices-insider-sold-shares-worth-35-489-904-according-to-a-recent-sec-filing-ce785edddf89f121",
+                    "label": "positive",
+                    "confidence": 0.6264,
+                    "score": 0.6264
+                }
+            ],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "PLTR",
+            "gap_percent": -3.69,
+            "prev_close": 153.68,
+            "ref_price": 148.01,
+            "sentiment_score": 0.1,
+            "headlines": [
+                {
+                    "headline": "DZ Bank Adjusts Price Target on Palantir Technologies to $220 From $210",
+                    "created_at": "2026-11-20T11:31:54Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/dz-bank-adjusts-price-target-on-palantir-technologies-to-220-from-210-ce785ed3d98ef42d",
+                    "label": "positive",
+                    "confidence": 0.7818,
+                    "score": 0.7818
+                },
+                {
+                    "headline": "Russian Espionage Case Involves Palantir Employees",
+                    "created_at": "2026-11-19T12:31:40Z",
+                    "source": "fiscal.ai",
+                    "url": "https://htsyndication.com/hindustan-times/article/russian-man-accused-of-spying-targeted-workers-of-palantir%2C-which-is-aiding-ukraine-s-war-effort%3A-report/106206927",
+                    "label": "negative",
+                    "confidence": 0.4864,
+                    "score": -0.4864
+                },
+                {
+                    "headline": "Palantir Technologies Director Executes Stock Sale",
+                    "created_at": "2026-11-18T11:31:57Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/palantir-technologies-insider-sold-shares-worth-2-693-099-according-to-a-recent-sec-filing-ce785edcd08ff026",
+                    "label": "neutral",
+                    "confidence": 0.9486,
+                    "score": 0.0
+                }
+            ],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "META",
+            "gap_percent": -3.63,
+            "prev_close": 596.22,
+            "ref_price": 574.56,
+            "sentiment_score": 0.0,
+            "headlines": [
+                {
+                    "headline": "Meta Warns of China-Linked Accounts Targeting Taiwan Elections on Threads",
+                    "created_at": "2026-11-20T11:32:24Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/meta-platforms-warned-threads-being-used-by-china-to-influence-taiwan-local-elections-ce785ed2d081f627",
+                    "label": "neutral",
+                    "confidence": 0.7892,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Meta Platforms CFO Executes Insider Share Sale",
+                    "created_at": "2026-11-20T11:32:24Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.moomoo.com/stock/META-US?chain_id=Name1K9-3FXPhg.1lfvvg0&global_content=%7B%22promote_id%22%3A13764%2C%22sub_promote_id%22%3A57%2C%22f%22%3A%22www.moomoo.com%2Fstock%2FSTLD-US%22%7D",
+                    "label": "neutral",
+                    "confidence": 0.9375,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Meta Reevaluating 2030 Net Zero Emissions Goal",
+                    "created_at": "2026-11-20T01:01:32Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.manilatimes.net/2026/11/20/world/americas-emea/meta-says-reevaluating-2030-net-zero-target-amid-ai-buildout/2474624",
+                    "label": "neutral",
+                    "confidence": 0.7335,
+                    "score": 0.0
+                }
+            ],
+            "decision": "rejected"
+        },
+        {
+            "ticker": "CRWD",
+            "gap_percent": -3.47,
+            "prev_close": 243.46,
+            "ref_price": 235.0,
+            "sentiment_score": 0.22,
+            "headlines": [
+                {
+                    "headline": "CrowdStrike Holdings Insider Executes Share Sale",
+                    "created_at": "2026-11-19T21:32:21Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/crowdstrike-holdings-insider-sold-shares-worth-4-507-504-according-to-a-recent-sec-filing-ce785ed2df88fe2d",
+                    "label": "neutral",
+                    "confidence": 0.9149,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Jamf Integrates Apple Device Management and Security Apps with CrowdStrike Falcon Foundry",
+                    "created_at": "2026-11-19T14:31:33Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.businesswire.com/newsroom/industry/technology/security",
+                    "label": "neutral",
+                    "confidence": 0.8503,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Hitachi Systems India Launches Advanced Global Delivery Centre in Partnership with CrowdStrike",
+                    "created_at": "2026-11-18T14:31:29Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.varindia.com/news/hitachi-systems-india-inaugurates-advanced-global-delivery-centre-in-bengaluru-with-crowdstrike",
+                    "label": "positive",
+                    "confidence": 0.6577,
+                    "score": 0.6577
+                }
+            ],
+            "decision": "approved"
+        },
+        {
+            "ticker": "SNOW",
+            "gap_percent": -3.04,
+            "prev_close": 268.59,
+            "ref_price": 260.41,
+            "sentiment_score": 0.31,
+            "headlines": [
+                {
+                    "headline": "Analysts Issue Positive Outlooks on Snowflake's Fiscal Q3 Product Revenue",
+                    "created_at": "2026-11-19T00:02:23Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/snowflake-set-to-deliver-fiscal-q3-product-revenue-upside-oppenheimer-says-ce785edddd8bff22",
+                    "label": "positive",
+                    "confidence": 0.9343,
+                    "score": 0.9343
+                },
+                {
+                    "headline": "UBS Adjusts Price Target on Snowflake to $450",
+                    "created_at": "2026-11-18T16:02:19Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/ubs-adjusts-price-target-on-snowflake-to-450-from-500-keeps-buy-rating-ce785eddda8af12d",
+                    "label": "neutral",
+                    "confidence": 0.7774,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Daloopa Integrates Financial Data on Snowflake Marketplace",
+                    "created_at": "2026-11-18T16:02:19Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.prnewswire.com/news-releases/daloopa-delivers-audit-ready-financial-data-directly-on-snowflake-marketplace-to-accelerate-investment-workflows-302943974.html",
+                    "label": "neutral",
+                    "confidence": 0.9399,
+                    "score": 0.0
+                }
+            ],
+            "decision": "approved"
+        }
+    ],
+    "targets": [
+        {
+            "ticker": "CRWD",
+            "gap_percent": -3.47,
+            "prev_close": 243.46,
+            "ref_price": 235.0,
+            "sentiment_score": 0.22,
+            "headlines": [
+                {
+                    "headline": "CrowdStrike Holdings Insider Executes Share Sale",
+                    "created_at": "2026-11-19T21:32:21Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/crowdstrike-holdings-insider-sold-shares-worth-4-507-504-according-to-a-recent-sec-filing-ce785ed2df88fe2d",
+                    "label": "neutral",
+                    "confidence": 0.9149,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Jamf Integrates Apple Device Management and Security Apps with CrowdStrike Falcon Foundry",
+                    "created_at": "2026-11-19T14:31:33Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.businesswire.com/newsroom/industry/technology/security",
+                    "label": "neutral",
+                    "confidence": 0.8503,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Hitachi Systems India Launches Advanced Global Delivery Centre in Partnership with CrowdStrike",
+                    "created_at": "2026-11-18T14:31:29Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.varindia.com/news/hitachi-systems-india-inaugurates-advanced-global-delivery-centre-in-bengaluru-with-crowdstrike",
+                    "label": "positive",
+                    "confidence": 0.6577,
+                    "score": 0.6577
+                }
+            ],
+            "qty": 42,
+            "order_id": "e90376a9-8aba-45b8-8d9d-3a0b874aeb80"
+        },
+        {
+            "ticker": "SNOW",
+            "gap_percent": -3.04,
+            "prev_close": 268.59,
+            "ref_price": 260.41,
+            "sentiment_score": 0.31,
+            "headlines": [
+                {
+                    "headline": "Analysts Issue Positive Outlooks on Snowflake's Fiscal Q3 Product Revenue",
+                    "created_at": "2026-11-19T00:02:23Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/snowflake-set-to-deliver-fiscal-q3-product-revenue-upside-oppenheimer-says-ce785edddd8bff22",
+                    "label": "positive",
+                    "confidence": 0.9343,
+                    "score": 0.9343
+                },
+                {
+                    "headline": "UBS Adjusts Price Target on Snowflake to $450",
+                    "created_at": "2026-11-18T16:02:19Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.marketscreener.com/news/ubs-adjusts-price-target-on-snowflake-to-450-from-500-keeps-buy-rating-ce785eddda8af12d",
+                    "label": "neutral",
+                    "confidence": 0.7774,
+                    "score": 0.0
+                },
+                {
+                    "headline": "Daloopa Integrates Financial Data on Snowflake Marketplace",
+                    "created_at": "2026-11-18T16:02:19Z",
+                    "source": "fiscal.ai",
+                    "url": "https://www.prnewswire.com/news-releases/daloopa-delivers-audit-ready-financial-data-directly-on-snowflake-marketplace-to-accelerate-investment-workflows-302943974.html",
+                    "label": "neutral",
+                    "confidence": 0.9399,
+                    "score": 0.0
+                }
+            ],
+            "qty": 38,
+            "order_id": "fdf7e522-6e9a-47de-a834-cca40f63a55a"
+        }
+    ]
+}
