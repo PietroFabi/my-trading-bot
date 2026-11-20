@@ -12,10 +12,13 @@ run that GitHub starts hours late still records the right day.
 import datetime as dt
 
 import yfinance as yf
+from alpaca.trading.enums import OrderSide, QueryOrderStatus
+from alpaca.trading.requests import GetOrdersRequest
 
 import broker
 from market_session import now_ny
-from storage import RESULTS_FILE, PLANS_DIR, all_plan_paths, exit_order_id, load_json, save_json
+from storage import (RESULTS_FILE, PLANS_DIR, all_plan_paths, exit_order_id, late_exit_order_id,
+                     load_json, plan_path, save_json)
 
 INITIAL_CAPITAL = broker.FUND_SIZE_USD  # starting value of the fund shown on the site
 
@@ -154,6 +157,63 @@ def _evaluate_plan(plan: dict, starting_balance: float, client) -> dict:
     }
 
 
+def _late_exit_price(ticker: str, session_date: str, session_close: dt.datetime, client):
+    """
+    Real price of the sell that closed a missed exit later (normally the next morning's
+    safety net), or None while it has not filled. Tagged sells are found by id; sells from
+    before tagging existed are found as the first filled SELL of that stock after the close.
+    """
+    tagged = broker.existing_order(late_exit_order_id(session_date, ticker), client)
+    if tagged is not None:
+        return float(tagged.filled_avg_price) if broker.status_of(tagged) == "filled" else None
+    orders = client.get_orders(GetOrdersRequest(
+        status=QueryOrderStatus.CLOSED, symbols=[ticker], side=OrderSide.SELL,
+        after=session_close, until=session_close + dt.timedelta(days=5), direction="asc", limit=20))
+    for o in sorted(orders, key=lambda o: o.submitted_at):
+        if broker.status_of(o) == "filled" and o.client_order_id != exit_order_id(session_date, ticker):
+            return float(o.filled_avg_price)
+    return None
+
+
+def revise_missed_exits(results: list, plans_dir=PLANS_DIR, client=None) -> bool:
+    """
+    Replace "missed" exits (valued at the official close) with the real price the shares were
+    later sold at, mark them "late", and shift every later session's balances by the same
+    dollar difference so the running fund value stays consistent. Returns True if anything changed.
+    """
+    client = client or broker.trading_client
+    changed = False
+    for i, entry in enumerate(results):
+        missed = [t for t in entry.get("trades", []) if t.get("exit_status") == "missed"]
+        plan = load_json(plan_path(entry["date"], plans_dir), default=None) if missed else None
+        if not plan:
+            continue
+        close = dt.datetime.fromisoformat(plan["market_close"])
+        delta = 0.0
+        for t in missed:
+            price = _late_exit_price(t["ticker"], entry["date"], close, client)
+            if price is None:
+                continue
+            d = t["qty"] * (price - t["exit_price"])
+            print(f"Revising {entry['date']} {t['ticker']}: exit ${t['exit_price']:,.2f} (close estimate) "
+                  f"-> ${price:,.2f} (real late sell), {d:+,.2f} USD")
+            t["exit_price"] = round(price, 2)
+            t["exit_status"] = "late"
+            t["performance_pct"]["EOD"] = round((price - t["open_price"]) / t["open_price"] * 100, 2)
+            if "pnl_usd" in t:
+                t["pnl_usd"]["EOD"] = round(t["pnl_usd"]["EOD"] + d, 2)
+            delta += d
+        if delta:
+            entry["portfolio_curve"]["EOD"] = round(entry["portfolio_curve"]["EOD"] + delta, 2)
+            entry["ending_balance"] = entry["portfolio_curve"]["EOD"]
+            for later in results[i + 1:]:
+                later["starting_balance"] = round(later["starting_balance"] + delta, 2)
+                later["ending_balance"] = round(later["ending_balance"] + delta, 2)
+                later["portfolio_curve"] = {k: round(v + delta, 2) for k, v in later["portfolio_curve"].items()}
+            changed = True
+    return changed
+
+
 def evaluate_pending(now=None, plans_dir=PLANS_DIR, results_file=RESULTS_FILE, client=None) -> int:
     """
     Evaluate every finished session that is not in results.json yet, oldest first.
@@ -166,6 +226,11 @@ def evaluate_pending(now=None, plans_dir=PLANS_DIR, results_file=RESULTS_FILE, c
     if not isinstance(results, list):
         raise RuntimeError("results.json is not a list; refusing to overwrite it")
     done = {r.get("date") for r in results if isinstance(r, dict)}
+
+    # First correct earlier sessions whose exit was missed and has since been sold for real,
+    # so new sessions carry forward the corrected balance.
+    if revise_missed_exits(results, plans_dir, client):
+        save_json(results_file, results)
 
     written = 0
     for path in all_plan_paths(plans_dir):

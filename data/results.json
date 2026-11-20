@@ -390,7 +390,7 @@
     {
         "date": "2026-11-18",
         "starting_balance": 100000.0,
-        "ending_balance": 100060.2,
+        "ending_balance": 100361.85,
         "portfolio_curve": {
             "Open": 100000.0,
             "1_min": 99971.72,
@@ -398,7 +398,7 @@
             "30_min": 99885.48,
             "1_hour": 99960.8,
             "5_hour": 100026.49,
-            "EOD": 100060.2
+            "EOD": 100361.85
         },
         "invested_usd": 7768.32,
         "sentiment_threshold": 0.15,
@@ -439,15 +439,15 @@
                 "qty": 28.0,
                 "allocation_usd": 7768.32,
                 "open_price": 277.44,
-                "exit_price": 279.59,
-                "exit_status": "missed",
+                "exit_price": 290.36,
+                "exit_status": "late",
                 "performance_pct": {
                     "1_min": -0.36,
                     "10_min": -1.79,
                     "30_min": -1.47,
                     "1_hour": -0.5,
                     "5_hour": 0.34,
-                    "EOD": 0.77
+                    "EOD": 4.66
                 },
                 "pnl_usd": {
                     "1_min": -28.28,
@@ -455,7 +455,7 @@
                     "30_min": -114.52,
                     "1_hour": -39.2,
                     "5_hour": 26.49,
-                    "EOD": 60.2
+                    "EOD": 361.85
                 }
             }
         ],
@@ -576,16 +576,16 @@
     },
     {
         "date": "2026-11-19",
-        "starting_balance": 100060.2,
-        "ending_balance": 99632.32,
+        "starting_balance": 100361.85,
+        "ending_balance": 99933.97,
         "portfolio_curve": {
-            "Open": 100060.2,
-            "1_min": 100022.58,
-            "10_min": 100081.86,
-            "30_min": 99956.08,
-            "1_hour": 99850.44,
-            "5_hour": 99768.74,
-            "EOD": 99632.32
+            "Open": 100361.85,
+            "1_min": 100324.23,
+            "10_min": 100383.51,
+            "30_min": 100257.73,
+            "1_hour": 100152.09,
+            "5_hour": 100070.39,
+            "EOD": 99933.97
         },
         "invested_usd": 8702.0,
         "sentiment_threshold": 0.15,

@@ -8,7 +8,7 @@ from alpaca.trading.enums import OrderSide, TimeInForce
 from alpaca.trading.requests import MarketOrderRequest
 from dotenv import load_dotenv
 
-from storage import buy_order_id, exit_order_id
+from storage import PLANS_DIR, buy_order_id, exit_order_id, late_exit_order_id, origin_session
 
 # Load API Keys
 load_dotenv()
@@ -196,18 +196,33 @@ def unsold_positions(plan: dict, client=None) -> list:
     return [t["ticker"] for t in plan["targets"] if t.get("order_id") and _held_qty(client, t["ticker"]) > 0]
 
 
-def close_leftover_positions(client=None):
+def close_leftover_positions(client=None, plans_dir=PLANS_DIR):
     """
     Safety net, run before the morning buys: sell any position left over from an earlier
     session whose exit failed. The market sell executes at the open.
+
+    The sell is tagged "<session>-<ticker>-late-exit" with the session that bought it, so the
+    evaluator can replace that session's estimated exit with this real fill.
     Returns (symbols being closed, symbols that could not be closed).
     """
     client = client or trading_client
     closed, failed = [], []
     for pos in client.get_all_positions():
         try:
-            client.close_position(pos.symbol)
-            print(f"🧹 Leftover position: queued a sell of {pos.qty} {pos.symbol} for the open")
+            origin = origin_session(pos.symbol, plans_dir)
+            qty = abs(float(pos.qty))
+            if origin and qty == int(qty) and existing_order(late_exit_order_id(origin, pos.symbol), client) is None:
+                client.submit_order(order_data=MarketOrderRequest(
+                    symbol=pos.symbol,
+                    qty=int(qty),
+                    side=OrderSide.SELL if float(pos.qty) > 0 else OrderSide.BUY,
+                    time_in_force=TimeInForce.DAY,
+                    client_order_id=late_exit_order_id(origin, pos.symbol),
+                ))
+                print(f"🧹 Leftover from {origin}: queued a sell of {pos.qty} {pos.symbol} for the open")
+            else:
+                client.close_position(pos.symbol)  # not the bot's position (or already tagged): plain close
+                print(f"🧹 Leftover position: queued a close of {pos.qty} {pos.symbol} for the open")
             closed.append(pos.symbol)
         except Exception as e:
             print(f"❌ Could not close leftover {pos.symbol}: {e}")

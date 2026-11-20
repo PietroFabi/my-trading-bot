@@ -28,7 +28,7 @@ About five minutes before the close, the bot sells exactly the shares it holds w
 > Why not auction orders? The first live week used opening-auction (`OPG`) buys and closing-auction (`CLS`) sells. The paper account filled 3 of 5 opening orders with zero shares and let every closing order expire unfilled, so the bot switched to plain market orders, which paper trading fills against live quotes.
 
 ### 3. Afternoon evaluation
-For each finished session, the evaluator reads the real entry and exit fill prices from Alpaca. It values the position at Yahoo 1-minute prices for the intraday curve (`Open`, `1_min`, `10_min`, `30_min`, `1_hour`, `5_hour`, `EOD`). If a closing order was missed, the official close is used and the trade is flagged `"exit_status": "missed"`. The next morning closes any leftover position.
+For each finished session, the evaluator reads the real entry and exit fill prices from Alpaca. It values the position at Yahoo 1-minute prices for the intraday curve (`Open`, `1_min`, `10_min`, `30_min`, `1_hour`, `5_hour`, `EOD`). If an exit was missed, the official close is used and the trade is flagged `"exit_status": "missed"`. The next morning sells the leftover position, tagged with the session it belongs to. Once that sell fills, the evaluator replaces the estimate with the real price, marks the trade `"late"`, and shifts every later session's balances by the difference, so the fund value always matches what really happened.
 
 ## Reliability by design
 
@@ -93,7 +93,7 @@ Test locally: `npm run dev`, then `curl "http://127.0.0.1:8787/cdn-cgi/local/sch
     "qty": 42, "allocation_usd": 9891.0,
     "open_price": 235.5,                // real entry fill (market order at the open)
     "exit_price": 238.9,                // real exit fill just before the close (or official close if missed)
-    "exit_status": "filled",            // "filled" | "missed"
+    "exit_status": "filled",            // "filled" | "missed" (valued at the close for now) | "late" (sold next morning; real price)
     "performance_pct": { "1_min": -0.1, "...": 0, "EOD": 1.44 },
     "pnl_usd":         { "1_min": -9.9, "...": 0, "EOD": 142.8 }
   }],

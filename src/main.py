@@ -58,7 +58,7 @@ def run_morning_strategy(now=None, plans_dir=PLANS_DIR) -> int:
 
     # 3. Safety net: sell anything left over from a session whose exit failed. Fail the run
     #    afterwards so GitHub emails you: a leftover means yesterday's exit did not work.
-    leftovers, leftover_failures = close_leftover_positions()
+    leftovers, leftover_failures = close_leftover_positions(plans_dir=plans_dir)
     if leftovers or leftover_failures:
         print(f"::warning::Leftover positions from an earlier session: {', '.join(leftovers + leftover_failures)}")
         exit_code = 1

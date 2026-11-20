@@ -42,3 +42,17 @@ def buy_order_id(session_date: str, ticker: str) -> str:
 
 def exit_order_id(session_date: str, ticker: str) -> str:
     return f"{session_date}-{ticker}-exit"
+
+
+def late_exit_order_id(session_date: str, ticker: str) -> str:
+    """Sell placed by the next morning's safety net when a session's own exit failed."""
+    return f"{session_date}-{ticker}-late-exit"
+
+
+def origin_session(ticker: str, plans_dir: str = PLANS_DIR):
+    """The most recent session whose plan actually ordered this ticker, or None."""
+    for path in reversed(all_plan_paths(plans_dir)):
+        plan = load_json(path, default=None) or {}
+        if any(t.get("ticker") == ticker and t.get("order_id") for t in plan.get("targets", [])):
+            return plan["session_date"]
+    return None
