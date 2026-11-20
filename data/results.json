@@ -577,7 +577,7 @@
     {
         "date": "2026-11-19",
         "starting_balance": 100361.85,
-        "ending_balance": 99933.97,
+        "ending_balance": 99955.17,
         "portfolio_curve": {
             "Open": 100361.85,
             "1_min": 100324.23,
@@ -585,7 +585,7 @@
             "30_min": 100257.73,
             "1_hour": 100152.09,
             "5_hour": 100070.39,
-            "EOD": 99933.97
+            "EOD": 99955.17
         },
         "invested_usd": 8702.0,
         "sentiment_threshold": 0.15,
@@ -626,15 +626,15 @@
                 "qty": 76.0,
                 "allocation_usd": 8702.0,
                 "open_price": 114.5,
-                "exit_price": 108.87,
-                "exit_status": "missed",
+                "exit_price": 109.15,
+                "exit_status": "late",
                 "performance_pct": {
                     "1_min": -0.43,
                     "10_min": 0.25,
                     "30_min": -1.2,
                     "1_hour": -2.41,
                     "5_hour": -3.35,
-                    "EOD": -4.92
+                    "EOD": -4.67
                 },
                 "pnl_usd": {
                     "1_min": -37.62,
@@ -642,7 +642,7 @@
                     "30_min": -104.12,
                     "1_hour": -209.76,
                     "5_hour": -291.46,
-                    "EOD": -427.88
+                    "EOD": -406.68
                 }
             }
         ],
