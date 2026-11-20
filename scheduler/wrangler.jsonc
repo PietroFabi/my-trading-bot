@@ -19,11 +19,12 @@
   //   UTC     winter (EST)   summer (EDT)
   //   12:45   07:45          08:45     morning (window 07:00-09:25)
   //   13:05   08:05          09:05     morning retry
-  //   15:00   10:00          11:00     midday exits (before the 15:48 / 12:48 cutoff)
+  //   16:55-20:55 hourly at :55     exits: only the run 5 min before today's close acts
+  //           (20:55 winter / 19:55 summer; 17:55 / 16:55 on 13:00 half days)
   //   21:30   16:30          17:30     afternoon evaluation
   // Uses 4 of the 5 Cron Triggers on the Workers Free plan. Keep in sync with SCHEDULE in src/index.js.
   "triggers": {
-    "crons": ["45 12 * * MON-FRI", "5 13 * * MON-FRI", "0 15 * * MON-FRI", "30 21 * * MON-FRI"]
+    "crons": ["45 12 * * MON-FRI", "5 13 * * MON-FRI", "55 16-20 * * MON-FRI", "30 21 * * MON-FRI"]
   },
 
   "observability": { "enabled": true }

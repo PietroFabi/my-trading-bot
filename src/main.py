@@ -11,7 +11,7 @@ from storage import PLANS_DIR, plan_path, save_json
 # Several cron attempts are scheduled; the first one that lands inside the
 # window does the work, later ones see the saved plan and exit.
 EARLIEST_BEFORE_OPEN = dt.timedelta(hours=2, minutes=30)  # 07:00 ET on a normal day
-CUTOFF_BEFORE_OPEN = dt.timedelta(minutes=5)              # 09:25 ET: Alpaca takes market-on-open orders until ~09:28
+CUTOFF_BEFORE_OPEN = dt.timedelta(minutes=5)              # 09:25 ET: buys must be queued before trading starts at 09:30
 
 SENTIMENT_THRESHOLD = 0.15
 
@@ -56,8 +56,11 @@ def run_morning_strategy(now=None, plans_dir=PLANS_DIR) -> int:
     print(f"Session {session.date}: opens {session.open:%H:%M}, closes {session.close:%H:%M} ET "
           f"(previous session {prev.date})")
 
-    # 3. Safety net: sell anything left over from a session whose closing order was missed.
-    if close_leftover_positions():
+    # 3. Safety net: sell anything left over from a session whose exit failed. Fail the run
+    #    afterwards so GitHub emails you: a leftover means yesterday's exit did not work.
+    leftovers, leftover_failures = close_leftover_positions()
+    if leftovers or leftover_failures:
+        print(f"::warning::Leftover positions from an earlier session: {', '.join(leftovers + leftover_failures)}")
         exit_code = 1
 
     # Imported here so skipped runs don't spend time loading the FinBERT model.
@@ -105,7 +108,7 @@ def run_morning_strategy(now=None, plans_dir=PLANS_DIR) -> int:
     # 7. Place orders, then save the plan (with order ids) even if some orders failed,
     #    so the evaluator only scores positions that really exist.
     try:
-        execute_morning_trades(plan)
+        execute_morning_trades(plan, skip_tickers=set(leftovers) | set(leftover_failures))
     finally:
         save_json(today_plan, plan)
         print(f"\nSaved plan with {len(plan['targets'])} targets to data/plans/{session.date}.json")

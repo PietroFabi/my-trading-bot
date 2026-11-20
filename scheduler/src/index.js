@@ -14,7 +14,7 @@
 const SCHEDULE = {
   "45 12 * * MON-FRI": "morning.yml",   // main attempt
   "5 13 * * MON-FRI": "morning.yml",    // retry; exits at once if the plan already exists
-  "0 15 * * MON-FRI": "midday.yml",
+  "55 16-20 * * MON-FRI": "exits.yml",  // hourly at :55; exits.py acts only just before today's close
   "30 21 * * MON-FRI": "afternoon.yml",
 };
 

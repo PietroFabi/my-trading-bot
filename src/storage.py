@@ -1,4 +1,4 @@
-"""Paths and JSON helpers shared by the jobs (no heavy imports, so the midday job stays light)."""
+"""Paths and JSON helpers shared by the jobs (no heavy imports, so the exit job stays light)."""
 import glob
 import json
 import os

@@ -1,0 +1,39 @@
+name: Closing Exit Orders
+
+on:
+  # Started only by the Cloudflare scheduler (scheduler/), at :55 every hour from 16:55 to
+  # 20:55 UTC; src/exits.py acts only in the 10 minutes before today's real close.
+  # No GitHub cron backup on purpose: on this repo scheduled runs start hours late, so a
+  # backup could never sell before the close. A missed exit still alerts you: the next
+  # morning job sells the leftover and fails its run, which sends an email.
+  workflow_dispatch:
+
+concurrency:
+  group: trading-bot-exits
+  cancel-in-progress: false
+
+jobs:
+  run-exits:
+    runs-on: ubuntu-24.04 # pinned: ubuntu-latest is moving to 26.04; upgrade on purpose, not by surprise
+    permissions:
+      contents: read # places orders via Alpaca, writes nothing to the repo
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        # Only the two packages this job needs (no torch), at the versions pinned in requirements.txt.
+        run: pip install $(grep -E '^(alpaca-py|python-dotenv)==' requirements.txt)
+
+      - name: Place Exit Orders
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        run: python src/exits.py

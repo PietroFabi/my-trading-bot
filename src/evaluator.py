@@ -1,8 +1,8 @@
 """
 Evaluator: turn each finished session's real Alpaca fills into an entry in results.json.
 
-- Entry price  = the buy's real fill (market-on-open auction).
-- Exit price   = the sell's real fill (market-on-close auction). If the exit was
+- Entry price  = the buy's real fill (market order executed at the open).
+- Exit price   = the sell's real fill (market order just before the close). If the exit was
                  missed, the official close is used and the trade is flagged.
 - Curve points = the real share count valued at Yahoo 1-minute prices.
 
