@@ -23,12 +23,12 @@ def run_morning_strategy(now=None, plans_dir=PLANS_DIR) -> int:
     exit_code = 0
 
     # 0. Record any finished session the afternoon job has not recorded yet (it may have run late or failed).
-    #    Plans are kept per session, so a failure here loses nothing; the afternoon job will retry.
+    #    Plans are kept per session, so a failure here loses nothing. Warning only: the afternoon
+    #    job owns evaluation and fails (emails you) itself if the problem persists.
     try:
         evaluate_pending(now=now, plans_dir=plans_dir)
     except Exception as e:
-        print(f"::warning::Catch-up evaluation failed: {e}")
-        exit_code = 1
+        print(f"::warning::Catch-up evaluation failed (the afternoon job will retry): {e}")
 
     # 1. Is the market open today at all? (weekends, holidays)
     session = session_on(trading_client, now.date())
@@ -56,11 +56,16 @@ def run_morning_strategy(now=None, plans_dir=PLANS_DIR) -> int:
     print(f"Session {session.date}: opens {session.open:%H:%M}, closes {session.close:%H:%M} ET "
           f"(previous session {prev.date})")
 
-    # 3. Safety net: sell anything left over from a session whose exit failed. Fail the run
-    #    afterwards so GitHub emails you: a leftover means yesterday's exit did not work.
+    # 3. Safety net: sell anything left over from a session whose exit failed.
+    #    Rule for alerts: the run fails (and GitHub emails you) only when you need to act.
+    #    A leftover the bot sells itself is handled (its result is corrected tonight), so it is
+    #    only a notice in the run summary. A leftover it could NOT sell needs you, so it fails.
     leftovers, leftover_failures = close_leftover_positions(plans_dir=plans_dir)
-    if leftovers or leftover_failures:
-        print(f"::warning::Leftover positions from an earlier session: {', '.join(leftovers + leftover_failures)}")
+    if leftovers:
+        print(f"::notice::Sold leftover positions from an earlier session at the open: {', '.join(leftovers)}. "
+              f"Their results will be corrected with the real price tonight.")
+    if leftover_failures:
+        print(f"::error::Could not sell leftover positions: {', '.join(leftover_failures)}. Check the Alpaca dashboard.")
         exit_code = 1
 
     # Imported here so skipped runs don't spend time loading the FinBERT model.
