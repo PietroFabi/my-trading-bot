@@ -36,7 +36,9 @@ PLAN_V2 = ["strategy", "strategy_name", "model_sha256", "scan_as_of", "entry", "
 
 
 def readme() -> str:
-    with open(os.path.join(ROOT, "README.md"), encoding="utf-8") as f:
+    # The repo tracks it as readme.md; match any case so the test also passes on a case-sensitive (Linux) checkout.
+    name = next(n for n in os.listdir(ROOT) if n.lower() == "readme.md")
+    with open(os.path.join(ROOT, name), encoding="utf-8") as f:
         return f.read()
 
 

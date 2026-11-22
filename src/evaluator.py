@@ -273,7 +273,7 @@ def evaluate_pending(now=None, plans_dir=PLANS_DIR, results_file=RESULTS_FILE, c
         else:
             starting_balance = float(results[-1]["ending_balance"]) if results else INITIAL_CAPITAL
         try:
-            entry = evaluator_v2.evaluate_plan_v2(plan, starting_balance, client, bars_fn) if v2 \
+            entry = evaluator_v2.evaluate_plan_v2(plan, starting_balance, client, bars_fn, now=now) if v2 \
                 else _evaluate_plan(plan, starting_balance, client)
         except (NotReady, evaluator_v2.NotReady) as e:
             print(f"Not ready yet: {e}. Try later.")

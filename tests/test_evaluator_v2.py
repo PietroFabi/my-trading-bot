@@ -138,6 +138,22 @@ class TradeTest(unittest.TestCase):
         self.assertEqual([(r["ticker"], r["reason"], r["gap_percent"], r["sentiment_score"]) for r in e["rejected"]],
                          [("WEAK", "below threshold", -0.4, -0.3)])
 
+    def test_bars_still_incomplete_soon_after_the_close_mean_not_ready(self):
+        p = v2_plan(FRI, target("LLL"))
+        c = trade_day(p, exit_px=101.0)
+        halted = bars_for(FRI, {"LLL": 101.0}, close=dt.time(14))               # last bar 13:59
+        with self.assertRaises(ev2.NotReady):
+            ev2.evaluate_plan_v2(p, 100_000.0, c, halted, now=at(FRI, 16, 20))
+
+    def test_a_stock_halted_for_good_is_evaluated_with_the_bars_it_has_instead_of_stalling(self):
+        p = v2_plan(FRI, target("LLL"))
+        c = trade_day(p, exit_px=101.0)
+        halted = bars_for(FRI, {"LLL": 101.0}, close=dt.time(14))
+        e = ev2.evaluate_plan_v2(p, 100_000.0, c, halted, now=at(FRI, 17, 0))  # an hour after the close
+        t = e["trades"][0]
+        self.assertEqual((t["exit_price"], t["performance_pct"]["5_hour"]), (101.0, 1.0))  # last known price
+        self.assertTrue(t["bars_incomplete"])
+
     def test_the_entry_is_valid_json_without_nan(self):
         p = v2_plan(FRI, target("LLL"))
         c = trade_day(p, exit_px=101.0)

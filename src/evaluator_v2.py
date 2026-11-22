@@ -32,6 +32,9 @@ CURVE_KEYS = ["Open", "1_min", "10_min", "30_min", "1_hour", "5_hour", "EOD"]
 TIMEFRAMES = {"1_min": 1, "10_min": 10, "30_min": 30, "1_hour": 60, "5_hour": 300}
 COST_PER_SIDE = 0.0005
 MAX_EDGE_GAP = dt.timedelta(minutes=5)
+# Incomplete bars soon after the close are just the free plan's 15-minute delay: wait. Later they mean the stock
+# stopped trading (e.g. a halt that never reopened): evaluate with the bars there are rather than stall forever.
+DATA_DELAY_GRACE = dt.timedelta(minutes=30)
 
 
 class NotReady(Exception):
@@ -47,22 +50,30 @@ def _price_at(bars: pd.DataFrame, t: dt.datetime) -> float:
     return float(bars[bars.index < t]["close"].iloc[-1])
 
 
-def _bars_of(frame: pd.DataFrame, symbol: str, session_open, session_close) -> pd.DataFrame:
-    if frame is None or frame.empty or symbol not in frame.index.get_level_values(0):
+def _bars_of(frame: pd.DataFrame, symbol: str, session_open, session_close, late: bool) -> tuple:
+    """(regular-hours bars, incomplete?) for one stock. Raises NotReady while the data may still be arriving."""
+    has = frame is not None and not frame.empty and symbol in frame.index.get_level_values(0)
+    bars = frame.xs(symbol, level=0) if has else None
+    bars = bars[(bars.index >= session_open) & (bars.index < session_close)] if has else None
+    if bars is None or bars.empty:
+        if late:
+            raise RuntimeError(f"{symbol}: no 1-minute bars for the session (data outage?)")
         raise NotReady(f"{symbol}: no 1-minute bars yet")
-    bars = frame.xs(symbol, level=0)
-    bars = bars[(bars.index >= session_open) & (bars.index < session_close)]
-    if bars.empty or bars.index[0] - session_open > MAX_EDGE_GAP or \
-            session_close - bars.index[-1] > MAX_EDGE_GAP + dt.timedelta(minutes=1):
+    incomplete = bool(bars.index[0] - session_open > MAX_EDGE_GAP or
+                      session_close - bars.index[-1] > MAX_EDGE_GAP + dt.timedelta(minutes=1))
+    if incomplete and not late:
         raise NotReady(f"{symbol}: 1-minute bars incomplete for the session")
-    return bars
+    if incomplete:
+        print(f"::warning::{symbol}: bars only {bars.index[0]:%H:%M}-{bars.index[-1]:%H:%M} (halted?); "
+              f"horizons use the last known price")
+    return bars, incomplete
 
 
 def _round(d: dict, n: int = 2) -> dict:
     return {k: round(v, n) for k, v in d.items()}
 
 
-def _evaluate_trade(target: dict, plan: dict, client, frame) -> tuple | None:
+def _evaluate_trade(target: dict, plan: dict, client, frame, late: bool = True) -> tuple | None:
     """(trade, gross dollar P&L per horizon, net dollar P&L per horizon), or None if the entry never filled."""
     ticker, sign = target["ticker"], broker.side_sign(target)
     session_open = dt.datetime.fromisoformat(plan["market_open"])
@@ -86,7 +97,7 @@ def _evaluate_trade(target: dict, plan: dict, client, frame) -> tuple | None:
     if closing is not None and broker.status_of(closing) not in broker.FINAL_STATUSES:
         raise NotReady(f"{ticker}: exit order is still '{broker.status_of(closing)}'")
 
-    bars = _bars_of(frame, ticker, session_open, session_close)
+    bars, incomplete = _bars_of(frame, ticker, session_open, session_close, late)
     if stop_fill is not None:
         exit_price, exit_status, exit_reason = stop_fill[0], "filled", "stop"
     elif closing is not None and float(closing.filled_qty or 0) > 0:
@@ -124,14 +135,16 @@ def _evaluate_trade(target: dict, plan: dict, client, frame) -> tuple | None:
         "exit_reason": exit_reason,
         "performance_pct_net": {k: round(v / invested * 100, 2) for k, v in pnl_net.items()},
         "pnl_usd_net": _round(pnl_net),
+        "bars_incomplete": incomplete,
     }
     return trade, pnl, pnl_net
 
 
-def evaluate_plan_v2(plan: dict, starting_balance: float, client, bars_fn=None) -> dict:
+def evaluate_plan_v2(plan: dict, starting_balance: float, client, bars_fn=None, now=None) -> dict:
     bars_fn = bars_fn or default_bars
     session_open = dt.datetime.fromisoformat(plan["market_open"])
     session_close = dt.datetime.fromisoformat(plan["market_close"])
+    late = now is None or now >= session_close + DATA_DELAY_GRACE
     ordered = [t for t in plan["targets"] if t.get("order_id")]
     frame = bars_fn([t["ticker"] for t in ordered], session_open, session_close - dt.timedelta(minutes=1)) \
         if ordered else None
@@ -153,7 +166,7 @@ def evaluate_plan_v2(plan: dict, starting_balance: float, client, bars_fn=None) 
             rejected.append({**evidence, "reason": target.get("skip_reason") or plan.get("skipped")
                              or "order could not be placed"})
             continue
-        scored = _evaluate_trade(target, plan, client, frame)
+        scored = _evaluate_trade(target, plan, client, frame, late)
         if scored is None:
             rejected.append({**evidence, "reason": "entry order was not filled"})
             continue

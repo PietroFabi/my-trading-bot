@@ -20,8 +20,10 @@ on:
         default: false
 
 # One bot job at a time across both workflows, so runs never race on data/*.json or place duplicate orders.
+# A dry run writes nothing to the repo and places no orders, so it gets its own group: it can never hold up
+# (or be cancelled behind) a real trading job.
 concurrency:
-  group: trading-bot-data
+  group: ${{ inputs.dry_run && 'trading-bot-dryrun' || 'trading-bot-data' }}
   cancel-in-progress: false
 
 jobs:
