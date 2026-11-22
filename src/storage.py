@@ -1,6 +1,8 @@
 """Paths and JSON helpers shared by the jobs (no heavy imports, so the exit job stays light)."""
 import glob
 import json
+import math
+import numbers
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +18,23 @@ HOLDOUT_FILE = os.path.join(DATA_DIR, "backtest", "holdout.json")  # its goes_li
 CANDIDATES_DIR = os.path.join(DATA_DIR, "candidates")  # realised outcome of every gated stock (would-have-traded log)
 CONFIRMATION_FILE = os.path.join(DATA_DIR, "confirmation.json")  # live progress vs the pre-registered criteria
 SCORE_BAND_FILE = os.path.join(DATA_DIR, "backtest", "score_band.json")  # hold-out score band for the drift notice
+
+
+def json_safe(obj):
+    """
+    A copy of obj with every non-finite number (NaN, +/-inf, including numpy floats) replaced by None.
+
+    For research outputs where a statistic can be undefined, e.g. a t-statistic over 0 or 1 trades.
+    Python's json writes those as bare NaN by default, which is not valid JSON: browsers' JSON.parse
+    rejects the whole file. Write the result with allow_nan=False so a NaN can never slip back in.
+    """
+    if isinstance(obj, dict):
+        return {k: json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [json_safe(v) for v in obj]
+    if isinstance(obj, numbers.Real) and not isinstance(obj, numbers.Integral) and not math.isfinite(obj):
+        return None
+    return obj
 
 
 def load_json(path, default):

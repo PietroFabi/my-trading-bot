@@ -17,7 +17,7 @@ import alerts
 import strategy
 from backtest import explore as ex
 from backtest.freeze import HOLDOUT_END
-from storage import HOLDOUT_FILE, MODEL_FILE, PREREG_FILE, SCORE_BAND_FILE
+from storage import HOLDOUT_FILE, MODEL_FILE, PREREG_FILE, SCORE_BAND_FILE, json_safe
 
 
 def build() -> dict:
@@ -34,7 +34,7 @@ def build() -> dict:
     band.update({"strategy": live, "model_sha256": frozen["sha256"], "source": "gated stocks of all replayed sessions, scores only",
                  "first": str(gated.session_date.min()), "last": str(gated.session_date.max())})
     with open(SCORE_BAND_FILE, "w", newline="\n") as f:
-        json.dump(band, f, indent=2)
+        json.dump(json_safe(band), f, indent=2, allow_nan=False)
         f.write("\n")
     return band
 

@@ -30,6 +30,7 @@ import marketdata
 import news
 import sentiment
 from backtest import history
+from storage import json_safe
 from universe import SECTOR_ETF
 
 NY = ZoneInfo("America/New_York")
@@ -195,7 +196,7 @@ def build(end: dt.date = dt.date(2026, 11, 20), log=print) -> dict:
     }
     os.makedirs(os.path.dirname(SUMMARY), exist_ok=True)
     with open(SUMMARY, "w") as f:
-        json.dump(summary, f, indent=2)
+        json.dump(json_safe(summary), f, indent=2, allow_nan=False)
     log(json.dumps(summary, indent=2))
     return summary
 

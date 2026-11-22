@@ -8,6 +8,7 @@ import unittest
 
 import tests  # noqa: F401
 import evaluator_v2 as ev2
+from storage import json_safe
 from tests.test_evaluator_v2 import FRI, bars_for, target, trade_day, v2_plan
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,6 +57,40 @@ class CommittedFilesTest(unittest.TestCase):
             self.assertIn(path, text)
             for k in keys:
                 self.assertIn(f"`{k}`", text, f"README does not mention `{k}` ({path})")
+
+
+def _reject_constant(name):
+    # json.load calls this for the non-standard tokens NaN, Infinity and -Infinity.
+    raise ValueError(f"non-standard JSON constant {name}")
+
+
+class StrictJsonTest(unittest.TestCase):
+    """Browsers' JSON.parse rejects bare NaN/Infinity, which Python's json.load accepts by default."""
+
+    def test_every_committed_data_file_is_strict_json(self):
+        checked = 0
+        for folder, _, files in os.walk(os.path.join(ROOT, "data")):
+            for name in files:
+                if not name.endswith(".json"):
+                    continue
+                path = os.path.join(folder, name)
+                with open(path, encoding="utf-8") as f:
+                    try:
+                        json.load(f, parse_constant=_reject_constant)
+                    except ValueError as e:
+                        self.fail(f"{os.path.relpath(path, ROOT)} is not strict JSON: {e}")
+                checked += 1
+        self.assertGreater(checked, 0)
+
+    def test_json_safe_replaces_only_non_finite_numbers(self):
+        import numpy as np
+        raw = {"t": float("nan"), "inf": float("inf"), "neg": -float("inf"), "np": np.float64("nan"),
+               "np32": np.float32("nan"), "ok": 1.5, "n": 0, "flag": True, "s": "NaN",
+               "nested": [{"x": float("nan")}, (1, float("inf"))]}
+        safe = json_safe(raw)
+        self.assertEqual(safe, {"t": None, "inf": None, "neg": None, "np": None, "np32": None, "ok": 1.5, "n": 0,
+                                "flag": True, "s": "NaN", "nested": [{"x": None}, [1, None]]})
+        json.dumps(safe, allow_nan=False)  # would raise if anything non-finite were left
 
 
 class WrittenByTheBotTest(unittest.TestCase):

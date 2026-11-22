@@ -19,6 +19,7 @@ import model
 import strategy
 from backtest import explore as ex
 from backtest.freeze import HOLDOUT_END, MODEL_FILE, PREREG_FILE, sha256_file
+from storage import json_safe
 
 OUT = os.path.join("data", "backtest", "holdout.json")
 T_MIN = 2.24
@@ -126,7 +127,7 @@ if __name__ == "__main__":
     check_preregistered(".", MODEL_FILE, PREREG_FILE, OUT)
     result = evaluate()
     with open(OUT, "w") as f:
-        json.dump(result, f, indent=2, default=str)
+        json.dump(json_safe(result), f, indent=2, default=str, allow_nan=False)
     print(json.dumps({k: result[k] for k in ("holdout", "goes_live")}, indent=2, default=str))
     for name in ("A", "fade"):
         r = result[name]

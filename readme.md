@@ -34,7 +34,8 @@ edge. Every result, including the negative ones, is published in this repository
    66,377 scored articles; 5,637 gated stock-days). One replayed morning was checked against the live code path and
    matched to 5×10⁻⁹.
 2. **Exploration** (`backtest/explore.py`, report: `docs/backtest/exploration-report.md`): walk-forward by month,
-   each month predicted by a model trained only on earlier months; 32 variants, all listed. **No edge**: out-of-fold IC
+   each month predicted by a model trained only on earlier months; 32 variants, all listed (the pre-registration
+   counts 33: these 32 plus the fade rule found during exploration). **No edge**: out-of-fold IC
    −0.02 (t −0.85), the best trading rule −0.02% net per trade. The diagnostics showed something else: news-confirmed
    gaps tended to **fade** during the day.
 3. **Freeze** (`backtest/freeze.py`): the model, the rules and the success criteria written to
@@ -159,7 +160,9 @@ IC t > 2), `progress` (0–1 each), `ic` and `ic_t` (daily rank correlation of s
   `selection`, `sizing`, `costs`, `strategies` (A: ridge weights, scaler, threshold, entry, stop; fade: its rule).
 - `data/backtest/exploration.json`: `window`, `variants_tried`, `stage1` / `stage1_choice` (model settings by IC),
   `stage2` / `stage2_choice` (trading rules by net return), `chosen_rule_by_side_and_horizon`, `claimed_candidates`,
-  `ic_by_month`, `benchmarks` (SPY), `final_model`, `diagnostics`.
+  `ic_by_month`, `benchmarks` (SPY), `final_model`, `diagnostics`. A statistic that is undefined (for example a
+  t-statistic or hit rate over 0 or 1 trades) is `null`; research files never contain bare `NaN`, which is not valid
+  JSON.
 - `data/backtest/holdout.json`: `holdout` (dates, rows), `pass_rule`, `A` and `fade` (IC, trades, returns, `passes`),
   `goes_live`, `benchmarks`.
 - `data/backtest/score_band.json`: `window` (5 sessions), `windows`, `sessions`, `mean` and `std` (95% ranges),

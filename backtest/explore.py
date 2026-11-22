@@ -24,6 +24,7 @@ import features
 import model
 import strategy
 from backtest import simulate as sim
+from storage import json_safe
 
 HOLDOUT_START = dt.date(2026, 10, 9)
 FIRST_TEST = 2                      # months used only for training (May has a single session, then June)
@@ -331,7 +332,7 @@ def run(log=print) -> dict:
     }
     os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
     with open(OUT_JSON, "w") as f:
-        json.dump(result, f, indent=2, default=str)
+        json.dump(json_safe(result), f, indent=2, default=str, allow_nan=False)
     with open(os.path.join(CACHE, "exploration_trades.pkl"), "wb") as f:
         pickle.dump({"chosen": chosen, "oof": oof, "comp": comp}, f)
     log(f"done in {time.time() - t0:.0f}s -> {OUT_JSON}")

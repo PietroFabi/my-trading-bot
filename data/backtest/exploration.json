@@ -312,7 +312,7 @@
       "threshold": 2.0,
       "n": 1,
       "mean": 0.024387037522959898,
-      "t": NaN,
+      "t": null,
       "hit_rate": 1.0,
       "planned": 29,
       "zero_trade_days": 69
@@ -322,9 +322,9 @@
       "stop": 0.75,
       "threshold": 2.5,
       "n": 0,
-      "mean": NaN,
-      "t": NaN,
-      "hit_rate": NaN,
+      "mean": null,
+      "t": null,
+      "hit_rate": null,
       "planned": 12,
       "zero_trade_days": 70
     },
@@ -345,7 +345,7 @@
       "threshold": 2.0,
       "n": 1,
       "mean": 0.024387037522959898,
-      "t": NaN,
+      "t": null,
       "hit_rate": 1.0,
       "planned": 29,
       "zero_trade_days": 69
@@ -355,9 +355,9 @@
       "stop": 1.0,
       "threshold": 2.5,
       "n": 0,
-      "mean": NaN,
-      "t": NaN,
-      "hit_rate": NaN,
+      "mean": null,
+      "t": null,
+      "hit_rate": null,
       "planned": 12,
       "zero_trade_days": 70
     },
@@ -378,7 +378,7 @@
       "threshold": 2.0,
       "n": 1,
       "mean": 0.024387037522959898,
-      "t": NaN,
+      "t": null,
       "hit_rate": 1.0,
       "planned": 29,
       "zero_trade_days": 69
@@ -388,9 +388,9 @@
       "stop": 1.5,
       "threshold": 2.5,
       "n": 0,
-      "mean": NaN,
-      "t": NaN,
-      "hit_rate": NaN,
+      "mean": null,
+      "t": null,
+      "hit_rate": null,
       "planned": 12,
       "zero_trade_days": 70
     },
@@ -411,7 +411,7 @@
       "threshold": 2.0,
       "n": 1,
       "mean": 0.024387037522959898,
-      "t": NaN,
+      "t": null,
       "hit_rate": 1.0,
       "planned": 29,
       "zero_trade_days": 69
@@ -421,9 +421,9 @@
       "stop": null,
       "threshold": 2.5,
       "n": 0,
-      "mean": NaN,
-      "t": NaN,
-      "hit_rate": NaN,
+      "mean": null,
+      "t": null,
+      "hit_rate": null,
       "planned": 12,
       "zero_trade_days": 70
     }
@@ -940,7 +940,7 @@
     "long_orb": {
       "n": 1,
       "mean": -0.002101928374655614,
-      "t": NaN,
+      "t": null,
       "hit_rate": 0.0,
       "sharpe": -1.8973665961010278,
       "max_drawdown": 1.2208000000013541e-05,

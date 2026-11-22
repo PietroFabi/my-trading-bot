@@ -102,12 +102,13 @@ def write_freeze(exploration: dict, fade_in_sample: dict, model_path: str = MODE
     for p in (model_path, prereg_path):
         os.makedirs(os.path.dirname(p), exist_ok=True)
     with open(model_path, "w", newline="\n") as f:
-        json.dump(build_model(exploration), f, indent=2, sort_keys=True)
+        # allow_nan=False: a NaN in the frozen model is a bug, so fail instead of writing invalid JSON.
+        json.dump(build_model(exploration), f, indent=2, sort_keys=True, allow_nan=False)
         f.write("\n")
     prereg = build_preregistration(exploration, fade_in_sample, sha256_file(model_path),
                                    frozen_on or dt.date.today().isoformat())
     with open(prereg_path, "w", newline="\n") as f:
-        json.dump(prereg, f, indent=2)
+        json.dump(prereg, f, indent=2, allow_nan=False)
         f.write("\n")
     return prereg
 
