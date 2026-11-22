@@ -1,7 +1,7 @@
 # Long/short news-surprise strategy: agreed design
 
 Status: **summary of the interview, awaiting your confirmation** (2026-11-21). Not committed.
-Branch `claude/long-short-strategy-e05b21`. Nothing reaches `main` and the Cloudflare Worker is not changed
+Branch `long-short-strategy`. Nothing reaches `main` and the Cloudflare Worker is not changed
 without your explicit OK. "You" = decided by you in the interview; "proposal" = my default, open to correction.
 
 ## 1. Goal and how success is judged
