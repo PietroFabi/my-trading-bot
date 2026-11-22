@@ -1,0 +1,18 @@
+{
+  "window": 5,
+  "windows": 119,
+  "sessions": 123,
+  "mean": [
+    -0.001210843989351068,
+    -0.00040216422399772797
+  ],
+  "std": [
+    0.0015148481148932575,
+    0.002683922135581245
+  ],
+  "strategy": "A",
+  "model_sha256": "da5aaaabc664b635f69bb805ab8e44d435f07e0a40982b9c153f6f9340e64744",
+  "source": "gated stocks of all replayed sessions, scores only",
+  "first": "2026-05-29",
+  "last": "2026-11-20"
+}

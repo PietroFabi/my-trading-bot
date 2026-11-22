@@ -1,0 +1,3024 @@
+{
+    "fetched_on": "2026-11-23",
+    "source": "wikipedia",
+    "members": [
+        {
+            "symbol": "MMM",
+            "yahoo": "MMM",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "AOS",
+            "yahoo": "AOS",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "ABT",
+            "yahoo": "ABT",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "ABBV",
+            "yahoo": "ABBV",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "ACN",
+            "yahoo": "ACN",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ADBE",
+            "yahoo": "ADBE",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "AMD",
+            "yahoo": "AMD",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "AES",
+            "yahoo": "AES",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "AFL",
+            "yahoo": "AFL",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "A",
+            "yahoo": "A",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "APD",
+            "yahoo": "APD",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "ABNB",
+            "yahoo": "ABNB",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "AKAM",
+            "yahoo": "AKAM",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ALB",
+            "yahoo": "ALB",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "ARE",
+            "yahoo": "ARE",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "ALGN",
+            "yahoo": "ALGN",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "ALLE",
+            "yahoo": "ALLE",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "LNT",
+            "yahoo": "LNT",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "ALL",
+            "yahoo": "ALL",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "GOOGL",
+            "yahoo": "GOOGL",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "GOOG",
+            "yahoo": "GOOG",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "MO",
+            "yahoo": "MO",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "AMZN",
+            "yahoo": "AMZN",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "AMCR",
+            "yahoo": "AMCR",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "AEE",
+            "yahoo": "AEE",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "AEP",
+            "yahoo": "AEP",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "AXP",
+            "yahoo": "AXP",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "AIG",
+            "yahoo": "AIG",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "AMT",
+            "yahoo": "AMT",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "AWK",
+            "yahoo": "AWK",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "AMP",
+            "yahoo": "AMP",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "AME",
+            "yahoo": "AME",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "AMGN",
+            "yahoo": "AMGN",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "APH",
+            "yahoo": "APH",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ADI",
+            "yahoo": "ADI",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "AON",
+            "yahoo": "AON",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "APA",
+            "yahoo": "APA",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "APO",
+            "yahoo": "APO",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "AAPL",
+            "yahoo": "AAPL",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "AMAT",
+            "yahoo": "AMAT",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "APP",
+            "yahoo": "APP",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "APTV",
+            "yahoo": "APTV",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "ACGL",
+            "yahoo": "ACGL",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "ADM",
+            "yahoo": "ADM",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "ARES",
+            "yahoo": "ARES",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "ANET",
+            "yahoo": "ANET",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "AJG",
+            "yahoo": "AJG",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "AIZ",
+            "yahoo": "AIZ",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "T",
+            "yahoo": "T",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "ATO",
+            "yahoo": "ATO",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "ADSK",
+            "yahoo": "ADSK",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ADP",
+            "yahoo": "ADP",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "AZO",
+            "yahoo": "AZO",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "AVY",
+            "yahoo": "AVY",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "AXON",
+            "yahoo": "AXON",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "BKR",
+            "yahoo": "BKR",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "BALL",
+            "yahoo": "BALL",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "BAC",
+            "yahoo": "BAC",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "BAX",
+            "yahoo": "BAX",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "BDX",
+            "yahoo": "BDX",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "BRK.B",
+            "yahoo": "BRK-B",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "BBY",
+            "yahoo": "BBY",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "TECH",
+            "yahoo": "TECH",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "BIIB",
+            "yahoo": "BIIB",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "BLK",
+            "yahoo": "BLK",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "BX",
+            "yahoo": "BX",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "XYZ",
+            "yahoo": "XYZ",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "BE",
+            "yahoo": "BE",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "BNY",
+            "yahoo": "BNY",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "BA",
+            "yahoo": "BA",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "BKNG",
+            "yahoo": "BKNG",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "BSX",
+            "yahoo": "BSX",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "BMY",
+            "yahoo": "BMY",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "AVGO",
+            "yahoo": "AVGO",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "BR",
+            "yahoo": "BR",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "BRO",
+            "yahoo": "BRO",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "BF.B",
+            "yahoo": "BF-B",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "BG",
+            "yahoo": "BG",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "BXP",
+            "yahoo": "BXP",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "CHRW",
+            "yahoo": "CHRW",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "CDNS",
+            "yahoo": "CDNS",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "CPT",
+            "yahoo": "CPT",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "COF",
+            "yahoo": "COF",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CAH",
+            "yahoo": "CAH",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "CCL",
+            "yahoo": "CCL",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "CARR",
+            "yahoo": "CARR",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "CVNA",
+            "yahoo": "CVNA",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "CASY",
+            "yahoo": "CASY",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "CAT",
+            "yahoo": "CAT",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "CBOE",
+            "yahoo": "CBOE",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CBRE",
+            "yahoo": "CBRE",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "CDW",
+            "yahoo": "CDW",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "COR",
+            "yahoo": "COR",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "CNC",
+            "yahoo": "CNC",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "CNP",
+            "yahoo": "CNP",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "CF",
+            "yahoo": "CF",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "CRL",
+            "yahoo": "CRL",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "SCHW",
+            "yahoo": "SCHW",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CHTR",
+            "yahoo": "CHTR",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "CVX",
+            "yahoo": "CVX",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "CMG",
+            "yahoo": "CMG",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "CB",
+            "yahoo": "CB",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CHD",
+            "yahoo": "CHD",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "CIEN",
+            "yahoo": "CIEN",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "CI",
+            "yahoo": "CI",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "CINF",
+            "yahoo": "CINF",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CTAS",
+            "yahoo": "CTAS",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "CSCO",
+            "yahoo": "CSCO",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "C",
+            "yahoo": "C",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CFG",
+            "yahoo": "CFG",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CLX",
+            "yahoo": "CLX",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "CME",
+            "yahoo": "CME",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CMS",
+            "yahoo": "CMS",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "KO",
+            "yahoo": "KO",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "CTSH",
+            "yahoo": "CTSH",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "COHR",
+            "yahoo": "COHR",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "COIN",
+            "yahoo": "COIN",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CL",
+            "yahoo": "CL",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "CMCSA",
+            "yahoo": "CMCSA",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "FIX",
+            "yahoo": "FIX",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "COP",
+            "yahoo": "COP",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "ED",
+            "yahoo": "ED",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "STZ",
+            "yahoo": "STZ",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "CEG",
+            "yahoo": "CEG",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "COO",
+            "yahoo": "COO",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "CPRT",
+            "yahoo": "CPRT",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "GLW",
+            "yahoo": "GLW",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "CPAY",
+            "yahoo": "CPAY",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CSGP",
+            "yahoo": "CSGP",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "COST",
+            "yahoo": "COST",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "CRH",
+            "yahoo": "CRH",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "CRWD",
+            "yahoo": "CRWD",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "CCI",
+            "yahoo": "CCI",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "CSX",
+            "yahoo": "CSX",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "CMI",
+            "yahoo": "CMI",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "CVS",
+            "yahoo": "CVS",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "DHR",
+            "yahoo": "DHR",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "DRI",
+            "yahoo": "DRI",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "DDOG",
+            "yahoo": "DDOG",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "DVA",
+            "yahoo": "DVA",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "DECK",
+            "yahoo": "DECK",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "DE",
+            "yahoo": "DE",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "DELL",
+            "yahoo": "DELL",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "DAL",
+            "yahoo": "DAL",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "DVN",
+            "yahoo": "DVN",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "DXCM",
+            "yahoo": "DXCM",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "FANG",
+            "yahoo": "FANG",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "DLR",
+            "yahoo": "DLR",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "DG",
+            "yahoo": "DG",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "DLTR",
+            "yahoo": "DLTR",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "D",
+            "yahoo": "D",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "DPZ",
+            "yahoo": "DPZ",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "DASH",
+            "yahoo": "DASH",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "DOV",
+            "yahoo": "DOV",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "DOW",
+            "yahoo": "DOW",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "DHI",
+            "yahoo": "DHI",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "DTE",
+            "yahoo": "DTE",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "DUK",
+            "yahoo": "DUK",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "DD",
+            "yahoo": "DD",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "ETN",
+            "yahoo": "ETN",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "EBAY",
+            "yahoo": "EBAY",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "ECHO",
+            "yahoo": "ECHO",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "ECL",
+            "yahoo": "ECL",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "EIX",
+            "yahoo": "EIX",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "EW",
+            "yahoo": "EW",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "ELV",
+            "yahoo": "ELV",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "EME",
+            "yahoo": "EME",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "EMR",
+            "yahoo": "EMR",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "ETR",
+            "yahoo": "ETR",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "EOG",
+            "yahoo": "EOG",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "EQT",
+            "yahoo": "EQT",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "EFX",
+            "yahoo": "EFX",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "EQIX",
+            "yahoo": "EQIX",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "ERIE",
+            "yahoo": "ERIE",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "ESS",
+            "yahoo": "ESS",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "EL",
+            "yahoo": "EL",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "EG",
+            "yahoo": "EG",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "EVRG",
+            "yahoo": "EVRG",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "P",
+            "yahoo": "P",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ES",
+            "yahoo": "ES",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "EXC",
+            "yahoo": "EXC",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "EXE",
+            "yahoo": "EXE",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "EXPE",
+            "yahoo": "EXPE",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "EXPD",
+            "yahoo": "EXPD",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "EXR",
+            "yahoo": "EXR",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "XOM",
+            "yahoo": "XOM",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "FFIV",
+            "yahoo": "FFIV",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "FDS",
+            "yahoo": "FDS",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "FICO",
+            "yahoo": "FICO",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "FAST",
+            "yahoo": "FAST",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "FRT",
+            "yahoo": "FRT",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "FDX",
+            "yahoo": "FDX",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "FDXF",
+            "yahoo": "FDXF",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "FERG",
+            "yahoo": "FERG",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "FIS",
+            "yahoo": "FIS",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "FITB",
+            "yahoo": "FITB",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "FSLR",
+            "yahoo": "FSLR",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "FE",
+            "yahoo": "FE",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "FISV",
+            "yahoo": "FISV",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "FLEX",
+            "yahoo": "FLEX",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "F",
+            "yahoo": "F",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "FTNT",
+            "yahoo": "FTNT",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "FTV",
+            "yahoo": "FTV",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "FOXA",
+            "yahoo": "FOXA",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "FOX",
+            "yahoo": "FOX",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "BEN",
+            "yahoo": "BEN",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "FCX",
+            "yahoo": "FCX",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "GRMN",
+            "yahoo": "GRMN",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "IT",
+            "yahoo": "IT",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "GE",
+            "yahoo": "GE",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "GEHC",
+            "yahoo": "GEHC",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "GEV",
+            "yahoo": "GEV",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "GEN",
+            "yahoo": "GEN",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "GNRC",
+            "yahoo": "GNRC",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "GD",
+            "yahoo": "GD",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "GIS",
+            "yahoo": "GIS",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "GM",
+            "yahoo": "GM",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "GPC",
+            "yahoo": "GPC",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "GILD",
+            "yahoo": "GILD",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "GPN",
+            "yahoo": "GPN",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "GL",
+            "yahoo": "GL",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "GDDY",
+            "yahoo": "GDDY",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "GS",
+            "yahoo": "GS",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "HAL",
+            "yahoo": "HAL",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "HIG",
+            "yahoo": "HIG",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "HAS",
+            "yahoo": "HAS",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "HCA",
+            "yahoo": "HCA",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "DOC",
+            "yahoo": "DOC",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "HSIC",
+            "yahoo": "HSIC",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "HSY",
+            "yahoo": "HSY",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "HPE",
+            "yahoo": "HPE",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "HLT",
+            "yahoo": "HLT",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "HD",
+            "yahoo": "HD",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "HONA",
+            "yahoo": "HONA",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "HON",
+            "yahoo": "HON",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "HRL",
+            "yahoo": "HRL",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "HST",
+            "yahoo": "HST",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "HWM",
+            "yahoo": "HWM",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "HPQ",
+            "yahoo": "HPQ",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "HUBB",
+            "yahoo": "HUBB",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "HUM",
+            "yahoo": "HUM",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "HBAN",
+            "yahoo": "HBAN",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "HII",
+            "yahoo": "HII",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "IBM",
+            "yahoo": "IBM",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "IEX",
+            "yahoo": "IEX",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "IDXX",
+            "yahoo": "IDXX",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "ITW",
+            "yahoo": "ITW",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "ILMN",
+            "yahoo": "ILMN",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "INCY",
+            "yahoo": "INCY",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "IR",
+            "yahoo": "IR",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "PODD",
+            "yahoo": "PODD",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "INTC",
+            "yahoo": "INTC",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "IBKR",
+            "yahoo": "IBKR",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "ICE",
+            "yahoo": "ICE",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "IFF",
+            "yahoo": "IFF",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "IP",
+            "yahoo": "IP",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "INTU",
+            "yahoo": "INTU",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ISRG",
+            "yahoo": "ISRG",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "IVZ",
+            "yahoo": "IVZ",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "INVH",
+            "yahoo": "INVH",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "IQV",
+            "yahoo": "IQV",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "IRM",
+            "yahoo": "IRM",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "JBHT",
+            "yahoo": "JBHT",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "JBL",
+            "yahoo": "JBL",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "JKHY",
+            "yahoo": "JKHY",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "J",
+            "yahoo": "J",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "JNJ",
+            "yahoo": "JNJ",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "JCI",
+            "yahoo": "JCI",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "JPM",
+            "yahoo": "JPM",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "KDP",
+            "yahoo": "KDP",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "KEY",
+            "yahoo": "KEY",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "KEYS",
+            "yahoo": "KEYS",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "KMB",
+            "yahoo": "KMB",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "KIM",
+            "yahoo": "KIM",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "KMI",
+            "yahoo": "KMI",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "KKR",
+            "yahoo": "KKR",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "KLAC",
+            "yahoo": "KLAC",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "KHC",
+            "yahoo": "KHC",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "KR",
+            "yahoo": "KR",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "LHX",
+            "yahoo": "LHX",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "LH",
+            "yahoo": "LH",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "LRCX",
+            "yahoo": "LRCX",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "LVS",
+            "yahoo": "LVS",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "LDOS",
+            "yahoo": "LDOS",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "LEN",
+            "yahoo": "LEN",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "LII",
+            "yahoo": "LII",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "LLY",
+            "yahoo": "LLY",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "LIN",
+            "yahoo": "LIN",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "LYV",
+            "yahoo": "LYV",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "LMT",
+            "yahoo": "LMT",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "L",
+            "yahoo": "L",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "LOW",
+            "yahoo": "LOW",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "LULU",
+            "yahoo": "LULU",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "LITE",
+            "yahoo": "LITE",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "LYB",
+            "yahoo": "LYB",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "MTB",
+            "yahoo": "MTB",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "MPC",
+            "yahoo": "MPC",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "MAR",
+            "yahoo": "MAR",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "MRSH",
+            "yahoo": "MRSH",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "MLM",
+            "yahoo": "MLM",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "MRVL",
+            "yahoo": "MRVL",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "MAS",
+            "yahoo": "MAS",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "MA",
+            "yahoo": "MA",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "MKC",
+            "yahoo": "MKC",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "MCD",
+            "yahoo": "MCD",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "MCK",
+            "yahoo": "MCK",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "MDT",
+            "yahoo": "MDT",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "MRK",
+            "yahoo": "MRK",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "META",
+            "yahoo": "META",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "MET",
+            "yahoo": "MET",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "MTD",
+            "yahoo": "MTD",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "MGM",
+            "yahoo": "MGM",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "MCHP",
+            "yahoo": "MCHP",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "MU",
+            "yahoo": "MU",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "MSFT",
+            "yahoo": "MSFT",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "MAA",
+            "yahoo": "MAA",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "MRNA",
+            "yahoo": "MRNA",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "MDLZ",
+            "yahoo": "MDLZ",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "MPWR",
+            "yahoo": "MPWR",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "MNST",
+            "yahoo": "MNST",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "MCO",
+            "yahoo": "MCO",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "MS",
+            "yahoo": "MS",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "MOS",
+            "yahoo": "MOS",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "MSI",
+            "yahoo": "MSI",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "MSCI",
+            "yahoo": "MSCI",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "NDAQ",
+            "yahoo": "NDAQ",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "NTAP",
+            "yahoo": "NTAP",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "NFLX",
+            "yahoo": "NFLX",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "NEM",
+            "yahoo": "NEM",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "NWSA",
+            "yahoo": "NWSA",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "NWS",
+            "yahoo": "NWS",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "NEE",
+            "yahoo": "NEE",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "NKE",
+            "yahoo": "NKE",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "NI",
+            "yahoo": "NI",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "NDSN",
+            "yahoo": "NDSN",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "NSC",
+            "yahoo": "NSC",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "NTRS",
+            "yahoo": "NTRS",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "NOC",
+            "yahoo": "NOC",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "NCLH",
+            "yahoo": "NCLH",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "NRG",
+            "yahoo": "NRG",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "NUE",
+            "yahoo": "NUE",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "NVDA",
+            "yahoo": "NVDA",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "NVR",
+            "yahoo": "NVR",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "NXPI",
+            "yahoo": "NXPI",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ORLY",
+            "yahoo": "ORLY",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "OXY",
+            "yahoo": "OXY",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "OKTA",
+            "yahoo": "OKTA",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ODFL",
+            "yahoo": "ODFL",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "OMC",
+            "yahoo": "OMC",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "ON",
+            "yahoo": "ON",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "OKE",
+            "yahoo": "OKE",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "ORCL",
+            "yahoo": "ORCL",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "OTIS",
+            "yahoo": "OTIS",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "PCAR",
+            "yahoo": "PCAR",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "PKG",
+            "yahoo": "PKG",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "PLTR",
+            "yahoo": "PLTR",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "PANW",
+            "yahoo": "PANW",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "PH",
+            "yahoo": "PH",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "PAYX",
+            "yahoo": "PAYX",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "PYPL",
+            "yahoo": "PYPL",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "PNR",
+            "yahoo": "PNR",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "PEP",
+            "yahoo": "PEP",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "PFE",
+            "yahoo": "PFE",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "PCG",
+            "yahoo": "PCG",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "PM",
+            "yahoo": "PM",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "PSX",
+            "yahoo": "PSX",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "PNW",
+            "yahoo": "PNW",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "PNC",
+            "yahoo": "PNC",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "PPG",
+            "yahoo": "PPG",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "PPL",
+            "yahoo": "PPL",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "PFG",
+            "yahoo": "PFG",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "PG",
+            "yahoo": "PG",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "PGR",
+            "yahoo": "PGR",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "PLD",
+            "yahoo": "PLD",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "PRU",
+            "yahoo": "PRU",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "PTC",
+            "yahoo": "PTC",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "PEG",
+            "yahoo": "PEG",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "PSA",
+            "yahoo": "PSA",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "PHM",
+            "yahoo": "PHM",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "Q",
+            "yahoo": "Q",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "QCOM",
+            "yahoo": "QCOM",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "PWR",
+            "yahoo": "PWR",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "DGX",
+            "yahoo": "DGX",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "RL",
+            "yahoo": "RL",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "RJF",
+            "yahoo": "RJF",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "RDDT",
+            "yahoo": "RDDT",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "O",
+            "yahoo": "O",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "REG",
+            "yahoo": "REG",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "REGN",
+            "yahoo": "REGN",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "RF",
+            "yahoo": "RF",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "RSG",
+            "yahoo": "RSG",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "RMD",
+            "yahoo": "RMD",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "RVTY",
+            "yahoo": "RVTY",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "HOOD",
+            "yahoo": "HOOD",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "ROK",
+            "yahoo": "ROK",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "ROL",
+            "yahoo": "ROL",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "ROP",
+            "yahoo": "ROP",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ROST",
+            "yahoo": "ROST",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "RCL",
+            "yahoo": "RCL",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "RTX",
+            "yahoo": "RTX",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "SPGI",
+            "yahoo": "SPGI",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "CRM",
+            "yahoo": "CRM",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "SNDK",
+            "yahoo": "SNDK",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "SBAC",
+            "yahoo": "SBAC",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "SLB",
+            "yahoo": "SLB",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "STX",
+            "yahoo": "STX",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "SRE",
+            "yahoo": "SRE",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "NOW",
+            "yahoo": "NOW",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "SHW",
+            "yahoo": "SHW",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "SPG",
+            "yahoo": "SPG",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "SKYD",
+            "yahoo": "SKYD",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "SWKS",
+            "yahoo": "SWKS",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "SJM",
+            "yahoo": "SJM",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "SW",
+            "yahoo": "SW",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "SNA",
+            "yahoo": "SNA",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "SOLV",
+            "yahoo": "SOLV",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "SO",
+            "yahoo": "SO",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "LUV",
+            "yahoo": "LUV",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "SWK",
+            "yahoo": "SWK",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "SBUX",
+            "yahoo": "SBUX",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "STT",
+            "yahoo": "STT",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "STLD",
+            "yahoo": "STLD",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "STE",
+            "yahoo": "STE",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "SYK",
+            "yahoo": "SYK",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "SMCI",
+            "yahoo": "SMCI",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "SYF",
+            "yahoo": "SYF",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "SNPS",
+            "yahoo": "SNPS",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "SYY",
+            "yahoo": "SYY",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "TMUS",
+            "yahoo": "TMUS",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "TROW",
+            "yahoo": "TROW",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "TTWO",
+            "yahoo": "TTWO",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "TPR",
+            "yahoo": "TPR",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "TRGP",
+            "yahoo": "TRGP",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "TGT",
+            "yahoo": "TGT",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "TEL",
+            "yahoo": "TEL",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "TDY",
+            "yahoo": "TDY",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "TER",
+            "yahoo": "TER",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "TSLA",
+            "yahoo": "TSLA",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "TXN",
+            "yahoo": "TXN",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "TPL",
+            "yahoo": "TPL",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "TXT",
+            "yahoo": "TXT",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "TMO",
+            "yahoo": "TMO",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "TJX",
+            "yahoo": "TJX",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "TKO",
+            "yahoo": "TKO",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "TSCO",
+            "yahoo": "TSCO",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "TT",
+            "yahoo": "TT",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "TDG",
+            "yahoo": "TDG",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "TRV",
+            "yahoo": "TRV",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "TRMB",
+            "yahoo": "TRMB",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "TFC",
+            "yahoo": "TFC",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "TWLO",
+            "yahoo": "TWLO",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "TYL",
+            "yahoo": "TYL",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "TSN",
+            "yahoo": "TSN",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "USB",
+            "yahoo": "USB",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "UBER",
+            "yahoo": "UBER",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "UDR",
+            "yahoo": "UDR",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "ULTA",
+            "yahoo": "ULTA",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "UNP",
+            "yahoo": "UNP",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "UAL",
+            "yahoo": "UAL",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "UPS",
+            "yahoo": "UPS",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "URI",
+            "yahoo": "URI",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "UNH",
+            "yahoo": "UNH",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "UHS",
+            "yahoo": "UHS",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "VLO",
+            "yahoo": "VLO",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "VEEV",
+            "yahoo": "VEEV",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "VTR",
+            "yahoo": "VTR",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "VLTO",
+            "yahoo": "VLTO",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "VRSN",
+            "yahoo": "VRSN",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "VRSK",
+            "yahoo": "VRSK",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "VZ",
+            "yahoo": "VZ",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "VRTX",
+            "yahoo": "VRTX",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "VRT",
+            "yahoo": "VRT",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "VTRS",
+            "yahoo": "VTRS",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "VICI",
+            "yahoo": "VICI",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "V",
+            "yahoo": "V",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "VST",
+            "yahoo": "VST",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "VMRK",
+            "yahoo": "VMRK",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "VMC",
+            "yahoo": "VMC",
+            "sector": "Materials",
+            "sector_etf": "XLB"
+        },
+        {
+            "symbol": "VYLR",
+            "yahoo": "VYLR",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "WRB",
+            "yahoo": "WRB",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "GWW",
+            "yahoo": "GWW",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "WAB",
+            "yahoo": "WAB",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "WMT",
+            "yahoo": "WMT",
+            "sector": "Consumer Staples",
+            "sector_etf": "XLP"
+        },
+        {
+            "symbol": "DIS",
+            "yahoo": "DIS",
+            "sector": "Communication Services",
+            "sector_etf": "XLC"
+        },
+        {
+            "symbol": "WM",
+            "yahoo": "WM",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "WAT",
+            "yahoo": "WAT",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "WEC",
+            "yahoo": "WEC",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "WFC",
+            "yahoo": "WFC",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "WELL",
+            "yahoo": "WELL",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "WST",
+            "yahoo": "WST",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "WDC",
+            "yahoo": "WDC",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "WY",
+            "yahoo": "WY",
+            "sector": "Real Estate",
+            "sector_etf": "XLRE"
+        },
+        {
+            "symbol": "WSM",
+            "yahoo": "WSM",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "WMB",
+            "yahoo": "WMB",
+            "sector": "Energy",
+            "sector_etf": "XLE"
+        },
+        {
+            "symbol": "WTW",
+            "yahoo": "WTW",
+            "sector": "Financials",
+            "sector_etf": "XLF"
+        },
+        {
+            "symbol": "WDAY",
+            "yahoo": "WDAY",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "WYNN",
+            "yahoo": "WYNN",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "XEL",
+            "yahoo": "XEL",
+            "sector": "Utilities",
+            "sector_etf": "XLU"
+        },
+        {
+            "symbol": "XYL",
+            "yahoo": "XYL",
+            "sector": "Industrials",
+            "sector_etf": "XLI"
+        },
+        {
+            "symbol": "YUM",
+            "yahoo": "YUM",
+            "sector": "Consumer Discretionary",
+            "sector_etf": "XLY"
+        },
+        {
+            "symbol": "ZBRA",
+            "yahoo": "ZBRA",
+            "sector": "Information Technology",
+            "sector_etf": "XLK"
+        },
+        {
+            "symbol": "ZBH",
+            "yahoo": "ZBH",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        },
+        {
+            "symbol": "ZTS",
+            "yahoo": "ZTS",
+            "sector": "Health Care",
+            "sector_etf": "XLV"
+        }
+    ]
+}

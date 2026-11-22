@@ -13,15 +13,25 @@ on:
     # if no plan exists for today, which means the Worker's runs failed too).
     - cron: '7 13 * * 1-5'
   workflow_dispatch: # "Run workflow" button for manual tests
+    inputs:
+      dry_run:
+        description: 'Dry run: build and save the plan to data/dryrun/ only (no orders, nothing committed)'
+        type: boolean
+        default: false
 
 # One bot job at a time across both workflows, so runs never race on data/*.json or place duplicate orders.
+# A dry run writes nothing to the repo and places no orders, so it gets its own group: it can never hold up
+# (or be cancelled behind) a real trading job.
 concurrency:
-  group: trading-bot-data
+  group: ${{ inputs.dry_run && 'trading-bot-dryrun' || 'trading-bot-data' }}
   cancel-in-progress: false
 
 jobs:
   run-morning:
     runs-on: ubuntu-24.04 # pinned: ubuntu-latest is moving to 26.04; upgrade on purpose, not by surprise
+    # The job starts 07:45-09:05 ET (Worker), pre-scores the news, then sleeps until 08:55 ET (open - 35 min,
+    # from Alpaca's calendar) and must queue orders by 09:25. 150 min is a generous upper bound.
+    timeout-minutes: 150
     permissions:
       contents: write
 
@@ -42,10 +52,11 @@ jobs:
         env:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          DRY_RUN: ${{ inputs.dry_run }} # empty on scheduled runs = a normal run
         run: python src/main.py
 
       - name: Commit and Push Data
-        if: always() # save the plan even if an order failed
+        if: ${{ always() && !inputs.dry_run }} # save the plan even if an order failed; never on a dry run
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'

@@ -10,15 +10,17 @@ The session date always comes from the plan file, never from the clock, so a
 run that GitHub starts hours late still records the right day.
 """
 import datetime as dt
+import os
 
 import yfinance as yf
 from alpaca.trading.enums import OrderSide, QueryOrderStatus
 from alpaca.trading.requests import GetOrdersRequest
 
 import broker
+import evaluator_v2
 from market_session import now_ny
-from storage import (RESULTS_FILE, PLANS_DIR, all_plan_paths, exit_order_id, late_exit_order_id,
-                     load_json, plan_path, save_json)
+from storage import (CANDIDATES_DIR, CONFIRMATION_FILE, PREREG_FILE, RESULTS_FILE, PLANS_DIR, SCORE_BAND_FILE, SCORES_DIR,
+                     all_plan_paths, exit_order_id, late_exit_order_id, load_json, plan_path, save_json)
 
 INITIAL_CAPITAL = broker.FUND_SIZE_USD  # starting value of the fund shown on the site
 
@@ -157,7 +159,7 @@ def _evaluate_plan(plan: dict, starting_balance: float, client) -> dict:
     }
 
 
-def _late_exit_price(ticker: str, session_date: str, session_close: dt.datetime, client):
+def _late_exit_price(ticker: str, session_date: str, session_close: dt.datetime, client, side: str = "long"):
     """
     Real price of the sell that closed a missed exit later (normally the next morning's
     safety net), or None while it has not filled. Tagged sells are found by id; sells from
@@ -167,7 +169,7 @@ def _late_exit_price(ticker: str, session_date: str, session_close: dt.datetime,
     if tagged is not None:
         return float(tagged.filled_avg_price) if broker.status_of(tagged) == "filled" else None
     orders = client.get_orders(GetOrdersRequest(
-        status=QueryOrderStatus.CLOSED, symbols=[ticker], side=OrderSide.SELL,
+        status=QueryOrderStatus.CLOSED, symbols=[ticker], side=OrderSide.BUY if side == "short" else OrderSide.SELL,
         after=session_close, until=session_close + dt.timedelta(days=5), direction="asc", limit=20))
     for o in sorted(orders, key=lambda o: o.submitted_at):
         if broker.status_of(o) == "filled" and o.client_order_id != exit_order_id(session_date, ticker):
@@ -189,32 +191,52 @@ def revise_missed_exits(results: list, plans_dir=PLANS_DIR, client=None) -> bool
         if not plan:
             continue
         close = dt.datetime.fromisoformat(plan["market_close"])
-        delta = 0.0
+        delta = delta_net = 0.0
         for t in missed:
-            price = _late_exit_price(t["ticker"], entry["date"], close, client)
+            sign = -1 if t.get("side") == "short" else 1
+            price = _late_exit_price(t["ticker"], entry["date"], close, client, t.get("side", "long"))
             if price is None:
                 continue
-            d = t["qty"] * (price - t["exit_price"])
+            d = sign * t["qty"] * (price - t["exit_price"])
+            d_net = d - 0.0005 * t["qty"] * (price - t["exit_price"])   # the exit's 5 bps cost moves with its price
             print(f"Revising {entry['date']} {t['ticker']}: exit ${t['exit_price']:,.2f} (close estimate) "
                   f"-> ${price:,.2f} (real late sell), {d:+,.2f} USD")
             t["exit_price"] = round(price, 2)
             t["exit_status"] = "late"
-            t["performance_pct"]["EOD"] = round((price - t["open_price"]) / t["open_price"] * 100, 2)
+            t["performance_pct"]["EOD"] = round(sign * (price - t["open_price"]) / t["open_price"] * 100, 2)
             if "pnl_usd" in t:
                 t["pnl_usd"]["EOD"] = round(t["pnl_usd"]["EOD"] + d, 2)
+            if "pnl_usd_net" in t:  # v2 trade: keep the net figures and the side totals consistent
+                t["pnl_usd_net"]["EOD"] = round(t["pnl_usd_net"]["EOD"] + d_net, 2)
+                t["performance_pct_net"]["EOD"] = round(t["pnl_usd_net"]["EOD"] / t["allocation_usd"] * 100, 2)
+                side = entry.get("by_side", {}).get(t.get("side", "long"))
+                if side:
+                    side["pnl_usd"]["EOD"] = round(side["pnl_usd"]["EOD"] + d, 2)
+                    side["pnl_usd_net"]["EOD"] = round(side["pnl_usd_net"]["EOD"] + d_net, 2)
+                    if side["invested_usd"]:
+                        side["return_pct"]["EOD"] = round(side["pnl_usd"]["EOD"] / side["invested_usd"] * 100, 2)
             delta += d
+            delta_net += d_net
         if delta:
             entry["portfolio_curve"]["EOD"] = round(entry["portfolio_curve"]["EOD"] + delta, 2)
             entry["ending_balance"] = entry["portfolio_curve"]["EOD"]
+            if "portfolio_curve_net" in entry:
+                entry["portfolio_curve_net"]["EOD"] = round(entry["portfolio_curve_net"]["EOD"] + delta_net, 2)
+                entry["ending_balance_net"] = entry["portfolio_curve_net"]["EOD"]
             for later in results[i + 1:]:
                 later["starting_balance"] = round(later["starting_balance"] + delta, 2)
                 later["ending_balance"] = round(later["ending_balance"] + delta, 2)
                 later["portfolio_curve"] = {k: round(v + delta, 2) for k, v in later["portfolio_curve"].items()}
+                if "portfolio_curve_net" in later:
+                    later["portfolio_curve_net"] = {k: round(v + delta, 2) for k, v in later["portfolio_curve_net"].items()}
+                    later["ending_balance_net"] = later["portfolio_curve_net"]["EOD"]
             changed = True
     return changed
 
 
-def evaluate_pending(now=None, plans_dir=PLANS_DIR, results_file=RESULTS_FILE, client=None) -> int:
+def evaluate_pending(now=None, plans_dir=PLANS_DIR, results_file=RESULTS_FILE, client=None, bars_fn=None,
+                     scores_dir=SCORES_DIR, candidates_dir=CANDIDATES_DIR, confirmation_file=CONFIRMATION_FILE,
+                     prereg_file=PREREG_FILE, score_band_file=SCORE_BAND_FILE) -> int:
     """
     Evaluate every finished session that is not in results.json yet, oldest first.
     Stops at the first session that is not ready, so balances always carry
@@ -243,14 +265,33 @@ def evaluate_pending(now=None, plans_dir=PLANS_DIR, results_file=RESULTS_FILE, c
             print(f"Session has not finished settling (closes {session_close:%H:%M %Z}). Try later.")
             break
 
-        starting_balance = float(results[-1]["ending_balance"]) if results else INITIAL_CAPITAL
+        v2 = plan.get("strategy") == "v2"
+        if v2:
+            # v2 is a new segment: it starts from the reset paper account, then carries its own balance forward
+            prev_v2 = results and results[-1].get("strategy") == "v2"
+            starting_balance = float(results[-1]["ending_balance"]) if prev_v2 else INITIAL_CAPITAL
+        else:
+            starting_balance = float(results[-1]["ending_balance"]) if results else INITIAL_CAPITAL
         try:
-            entry = _evaluate_plan(plan, starting_balance, client)
-        except NotReady as e:
+            entry = evaluator_v2.evaluate_plan_v2(plan, starting_balance, client, bars_fn, now=now) if v2 \
+                else _evaluate_plan(plan, starting_balance, client)
+        except (NotReady, evaluator_v2.NotReady) as e:
             print(f"Not ready yet: {e}. Try later.")
             break
         results.append(entry)
         save_json(results_file, results)
+        if v2:
+            try:
+                evaluator_v2.log_candidates(plan, entry, bars_fn, scores_dir, candidates_dir)
+            except Exception as e:
+                print(f"::warning::Could not write the would-have-traded log for {plan['session_date']}: {e}")
+            conf = evaluator_v2.update_confirmation(results, candidates_dir, confirmation_file, prereg_file)
+            print(f"Confirmation: {conf['sessions']} sessions, {conf['trades']} trades, IC {conf['ic']} (t {conf['ic_t']})")
+            if dt.date.fromisoformat(plan["session_date"]).weekday() == 4 and os.path.exists(score_band_file):
+                import alerts  # weekly drift check, on Fridays
+                note = alerts.score_drift_notice(candidates_dir, load_json(score_band_file, default=None))
+                if note:
+                    print(f"::notice::{note}")
         written += 1
         print(f"\nRecorded {plan['session_date']}: ending balance ${entry['ending_balance']:,.2f}")
 

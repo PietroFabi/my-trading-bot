@@ -1,0 +1,18 @@
+{
+  "sessions": 123,
+  "first_session": "2026-05-29",
+  "last_session": "2026-11-20",
+  "distinct_stocks": 518,
+  "articles": 66377,
+  "mean_per_session": {
+    "members": 503.0,
+    "priced": 364.0,
+    "liquid": 197.6,
+    "fresh_news": 158.1,
+    "gate_long": 34.93,
+    "gate_short": 10.9
+  },
+  "gated_rows_total": 5637,
+  "build_seconds": 678,
+  "finbert_revision": "0bc2ac10dda6929bcb1f77ccc43c7ec5c424f031"
+}
