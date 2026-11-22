@@ -60,6 +60,16 @@ class FreezeTest(unittest.TestCase):
         self.assertEqual(m["strategies"]["A"]["threshold_return"], 0.003)
         self.assertEqual(m["strategies"]["fade"]["score"], "-gap_atr")
 
+    def test_the_hash_ignores_windows_line_endings(self):
+        # A Windows checkout with core.autocrlf=true rewrites the file with CRLF; it is still the same model.
+        with open(self.model, "rb") as f:
+            lf = f.read()
+        crlf = os.path.join(self.repo, "crlf.json")
+        with open(crlf, "wb") as f:
+            f.write(lf.replace(b"\n", b"\r\n"))
+        self.assertEqual(freeze.sha256_file(crlf), freeze.sha256_file(self.model))
+        self.assertEqual(freeze.sha256_file(self.model), hashlib.sha256(lf).hexdigest())   # LF hash unchanged
+
     def test_hold_out_refuses_while_the_files_are_not_committed(self):
         with self.assertRaises(holdout.NotPreregistered):
             self.guard()

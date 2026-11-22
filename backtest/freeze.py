@@ -92,8 +92,9 @@ def build_preregistration(exploration: dict, fade_in_sample: dict, model_sha256:
 
 
 def sha256_file(path: str) -> str:
+    """sha256 of the file with line endings normalised to LF (git stores LF; Windows checkouts may write CRLF)."""
     with open(path, "rb") as f:
-        return hashlib.sha256(f.read()).hexdigest()
+        return hashlib.sha256(f.read().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def write_freeze(exploration: dict, fade_in_sample: dict, model_path: str = MODEL_FILE,
