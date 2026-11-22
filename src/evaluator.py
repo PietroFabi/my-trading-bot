@@ -266,12 +266,9 @@ def evaluate_pending(now=None, plans_dir=PLANS_DIR, results_file=RESULTS_FILE, c
             break
 
         v2 = plan.get("strategy") == "v2"
-        if v2:
-            # v2 is a new segment: it starts from the reset paper account, then carries its own balance forward
-            prev_v2 = results and results[-1].get("strategy") == "v2"
-            starting_balance = float(results[-1]["ending_balance"]) if prev_v2 else INITIAL_CAPITAL
-        else:
-            starting_balance = float(results[-1]["ending_balance"]) if results else INITIAL_CAPITAL
+        # One continuous fund: v2 continues v1's balance (the paper account was not reset at the switch-over);
+        # entries with "strategy": "v2" mark where the strategy changed.
+        starting_balance = float(results[-1]["ending_balance"]) if results else INITIAL_CAPITAL
         try:
             entry = evaluator_v2.evaluate_plan_v2(plan, starting_balance, client, bars_fn, now=now) if v2 \
                 else _evaluate_plan(plan, starting_balance, client)

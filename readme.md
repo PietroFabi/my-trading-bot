@@ -206,7 +206,8 @@ and add the fields listed after the example.
 ```
 
 **v2 additions** (new fields only; nothing above is renamed):
-- Entry: `strategy` ("v2"; a new segment that starts again from $100,000 after the paper account reset),
+- Entry: `strategy` ("v2"; the fund is continuous: the first v2 session starts from the last v1 `ending_balance`,
+  so the field marks where the strategy changed),
   `strategy_name` ("A"), `model_sha256`, `score_thresholds` (`{"long": 0.003, "short": -0.003}`), `costs_bps` (5),
   `portfolio_curve_net` (the curve after 5 bps per side), `ending_balance_net`, `by_side` (per side: trades,
   invested, gross and net P&L per horizon, return %).

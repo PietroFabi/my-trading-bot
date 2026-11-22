@@ -217,7 +217,7 @@ class PendingTest(unittest.TestCase):
                                           bars_fn=bars, scores_dir=self.scores, candidates_dir=self.cands,
                                           confirmation_file=self.conf, prereg_file=self.prereg)
 
-    def test_v2_starts_a_new_segment_at_100k_then_carries_forward_and_logs_every_candidate(self):
+    def test_v2_continues_the_v1_fund_balance_and_logs_every_candidate(self):
         prices = {"LLL": 101.0, "AAA": 102.0, "BBB": 50.5, "CCC": 99.0, "XLK": 50.5}
         p1 = v2_plan(FRI, target("LLL"))
         c = trade_day(p1, exit_px=101.0)
@@ -225,7 +225,7 @@ class PendingTest(unittest.TestCase):
         self.assertEqual(self.run_pending(c, bars_for(FRI, prices), at(FRI, 17, 0)), 1)
         with open(self.results) as f:
             results = json.load(f)
-        self.assertEqual((results[-1]["strategy"], results[-1]["starting_balance"]), ("v2", 100_000.0))
+        self.assertEqual((results[-1]["strategy"], results[-1]["starting_balance"]), ("v2", 99_000.0))  # user: option b
 
         with open(os.path.join(self.cands, f"{FRI}.csv")) as f:
             cands = {r["symbol"]: r for r in csv.DictReader(f)}
