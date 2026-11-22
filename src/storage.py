@@ -7,6 +7,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 PLANS_DIR = os.path.join(DATA_DIR, "plans")      # one morning plan per session: plans/2026-11-16.json
 RESULTS_FILE = os.path.join(DATA_DIR, "results.json")  # read by the portfolio site; keep the path
+DRYRUN_DIR = os.path.join(DATA_DIR, "dryrun")    # dry-run plans and score logs (never committed by the workflow)
+SCORES_DIR = os.path.join(DATA_DIR, "scores")    # every scanned stock's features, gates, score and decision per session
+SENTIMENT_CACHE = os.path.join(DATA_DIR, "sentiment", "finbert_cache.json")  # rolling FinBERT scores (no text)
+MODEL_FILE = os.path.join(DATA_DIR, "model", "frozen_model.json")
+PREREG_FILE = os.path.join(DATA_DIR, "preregistration.json")
+HOLDOUT_FILE = os.path.join(DATA_DIR, "backtest", "holdout.json")  # its goes_live field names the live strategy
 
 
 def load_json(path, default):

@@ -76,6 +76,17 @@ class CacheTest(unittest.TestCase):
             loaded = sentiment.load_cache(path)
         self.assertEqual(list(loaded), [1])            # ids come back as ints; old entries pruned
 
+    def test_cache_file_has_one_article_per_line_in_id_order_for_small_git_diffs(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "scores.json")
+            row = {"p_pos": 0.5, "p_neg": 0.25, "p_neu": 0.25, "created_at": "2026-11-19T07:00:00-05:00"}
+            sentiment.save_cache(path, {30: row, 4: row, 120: row}, keep_since=dt.datetime(2026, 10, 1, tzinfo=NY))
+            with open(path) as f:
+                lines = f.read().splitlines()
+            self.assertEqual(sorted(sentiment.load_cache(path)), [4, 30, 120])
+        article_lines = [ln for ln in lines if ln.lstrip().startswith('"') and '"p_pos"' in ln]
+        self.assertEqual([ln.split('"')[1] for ln in article_lines], ["4", "30", "120"])
+
 
 if __name__ == "__main__":
     unittest.main()

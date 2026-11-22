@@ -99,41 +99,9 @@ def save_cache(path: str, cache: dict, keep_since: dt.datetime) -> None:
             for k, v in cache.items()
             if v.get("created_at") and dt.datetime.fromisoformat(v["created_at"]) >= keep_since}
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
-    with open(path, "w") as f:
-        json.dump({"model_id": MODEL_ID, "model_revision": MODEL_REVISION, "scores": keep}, f, separators=(",", ":"))
-
-
-# --- Legacy v1 interface, used by the current src/main.py until the v2 morning job replaces it (plan Step 11).
-
-def fetch_news(ticker: str, limit: int = 3) -> list:
-    """Latest headlines for one ticker (v1 behaviour)."""
-    from news import _client
-    from alpaca.data.requests import NewsRequest
-    try:
-        response = _client().get_news(NewsRequest(symbols=ticker, limit=limit))
-        return [{"headline": a["headline"], "created_at": a.get("created_at"), "source": a.get("source"),
-                 "url": a.get("url")} for a in response.get("news", []) if a.get("headline")]
-    except Exception as e:
-        print(f"Error fetching news for {ticker}: {e}")
-        return []
-
-
-def analyze_text(text: str) -> dict:
-    """v1 format: label, confidence and score = +/-confidence (neutral = 0)."""
-    p = score_texts([text])[0]
-    label, confidence = max((("positive", p["p_pos"]), ("negative", p["p_neg"]), ("neutral", p["p_neu"])),
-                            key=lambda x: x[1])
-    score = confidence if label == "positive" else -confidence if label == "negative" else 0.0
-    return {"label": label, "confidence": round(confidence, 4), "score": round(score, 4)}
-
-
-def get_sentiment_for_tickers(tickers: list) -> dict:
-    """v1: {ticker: {"score": mean headline score, "headlines": [...]}} from the latest 3 headlines."""
-    results = {}
-    for ticker in tickers:
-        articles = fetch_news(ticker, limit=3)
-        for a in articles:
-            a.update(analyze_text(a["headline"]))
-        avg = sum(a["score"] for a in articles) / len(articles) if articles else 0.0
-        results[ticker] = {"score": avg, "headlines": articles}
-    return results
+    # One article per line, in id order: the file is committed daily, so a day's git diff is just the new and
+    # pruned lines instead of one rewritten 1 MB line.
+    lines = [f"{json.dumps(str(k))}:{json.dumps(keep[k], separators=(',', ':'))}" for k in sorted(keep, key=int)]
+    head = json.dumps({"model_id": MODEL_ID, "model_revision": MODEL_REVISION})[:-1]
+    with open(path, "w", newline="\n") as f:
+        f.write(head + ',"scores":{\n' + ",\n".join(lines) + "\n}}\n")

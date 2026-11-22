@@ -1,124 +1,214 @@
+"""
+The morning job (v2): scan the S&P 500 at open - 35 min, score the gated stocks with the frozen model, place the
+day's trades before the open.
+
+  1. catch-up evaluation of any finished session (the afternoon job owns it; a warning only)
+  2. calendar checks: market open today, no plan yet, inside the 07:00-09:25 window
+  3. frozen model checked against the pre-registered sha256 (a mismatch stops the day)
+  4. safety net: close leftovers from a session whose exit failed
+  5. score the month of baseline news while waiting, then wait until open - 35 min (08:55 ET)
+  6. feature table as of 08:55 (prices to 08:39 because of the free plan's delay, news to 08:55), selection
+  7. plan v2 + data/scores/<date>.csv; orders only if still before the 09:25 cutoff
+
+DRY_RUN=1 does everything except orders, the safety net and the evaluation; it writes to data/dryrun/ only.
+"""
 import datetime as dt
+import json
 import os
 import sys
+import time
 
-from broker import close_leftover_positions, execute_morning_trades, trading_client
-from evaluator import evaluate_pending
-from market_session import now_ny, previous_session, session_on
-from storage import PLANS_DIR, plan_path, save_json
+from market_session import now_ny
+from storage import (DRYRUN_DIR, HOLDOUT_FILE, MODEL_FILE, PLANS_DIR, PREREG_FILE, SCORES_DIR, SENTIMENT_CACHE,
+                     plan_path, save_json)
 
-# Morning research must happen inside this pre-market window (New York time).
-# Several cron attempts are scheduled; the first one that lands inside the
-# window does the work, later ones see the saved plan and exit.
 EARLIEST_BEFORE_OPEN = dt.timedelta(hours=2, minutes=30)  # 07:00 ET on a normal day
-CUTOFF_BEFORE_OPEN = dt.timedelta(minutes=5)              # 09:25 ET: buys must be queued before trading starts at 09:30
+SCAN_BEFORE_OPEN = dt.timedelta(minutes=35)               # 08:55 ET: the time the backtest replayed
+CUTOFF_BEFORE_OPEN = dt.timedelta(minutes=5)              # 09:25 ET: orders must be queued before trading starts
+BASELINE_SESSIONS_BEFORE = 21                             # features.BASELINE_SESSIONS + 1
 
-SENTIMENT_THRESHOLD = 0.15
+
+class LiveDeps:
+    """The real clock, calendar, data and broker. Tests pass a fake with the same methods."""
+
+    def __init__(self):
+        import broker
+        import sentiment
+        self.client, self.broker, self.sentiment = broker.trading_client, broker, sentiment
+        self.cache = sentiment.load_cache(SENTIMENT_CACHE)
+        self._shortable = {}
+
+    def now(self):
+        return now_ny()
+
+    def sleep(self, seconds):
+        time.sleep(seconds)
+
+    def sessions(self, start, end):
+        import market_session
+        return market_session.get_sessions(self.client, start, end)
+
+    def evaluate_pending(self, now, plans_dir):
+        from evaluator import evaluate_pending
+        evaluate_pending(now=now, plans_dir=plans_dir)
+
+    def close_leftovers(self, plans_dir):
+        return self.broker.close_leftover_positions(plans_dir=plans_dir)
+
+    def members(self, day):
+        import universe
+        return universe.load_universe(day)
+
+    def warm_news(self, members, before, now):
+        import news
+        articles = news.fetch_articles([m["symbol"] for m in members], before[0].close, now)
+        self.sentiment.score_articles(articles, cache=self.cache)
+        print(f"Scored the baseline news: {len(articles)} article rows, cache now {len(self.cache)} articles")
+
+    def feature_table(self, members, session, before, as_of):
+        import features
+        return features.morning_feature_table(members, session, before, as_of, score_cache=self.cache)
+
+    def equity(self):
+        return float(self.client.get_account().equity)
+
+    def is_shortable(self, symbol):
+        if symbol not in self._shortable:
+            asset = self.client.get_asset(symbol)
+            status = getattr(getattr(asset, "borrow_status", None), "value", getattr(asset, "borrow_status", None))
+            easy = status == "easy_to_borrow" if status is not None else bool(getattr(asset, "easy_to_borrow", False))
+            self._shortable[symbol] = bool(asset.shortable) and easy
+        return self._shortable[symbol]
+
+    def place_entries(self, plan, skip):
+        self.broker.place_entries(plan, skip_tickers=skip)
+
+    def save_cache(self, before):
+        self.sentiment.save_cache(SENTIMENT_CACHE, self.cache, keep_since=before[0].close)
+
+    def live_strategy(self):
+        with open(HOLDOUT_FILE) as f:
+            return json.load(f)["goes_live"]
 
 
-def run_morning_strategy(now=None, plans_dir=PLANS_DIR) -> int:
+def _write_scores(scored, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    scored.rename_axis("symbol").reset_index().to_csv(path, index=False, float_format="%.6g")
+
+
+def run_morning_strategy(now=None, plans_dir=PLANS_DIR, dry_run=False, deps=None, dryrun_dir=DRYRUN_DIR,
+                         scores_dir=SCORES_DIR, model_file=MODEL_FILE, prereg_file=PREREG_FILE) -> int:
     """Returns a process exit code: 0 = done or nothing to do, 1 = something needs attention."""
-    now = now or now_ny()
-    print(f"--- MORNING JOB woke up at {now:%Y-%m-%d %H:%M %Z} ---")
+    deps = deps or LiveDeps()
+    now = now or deps.now()
+    print(f"--- MORNING JOB (v2{', DRY RUN' if dry_run else ''}) woke up at {now:%Y-%m-%d %H:%M %Z} ---")
     exit_code = 0
 
-    # 0. Record any finished session the afternoon job has not recorded yet (it may have run late or failed).
-    #    Plans are kept per session, so a failure here loses nothing. Warning only: the afternoon
-    #    job owns evaluation and fails (emails you) itself if the problem persists.
-    try:
-        evaluate_pending(now=now, plans_dir=plans_dir)
-    except Exception as e:
-        print(f"::warning::Catch-up evaluation failed (the afternoon job will retry): {e}")
+    if not dry_run:
+        try:
+            deps.evaluate_pending(now, plans_dir)
+        except Exception as e:
+            print(f"::warning::Catch-up evaluation failed (the afternoon job will retry): {e}")
 
-    # 1. Is the market open today at all? (weekends, holidays)
-    session = session_on(trading_client, now.date())
-    if session is None:
+    calendar = deps.sessions(now.date() - dt.timedelta(days=60), now.date())
+    if not calendar or calendar[-1].date != now.date():
         print("Market is closed today (weekend or holiday). Nothing to do.")
         return exit_code
-
-    today_plan = plan_path(session.date.isoformat(), plans_dir)
-    if os.path.exists(today_plan):
+    session, before = calendar[-1], calendar[:-1][-BASELINE_SESSIONS_BEFORE:]
+    out_dir = dryrun_dir if dry_run else plans_dir
+    today_plan = plan_path(session.date.isoformat(), out_dir)
+    if not dry_run and os.path.exists(today_plan):
         print(f"Plan for {session.date} already exists (an earlier attempt ran). Nothing to do.")
         return exit_code
-
-    # 2. Are we inside the pre-market window?
     if now < session.open - EARLIEST_BEFORE_OPEN:
         print(f"Too early: research starts at {session.open - EARLIEST_BEFORE_OPEN:%H:%M %Z}. A later attempt will run.")
         return exit_code
-    if now > session.open - CUTOFF_BEFORE_OPEN:
-        # GitHub started us too late to buy at the open. Trading now would be a different strategy,
-        # so skip the day and fail the run so GitHub sends a notification.
-        print(f"::warning::Morning run started at {now:%H:%M %Z}, after the {session.open - CUTOFF_BEFORE_OPEN:%H:%M} "
-              f"cutoff for the {session.date} session. Skipping today's trades.")
+    cutoff = session.open - CUTOFF_BEFORE_OPEN
+    if now > cutoff:
+        print(f"::warning::Morning run started at {now:%H:%M %Z}, after the {cutoff:%H:%M} cutoff for the "
+              f"{session.date} session. Skipping today's trades.")
         return 1
-
-    prev = previous_session(trading_client, session.date)
     print(f"Session {session.date}: opens {session.open:%H:%M}, closes {session.close:%H:%M} ET "
-          f"(previous session {prev.date})")
+          f"(previous session {before[-1].date})")
 
-    # 3. Safety net: sell anything left over from a session whose exit failed.
-    #    Rule for alerts: the run fails (and GitHub emails you) only when you need to act.
-    #    A leftover the bot sells itself is handled (its result is corrected tonight), so it is
-    #    only a notice in the run summary. A leftover it could NOT sell needs you, so it fails.
-    leftovers, leftover_failures = close_leftover_positions(plans_dir=plans_dir)
-    if leftovers:
-        print(f"::notice::Sold leftover positions from an earlier session at the open: {', '.join(leftovers)}. "
-              f"Their results will be corrected with the real price tonight.")
-    if leftover_failures:
-        print(f"::error::Could not sell leftover positions: {', '.join(leftover_failures)}. Check the Alpaca dashboard.")
-        exit_code = 1
+    import strategy
+    try:
+        frozen = strategy.load_frozen(model_file, prereg_file, live=deps.live_strategy())
+    except strategy.FrozenModelMismatch as e:
+        print(f"::error::The frozen model does not match the pre-registration, so nothing is traded: {e}")
+        return 1
+    spec = frozen["spec"]
+    print(f"Live strategy {frozen['strategy']} ({spec['kind']}), model sha256 {frozen['sha256'][:12]}")
 
-    # Imported here so skipped runs don't spend time loading the FinBERT model.
-    from scanner import WATCHLIST, get_top_gappers
-    from sentiment import get_sentiment_for_tickers
+    leftovers, leftover_failures = [], []
+    if not dry_run:
+        leftovers, leftover_failures = deps.close_leftovers(plans_dir)
+        if leftovers:
+            print(f"::notice::Closing leftover positions from an earlier session at the open: {', '.join(leftovers)}. "
+                  f"Their results will be corrected with the real price tonight.")
+        if leftover_failures:
+            print(f"::error::Could not close leftover positions: {', '.join(leftover_failures)}. Check the Alpaca dashboard.")
+            exit_code = 1
 
-    # 4. Scan for the top 5 pre-market movers
-    top_movers = get_top_gappers(WATCHLIST, prev.date, session.date, top_n=5)
-    tickers = [mover["ticker"] for mover in top_movers]
+    members = deps.members(session.date)
+    try:
+        deps.warm_news(members, before, now)
+    except Exception as e:
+        print(f"::warning::Could not pre-score the baseline news (it will be scored after the wait): {e}")
 
-    # 5. Analyze the news sentiment for those stocks
-    sentiments = get_sentiment_for_tickers(tickers)
+    as_of = session.open - SCAN_BEFORE_OPEN
+    wait = (as_of - deps.now()).total_seconds()
+    if wait > 0:
+        print(f"Waiting {wait / 60:.0f} min for the scan at {as_of:%H:%M %Z}")
+        deps.sleep(wait)
+    table = deps.feature_table(members, session, before, as_of)
+    scored, targets = strategy.choose_trades(table, frozen, deps.equity(), deps.is_shortable)
+    gated = scored[scored["gate_long"].astype(bool) | scored["gate_short"].astype(bool)]
 
-    # 6. Formulate the trading plan
     plan = {
         "session_date": session.date.isoformat(),
         "market_open": session.open.isoformat(),
         "market_close": session.close.isoformat(),
-        "planned_at": now.isoformat(),
-        "sentiment_threshold": SENTIMENT_THRESHOLD,
-        "candidates": [],  # every top mover the model looked at, approved or not
-        "targets": [],     # the approved ones, which get orders
+        "planned_at": deps.now().isoformat(),
+        "scan_as_of": as_of.isoformat(),
+        "strategy": "v2",
+        "strategy_name": frozen["strategy"],
+        "model_sha256": frozen["sha256"],
+        "entry": spec["entry"],
+        "stop_k": spec.get("stop_k"),
+        "score_threshold": spec.get("threshold_return"),
+        "dry_run": dry_run,
+        "scanned": int(len(scored)),
+        "candidates": [{"ticker": s, "gate": "long" if r["gate_long"] else "short",
+                        "score": strategy._clean(r["score"]), "decision": r["decision"]} for s, r in gated.iterrows()],
+        "targets": targets,
     }
-    print("\n--- FINAL TRADING PLAN ---")
-    for mover in top_movers:
-        ticker = mover["ticker"]
-        result = sentiments.get(ticker, {"score": 0.0, "headlines": []})
-        score = result["score"]
-        approved = score > SENTIMENT_THRESHOLD
-        evidence = {
-            "ticker": ticker,
-            "gap_percent": round(mover["gap_percent"], 2),
-            "prev_close": round(mover["yesterday_close"], 2),
-            "ref_price": round(mover["current_price"], 2),  # pre-market price, used to size whole shares
-            "sentiment_score": round(score, 2),
-            "headlines": result["headlines"],
-        }
-        plan["candidates"].append({**evidence, "decision": "approved" if approved else "rejected"})
-        if approved:
-            print(f"✅ APPROVED: {ticker} (Sentiment: {score:+.2f})")
-            plan["targets"].append(dict(evidence))
-        else:
-            print(f"❌ REJECTED: {ticker} (Sentiment: {score:+.2f} is too low)")
+    _write_scores(scored, os.path.join(dryrun_dir, f"scores-{session.date}.csv") if dry_run
+                  else os.path.join(scores_dir, f"{session.date}.csv"))
+    print(f"\n--- PLAN {session.date}: {len(scored)} scanned, {len(gated)} gated, {len(targets)} targets ---")
+    for t in targets:
+        print(f"  {t['side'].upper():5} {t['ticker']:6} score {t['score']:+.4f}  qty {t['qty']}  stop {t['stop_price']}")
 
-    # 7. Place orders, then save the plan (with order ids) even if some orders failed,
-    #    so the evaluator only scores positions that really exist.
     try:
-        execute_morning_trades(plan, skip_tickers=set(leftovers) | set(leftover_failures))
+        if dry_run:
+            print("Dry run: no orders.")
+        elif deps.now() > cutoff:
+            plan["skipped"] = "plan finished after the order cutoff"
+            print(f"::warning::The plan was ready at {deps.now():%H:%M}, after the {cutoff:%H:%M} cutoff. No orders today.")
+            exit_code = 1
+        elif targets:
+            deps.place_entries(plan, set(leftovers) | set(leftover_failures))
+        else:
+            print("No targets today. Staying in cash.")
     finally:
         save_json(today_plan, plan)
-        print(f"\nSaved plan with {len(plan['targets'])} targets to data/plans/{session.date}.json")
+        print(f"Saved the plan with {len(targets)} targets to {os.path.relpath(today_plan)}")
+        try:
+            deps.save_cache(before)
+        except Exception as e:
+            print(f"::warning::Could not save the FinBERT score cache: {e}")
     return exit_code
 
 
 if __name__ == "__main__":
-    sys.exit(run_morning_strategy())
+    sys.exit(run_morning_strategy(dry_run=os.getenv("DRY_RUN", "").lower() in ("1", "true", "yes")))

@@ -5,3 +5,6 @@ node_modules/
 .wrangler/
 .dev.vars*
 .cache/
+
+# Dry-run plans and score logs from the morning job (DRY_RUN=1)
+data/dryrun/

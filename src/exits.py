@@ -1,5 +1,6 @@
 """
-Exit job: sell today's positions with market orders just before the close.
+Exit job: close today's positions (sell longs, buy back shorts) with market orders just before the close,
+after cancelling each trade's stop-loss leg and confirming the cancel (broker.place_exit_orders).
 
 The Cloudflare scheduler starts this job at :55 every hour from 16:55 to 20:55 UTC.
 Only the run that lands just before today's real close (from the plan, so daylight

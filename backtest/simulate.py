@@ -23,27 +23,13 @@ import math
 
 import pandas as pd
 
+from strategy import (MAX_DAY, MAX_STOCK, RISK_PER_ATR, _shares, apply_day_cap,  # noqa: F401  (one code path)
+                      position_size, stop_price)
+
 HORIZONS = {"1_min": 1, "10_min": 10, "30_min": 30, "1_hour": 60, "5_hour": 300, "EOD": None}
 COST_PER_SIDE = 0.0005
-RISK_PER_ATR = 0.0006
-MAX_STOCK = 0.04
-MAX_DAY = 0.20
 OPENING_RANGE_MINUTES = 5
 ORB_MIN_RVOL5 = 1.0
-
-
-def _shares(notional: float, price: float) -> int:
-    return int(math.floor(notional / price + 1e-9))
-
-
-def position_size(atr_pct: float, ref_price: float, equity: float) -> int:
-    notional = min(equity * RISK_PER_ATR / (atr_pct / 100.0), MAX_STOCK * equity)
-    return _shares(notional, ref_price)
-
-
-def stop_price(entry: float, sign: int, k: float, atr_pct: float) -> float:
-    """k x ATR against the trade, in whole cents (as an Alpaca stop order must be)."""
-    return round(entry * (1 - sign * k * atr_pct / 100.0), 2)
 
 
 def _price_at(bars: pd.DataFrame, t: dt.datetime):
@@ -132,21 +118,3 @@ def simulate_trade(row: pd.Series, bars: pd.DataFrame, session, entry_mode: str,
     return {"entered": True, "side": side, "entry_time": entry_time, "entry": entry, "exit": exit_price,
             "exit_reason": "stop" if stop is not None else "close", "qty": qty, "ref_price": ref_price,
             "ret_gross": ret_gross, "ret_net": ret_net, "pnl_net": pnl_net}
-
-
-def apply_day_cap(trades: list, equity: float, cap: float = MAX_DAY) -> list:
-    """Scale every planned trade's quantity down so the day's planned notional is at most cap x equity (as live,
-    which sizes at plan time from reference prices: trades that later do not enter still used up the budget)."""
-    def notional(t):
-        return t["qty"] * (t.get("ref_price") or t["entry"])
-    total = sum(notional(t) for t in trades if t["qty"] > 0)
-    if total <= cap * equity:
-        return [dict(t) for t in trades]
-    factor = cap * equity / total
-    out = []
-    for t in trades:
-        t = {**t, "qty": _shares(t["qty"] * factor, 1.0)}
-        if t.get("entered"):
-            t["pnl_net"] = {h: None if r is None else t["qty"] * t["entry"] * r for h, r in t["ret_net"].items()}
-        out.append(t)
-    return out
