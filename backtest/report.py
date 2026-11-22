@@ -111,3 +111,46 @@ if __name__ == "__main__":
     with open(OUT_REPORT, "w", encoding="utf-8") as f:
         f.write(render(result))
     print(f"wrote {OUT_REPORT}")
+
+
+HOLDOUT_JSON = os.path.join("data", "backtest", "holdout.json")
+HOLDOUT_REPORT = os.path.join("docs", "backtest", "holdout-report.md")
+
+
+def render_holdout(r: dict) -> str:
+    h = r["holdout"]
+    lines = [
+        "# Hold-out report (Step 10, evaluated once)",
+        "",
+        f"Sessions {h['first']} → {h['last']} ({h['sessions']}), read for the first time after the pre-registration "
+        f"commit. {h['gated_rows']} gated rows ({h['rows_with_target']} with a measurable outcome).",
+        "",
+        f"Pass rule (pre-registered): {r['pass_rule']}.",
+        "",
+        "| Hypothesis | IC | t | trades | trades/day | mean net / trade | t | hit rate | mean gross | Sharpe (net) | max DD | total | passes |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ]
+    for name in ("A", "fade"):
+        x = r[name]
+        n, c = x["eod_net"], x["curve_net"]
+        lines.append(f"| {name} | {num(x['ic'], 4)} | {num(x['ic_t'])} | {n['n']} | {num(x['trades_per_day'])} | "
+                     f"{pct(n['mean'])} | {num(n['t'])} | {pct(n['hit_rate'], 1)} | {pct(x['eod_gross']['mean'])} | "
+                     f"{num(c['sharpe'])} | {pct(c['max_drawdown'], 2)} | {pct(c['total_return'], 2)} | "
+                     f"{'yes' if x['passes'] else 'no'} |")
+    lines += ["", f"**Goes live (pre-registered decision rule): {r['goes_live']}.**", ""]
+    for name in ("A", "fade"):
+        lines += [f"## {name} by side and horizon (only the close is claimed)", "",
+                  "| Side | Horizon | trades | mean net | t | hit rate |", "|---|---|---|---|---|---|"]
+        for side in ("long", "short"):
+            for hz, v in r[name]["by_side_and_horizon"][side].items():
+                lines.append(f"| {side} | {hz} | {v['net']['n']} | {pct(v['net']['mean'])} | {num(v['net']['t'])} | "
+                             f"{pct(v['net']['hit_rate'], 1)} |")
+        lines.append("")
+    b = r["benchmarks"]
+    lines += ["## Benchmarks (same sessions)", "",
+              f"- SPY open-to-close: mean {pct(b['spy_open_to_close']['mean_daily'])} per day, total "
+              f"{pct(b['spy_open_to_close']['total_return'], 2)}.",
+              f"- SPY buy-and-hold: {pct(b['spy_buy_and_hold'], 2)}.", "",
+              "Per-trade means weight every trade equally; the Sharpe, drawdown and total use the dollar P&L of "
+              "equal-risk sizing (larger positions in calmer stocks), so the two can differ in sign.", ""]
+    return "\n".join(lines)
