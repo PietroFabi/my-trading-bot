@@ -1,0 +1,57 @@
+{
+  "frozen_on": "2026-11-22",
+  "frozen_model_file": "data/model/frozen_model.json",
+  "frozen_model_sha256": "da5aaaabc664b635f69bb805ab8e44d435f07e0a40982b9c153f6f9340e64744",
+  "hypotheses": [
+    {
+      "name": "A",
+      "role": "primary (pre-registered before any data was seen)",
+      "rule": "ridge model on the gated stocks (gap and news agree), trade in the gate's direction when the prediction passes the frozen threshold; entry/stop/threshold chosen in exploration",
+      "exploration_out_of_fold": {
+        "ic": -0.0203120951671747,
+        "ic_t": -0.8496431277004572,
+        "trades": 91,
+        "mean_net_per_trade": -0.0002179085225295543,
+        "t": -0.07480803168870741
+      }
+    },
+    {
+      "name": "fade",
+      "role": "secondary, FOUND during exploration (gated gaps reversed intraday); fixed before the hold-out was read, nothing tuned",
+      "rule": "the same gated stocks, traded AGAINST the gap (gap up -> short, gap down -> long), strongest |gap_atr| first, max 10 a day and 3 per sector, entry at the open, no stop, exit at the close",
+      "exploration_in_sample": {
+        "sessions": 70,
+        "ic": 0.059114840422148644,
+        "ic_t": 2.3621523931093873,
+        "trades": 689,
+        "mean_net_per_trade": 0.0034114534091161156,
+        "t": 2.9227308943085295,
+        "hit_rate": 0.5631349782293179,
+        "sharpe": 4.404827212830745,
+        "max_drawdown": 0.005213017557316402,
+        "warning": "in-sample: the pattern was noticed on these same sessions"
+      }
+    }
+  ],
+  "variants_tried": 33,
+  "holdout": {
+    "first": "2026-10-09",
+    "last": "2026-11-20",
+    "evaluated": "once, by backtest/holdout.py",
+    "pass": {
+      "ic_min": 0.0,
+      "t_min": 2.24,
+      "mean_net_per_trade_min": 0.0,
+      "definition": "IC > 0 with t > 2.24 AND mean net return per trade at the close > 0"
+    }
+  },
+  "decision_rule": "If A passes the hold-out, A goes live. Otherwise, if the fade passes, the fade goes live. If neither passes, A goes live (agreed before seeing data: freeze the best candidate anyway).",
+  "live_confirmation": {
+    "length": "the later of 60 sessions and 150 trades",
+    "primary": "IC > 0 with t > 2.0 over the confirmation period",
+    "secondary": "mean net return per trade at the close > 0",
+    "model": "completely frozen (no retraining)",
+    "claimed": "only side x entry mode, exit at the close; other horizons are exploratory"
+  },
+  "costs": "5 bps per side in every net figure; borrow fee 0 for intraday shorts (assumption)"
+}

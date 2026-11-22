@@ -1,0 +1,94 @@
+{
+  "costs": {
+    "borrow_intraday": 0.0,
+    "per_side": 0.0005
+  },
+  "data_cutoff": "2026-10-08",
+  "finbert": {
+    "model": "ProsusAI/finbert",
+    "revision": "0bc2ac10dda6929bcb1f77ccc43c7ec5c424f031"
+  },
+  "scan_before_open_min": 35,
+  "selection": {
+    "max_per_sector": 3,
+    "max_trades": 10,
+    "shorts_need": "shortable and easy to borrow"
+  },
+  "sizing": {
+    "max_day": 0.2,
+    "max_stock": 0.04,
+    "risk_per_atr": 0.0006
+  },
+  "strategies": {
+    "A": {
+      "entry": "open",
+      "exclude_price_move": false,
+      "exit": "close",
+      "features": [
+        "gap_atr",
+        "log_rvol",
+        "trend",
+        "dist_52w_high",
+        "news_today",
+        "baseline",
+        "surprise",
+        "news_volume"
+      ],
+      "in_sample_pred_std": 0.0020417995030361093,
+      "kind": "ridge",
+      "orb_min_rvol5": 1.0,
+      "ridge": {
+        "clip_y": [
+          0.01,
+          0.99
+        ],
+        "clip_z": 4.0,
+        "coef": [
+          -0.002268742155059053,
+          0.0007929677518768717,
+          0.001629781090436986,
+          -0.0011949774614197568,
+          -0.00217074054852966,
+          0.001010229760130041,
+          0.0026206740261625703,
+          -0.00016135078483215444
+        ],
+        "intercept": -0.0007029512346441803,
+        "lam": 1.0,
+        "mean": [
+          0.12867377244422398,
+          0.18895540950901737,
+          0.019750274074632146,
+          -0.19416272637481358,
+          0.36456485474221684,
+          0.38533400566899806,
+          -0.007230203392368929,
+          0.046440268240971104
+        ],
+        "std": [
+          0.632785647806473,
+          1.396758816059481,
+          0.12750429921996104,
+          0.1539278940544199,
+          0.5245946817661488,
+          0.2619210842945712,
+          0.21792404752873235,
+          0.41185414276144444
+        ]
+      },
+      "stop_k": 0.75,
+      "threshold_multiple": 1.5,
+      "threshold_return": 0.0030626992545541637
+    },
+    "fade": {
+      "entry": "open",
+      "exit": "close",
+      "kind": "gap_fade",
+      "score": "-gap_atr",
+      "side": "opposite of the gate",
+      "stop_k": null,
+      "threshold": null
+    }
+  },
+  "version": 2
+}
