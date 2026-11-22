@@ -13,6 +13,9 @@ SENTIMENT_CACHE = os.path.join(DATA_DIR, "sentiment", "finbert_cache.json")  # r
 MODEL_FILE = os.path.join(DATA_DIR, "model", "frozen_model.json")
 PREREG_FILE = os.path.join(DATA_DIR, "preregistration.json")
 HOLDOUT_FILE = os.path.join(DATA_DIR, "backtest", "holdout.json")  # its goes_live field names the live strategy
+CANDIDATES_DIR = os.path.join(DATA_DIR, "candidates")  # realised outcome of every gated stock (would-have-traded log)
+CONFIRMATION_FILE = os.path.join(DATA_DIR, "confirmation.json")  # live progress vs the pre-registered criteria
+SCORE_BAND_FILE = os.path.join(DATA_DIR, "backtest", "score_band.json")  # hold-out score band for the drift notice
 
 
 def load_json(path, default):

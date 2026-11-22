@@ -87,6 +87,10 @@ class FakeDeps:
     def live_strategy(self):
         return "A"
 
+    def headlines(self, symbols, since, until):
+        return {s: [{"headline": f"{s} news", "url": "u", "source": "fiscal.ai", "created_at": "t", "score": 0.5}]
+                for s in symbols}
+
 
 class MorningTest(unittest.TestCase):
     def setUp(self):
@@ -182,11 +186,29 @@ class MorningTest(unittest.TestCase):
                          [("AAA", "long", 30, "id-AAA")])
         self.assertEqual({c["ticker"]: c["decision"] for c in p["candidates"]},
                          {"AAA": "selected", "BBB": "below threshold"})
+        self.assertEqual((p["candidates"][1]["gap_percent"], p["candidates"][1]["sentiment_score"]), (0.2, 0.5))
         with open(os.path.join(self.scores, f"{FRIDAY}.csv")) as f:
             rows = list(csv.DictReader(f))
         self.assertEqual([r["symbol"] for r in rows], ["AAA", "BBB"])
         self.assertIn("score", rows[0])
         self.assertIn("decision", rows[0])
+
+    def test_targets_carry_their_fresh_headlines_and_the_plan_records_equity(self):
+        deps = FakeDeps(at(8, 0))
+        self.run_job(deps)
+        p = self.plan()
+        self.assertEqual(p["targets"][0]["headlines"][0]["headline"], "AAA news")
+        self.assertEqual(p["equity"], 100_000.0)
+
+    def test_fresh_headlines_are_the_newest_since_the_previous_close_without_any_text(self):
+        def art(sym, hour, text="secret body"):
+            return {"symbol": sym, "headline": f"{sym} {hour}", "url": "u", "source": "fiscal.ai", "text": text,
+                    "summary": "secret", "created_at": at(hour, 0), "s": 0.25, "price_move": False}
+        arts = [art("AAA", 7), art("AAA", 8), art("AAA", 6), art("BBB", 8), art("AAA", 9)]
+        got = main.fresh_headlines(arts, ["AAA"], since=at(6, 30), until=at(8, 55), n=5)
+        self.assertEqual([h["headline"] for h in got["AAA"]], ["AAA 8", "AAA 7"])
+        self.assertFalse({"text", "summary"} & set(got["AAA"][0]))
+        self.assertEqual(got["AAA"][0]["score"], 0.25)
 
     def test_a_zero_signal_day_saves_an_empty_plan_and_places_no_orders(self):
         deps = FakeDeps(at(8, 0), rows=[stock("AAA", 0.1), stock("BBB", -0.2)])

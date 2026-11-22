@@ -259,7 +259,8 @@ RVOL_SESSIONS = 10
 def morning_feature_table(members: list, session, sessions_before: list, as_of: dt.datetime,
                           score_cache: dict | None = None, cache_dir: str | None = None, fallback: bool = True,
                           exclude_price_move: bool = False,
-                          load_prices=None, compute_prices=None, fetch=None, score=None) -> pd.DataFrame:
+                          load_prices=None, compute_prices=None, fetch=None, score=None,
+                          articles_out: list | None = None) -> pd.DataFrame:
     """
     The full feature table for one morning in one call (live job and backtest alike):
     prices -> price features; news since the start of the baseline window -> FinBERT -> news
@@ -276,5 +277,7 @@ def morning_feature_table(members: list, session, sessions_before: list, as_of: 
     daily, minute = load_prices(members, session, prev, prior, as_of, cache_dir=cache_dir, fallback=fallback)
     price = compute_prices(daily, minute, members, session, prev, prior, as_of)
     articles = score(fetch([m["symbol"] for m in members], sessions_before[0].close, as_of), cache=score_cache)
+    if articles_out is not None:
+        articles_out.extend(articles)  # the caller keeps headlines only; text is never written
     news = news_features(articles, session, sessions_before, as_of, exclude_price_move=exclude_price_move)
     return build_feature_table(price, news)

@@ -13,6 +13,18 @@ FEATURES = ["gap_atr", "log_rvol", "trend", "dist_52w_high", "news_today", "base
 RVOL_CAP = 100.0
 
 
+def open_to_close(bars: pd.DataFrame, session) -> float:
+    """Return from the first regular-hours bar's open (it must start at the open) to the last bar's close."""
+    if bars is None or bars.empty or bars.index[0] != session.open:
+        return float("nan")
+    return float(bars["close"].iloc[-1] / bars["open"].iloc[0] - 1)
+
+
+def market_relative_return(stock_bars: pd.DataFrame, etf_bars: pd.DataFrame, beta: float, session) -> float:
+    """The model's target: open -> close return of the stock minus beta x the same for its sector ETF."""
+    return open_to_close(stock_bars, session) - beta * open_to_close(etf_bars, session)
+
+
 def add_model_columns(frame: pd.DataFrame) -> pd.DataFrame:
     out = frame.copy()
     out["log_rvol"] = np.log(out["rvol"].astype(float).clip(1 / RVOL_CAP, RVOL_CAP))

@@ -28,6 +28,21 @@ CUTOFF_BEFORE_OPEN = dt.timedelta(minutes=5)              # 09:25 ET: orders mus
 BASELINE_SESSIONS_BEFORE = 21                             # features.BASELINE_SESSIONS + 1
 
 
+HEADLINE_FIELDS = ("headline", "url", "source")
+
+
+def fresh_headlines(articles: list, symbols, since, until, n: int = 5) -> dict:
+    """{symbol: up to n newest articles published in (since, until]}: headline, url, source, time and FinBERT tone.
+    Article text and summaries are never copied."""
+    wanted, out = set(symbols), {}
+    for a in sorted(articles, key=lambda a: a["created_at"], reverse=True):
+        if a["symbol"] in wanted and since < a["created_at"] <= until and len(out.setdefault(a["symbol"], [])) < n:
+            out[a["symbol"]].append({**{k: a.get(k) for k in HEADLINE_FIELDS},
+                                     "created_at": a["created_at"].isoformat(), "score": round(float(a["s"]), 4),
+                                     "price_move": bool(a.get("price_move"))})
+    return out
+
+
 class LiveDeps:
     """The real clock, calendar, data and broker. Tests pass a fake with the same methods."""
 
@@ -36,6 +51,7 @@ class LiveDeps:
         import sentiment
         self.client, self.broker, self.sentiment = broker.trading_client, broker, sentiment
         self.cache = sentiment.load_cache(SENTIMENT_CACHE)
+        self.articles = []
         self._shortable = {}
 
     def now(self):
@@ -67,7 +83,12 @@ class LiveDeps:
 
     def feature_table(self, members, session, before, as_of):
         import features
-        return features.morning_feature_table(members, session, before, as_of, score_cache=self.cache)
+        self.articles = []
+        return features.morning_feature_table(members, session, before, as_of, score_cache=self.cache,
+                                              articles_out=self.articles)
+
+    def headlines(self, symbols, since, until):
+        return fresh_headlines(self.articles, symbols, since, until)
 
     def equity(self):
         return float(self.client.get_account().equity)
@@ -162,7 +183,15 @@ def run_morning_strategy(now=None, plans_dir=PLANS_DIR, dry_run=False, deps=None
         print(f"Waiting {wait / 60:.0f} min for the scan at {as_of:%H:%M %Z}")
         deps.sleep(wait)
     table = deps.feature_table(members, session, before, as_of)
-    scored, targets = strategy.choose_trades(table, frozen, deps.equity(), deps.is_shortable)
+    import alerts
+    data_coverage = alerts.coverage(table)
+    for note in alerts.coverage_notices(table):
+        print(f"::notice::{note}")
+    equity = deps.equity()
+    scored, targets = strategy.choose_trades(table, frozen, equity, deps.is_shortable)
+    news = deps.headlines([t["ticker"] for t in targets], before[-1].close, as_of)
+    for t in targets:
+        t["headlines"] = news.get(t["ticker"], [])
     gated = scored[scored["gate_long"].astype(bool) | scored["gate_short"].astype(bool)]
 
     plan = {
@@ -178,9 +207,13 @@ def run_morning_strategy(now=None, plans_dir=PLANS_DIR, dry_run=False, deps=None
         "stop_k": spec.get("stop_k"),
         "score_threshold": spec.get("threshold_return"),
         "dry_run": dry_run,
+        "equity": equity,
+        "coverage": data_coverage,
         "scanned": int(len(scored)),
         "candidates": [{"ticker": s, "gate": "long" if r["gate_long"] else "short",
-                        "score": strategy._clean(r["score"]), "decision": r["decision"]} for s, r in gated.iterrows()],
+                        "score": strategy._clean(r["score"]), "decision": r["decision"],
+                        "gap_percent": strategy._clean(r.get("gap_pct")),
+                        "sentiment_score": strategy._clean(r.get("news_today"))} for s, r in gated.iterrows()],
         "targets": targets,
     }
     _write_scores(scored, os.path.join(dryrun_dir, f"scores-{session.date}.csv") if dry_run

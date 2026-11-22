@@ -51,15 +51,7 @@ def exploration_rows(frame: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def _open_to_close(bars: pd.DataFrame, session) -> float:
-    if bars is None or bars.empty or bars.index[0] != session.open:
-        return float("nan")
-    return float(bars["close"].iloc[-1] / bars["open"].iloc[0] - 1)
-
-
-def market_relative_return(stock_bars: pd.DataFrame, etf_bars: pd.DataFrame, beta: float, session) -> float:
-    """Open -> close return of the stock minus beta x the same for its sector ETF."""
-    return _open_to_close(stock_bars, session) - beta * _open_to_close(etf_bars, session)
+market_relative_return = model.market_relative_return   # the target lives in src/model.py (shared with live)
 
 
 def trade_stats(returns) -> dict:
