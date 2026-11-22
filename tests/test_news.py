@@ -55,6 +55,21 @@ class FetchTest(unittest.TestCase):
                       raw(1, ["AAPL"], "apple beats   estimates", created="2026-11-20T11:00:00Z")])
         self.assertEqual([a["id"] for a in rows], [1])
 
+    def test_a_repeated_template_headline_days_later_is_a_new_article(self):
+        # "Keefe, Bruyette & Woods Adjusts Price Target on PGR" in June and again in November are two analyst actions.
+        rows = fetch([raw(1, ["AAPL"], "Broker Adjusts Price Target on Apple", created="2026-06-18T10:31:00Z"),
+                      raw(2, ["AAPL"], "Broker Adjusts Price Target on Apple", created="2026-11-20T13:02:00Z")])
+        self.assertEqual([a["id"] for a in rows], [1, 2])
+
+    def test_duplicates_are_judged_by_a_window_so_a_long_fetch_matches_a_short_one(self):
+        arts = [raw(1, ["AAPL"], "Broker Adjusts Price Target on Apple", created="2026-06-18T10:31:00Z"),
+                raw(2, ["AAPL"], "Broker Adjusts Price Target on Apple", created="2026-11-20T13:02:00Z"),
+                raw(3, ["AAPL"], "Broker adjusts price target on Apple", created="2026-11-20T20:00:00Z")]
+        long_fetch = [a["id"] for a in fetch(arts) if a["created_at"].date() >= dt.date(2026, 11, 1)]
+        short_fetch = [a["id"] for a in fetch(arts[1:])]
+        self.assertEqual(long_fetch, short_fetch)
+        self.assertEqual(short_fetch, [2])                    # 7 hours later: still the same story
+
     def test_articles_tagging_more_than_three_symbols_are_dropped(self):
         rows = fetch([raw(1, ["AAPL", "MSFT", "GOOG", "AMZN", "META"], "Big Tech Roundup")])
         self.assertEqual(rows, [])

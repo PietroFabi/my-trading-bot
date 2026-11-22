@@ -162,3 +162,19 @@ class LoaderTest(unittest.TestCase):
         self.assertEqual(today[3], AS_OF)                            # today's window obeys the data delay
         for _, start, end, _, _ in minute[1:]:
             self.assertEqual((end.hour, end.minute), (8, 39))        # same clock window as today
+
+
+class FutureDataTest(unittest.TestCase):
+    def test_daily_bars_after_the_previous_session_change_nothing(self):
+        # The backtest passes one daily frame covering all of history to every session.
+        daily = daily_frame()
+        future = []
+        for sym, price in (("AAA", 500.0), ("XLI", 10.0)):
+            for d in pd.bdate_range("2026-11-20", periods=30):
+                future.append((sym, d.date(), price, price * 3, price / 3, price, 9e9))
+        extra = pd.DataFrame(future, columns=["symbol", "date", "open", "high", "low", "close", "volume"])
+        with_future = pd.concat([daily, extra.set_index(["symbol", "date"])]).sort_index()
+        base = compute(daily, minute_frame(daily))
+        leaked = compute(with_future, minute_frame(daily))
+        cols = ["gap_pct", "beta", "atr_pct", "gap_atr", "trend", "dist_52w_high", "adv_usd", "sector_gap_pct"]
+        pd.testing.assert_frame_equal(base[cols], leaked[cols])

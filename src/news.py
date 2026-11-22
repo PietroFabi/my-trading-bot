@@ -4,7 +4,9 @@ News: every Alpaca article (currently all from fiscal.ai) for the universe in a 
 - Multi-symbol requests in chunks of 100 symbols; alpaca-py follows the pages itself.
 - Full text is requested (include_content) so FinBERT can read it, stripped of HTML. The text
   only ever lives in memory: plans and results keep headline, url, source and scores, never bodies.
-- Dedupe: by article id, and by normalised headline per stock (keep the earliest).
+- Dedupe: by article id, and by normalised headline per stock within DUPLICATE_WINDOW (keep the earliest).
+  The window makes a long backtest fetch and a one-month live fetch agree: templated headlines such as
+  "X Adjusts Price Target on Y" recur weeks apart and are new analyst actions, not duplicates.
 - Guard: articles tagging more than 3 symbols are dropped (roundups, not news about one company).
   In the current feed every article tags exactly one symbol, so this is insurance for later.
 - `price_move` tags headlines that describe a move that already happened ("Shares of X Decline
@@ -19,6 +21,7 @@ from zoneinfo import ZoneInfo
 NY = ZoneInfo("America/New_York")
 CHUNK = 100
 MAX_SYMBOLS_PER_ARTICLE = 3
+DUPLICATE_WINDOW = dt.timedelta(hours=24)
 
 _MOVE_VERBS = (r"rise|rises|rose|jump|jumps|jumped|surge|surges|surged|gain|gains|gained|climb|climbs|climbed|"
                r"soar|soars|soared|rally|rallies|rallied|advance|advances|advanced|"
@@ -76,7 +79,7 @@ def fetch_articles(symbols, start: dt.datetime, end: dt.datetime, client=None) -
                 seen_ids.add(a["id"])
                 raw.append(a)
 
-    rows, seen_headlines = [], set()
+    rows, kept_at = [], {}
     for a in sorted(raw, key=lambda a: a["created_at"]):
         tagged = a.get("symbols") or []
         if len(tagged) > MAX_SYMBOLS_PER_ARTICLE or not a.get("headline"):
@@ -84,9 +87,9 @@ def fetch_articles(symbols, start: dt.datetime, end: dt.datetime, client=None) -
         created = dt.datetime.fromisoformat(a["created_at"].replace("Z", "+00:00")).astimezone(NY)
         for symbol in tagged:
             key = (symbol, _normalised(a["headline"]))
-            if symbol not in universe or key in seen_headlines:
+            if symbol not in universe or (key in kept_at and created - kept_at[key] < DUPLICATE_WINDOW):
                 continue
-            seen_headlines.add(key)
+            kept_at[key] = created
             rows.append({
                 "id": a["id"], "symbol": symbol, "created_at": created,
                 "headline": a["headline"].strip(), "summary": strip_html(a.get("summary") or ""),

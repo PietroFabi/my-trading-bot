@@ -110,6 +110,7 @@ def price_features(daily: pd.DataFrame, minute: pd.DataFrame, members: list, ses
         gap = (ref / prev_close - 1) * 100 if not (math.isnan(ref) or math.isnan(prev_close)) else float("nan")
 
         etf_hist = daily_by[m["sector_etf"]]["close"] if m["sector_etf"] in daily_by else pd.Series(dtype=float)
+        etf_hist = etf_hist[etf_hist.index <= prev.date]  # explicit look-ahead guard (also implied by the join)
         beta = _beta(hist["close"], etf_hist) if len(hist) else 1.0
         atr = wilder_atr(hist["high"], hist["low"], hist["close"]) if len(hist) else float("nan")
         atr_pct = atr / prev_close * 100 if prev_close and not math.isnan(atr) else float("nan")
