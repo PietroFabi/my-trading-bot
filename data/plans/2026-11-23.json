@@ -1,0 +1,636 @@
+{
+    "session_date": "2026-11-23",
+    "market_open": "2026-11-23T09:30:00-05:00",
+    "market_close": "2026-11-23T16:00:00-05:00",
+    "planned_at": "2026-11-23T08:55:52.556988-05:00",
+    "scan_as_of": "2026-11-23T08:55:00-05:00",
+    "strategy": "v2",
+    "strategy_name": "A",
+    "model_sha256": "da5aaaabc664b635f69bb805ab8e44d435f07e0a40982b9c153f6f9340e64744",
+    "entry": "open",
+    "stop_k": 0.75,
+    "score_threshold": 0.0030626992545541637,
+    "dry_run": false,
+    "equity": 99039.52,
+    "coverage": {
+        "daily": 1.0,
+        "premarket": 0.897,
+        "news": 0.362,
+        "members": 503
+    },
+    "scanned": 503,
+    "candidates": [
+        {
+            "ticker": "ABBV",
+            "gate": "long",
+            "score": -0.002027119247533712,
+            "decision": "below threshold",
+            "gap_percent": 0.524109014675056,
+            "sentiment_score": 0.1701969327405095
+        },
+        {
+            "ticker": "AMZN",
+            "gate": "short",
+            "score": -0.0004445198687751368,
+            "decision": "below threshold",
+            "gap_percent": 3.071063933230689,
+            "sentiment_score": -0.03976994752883911
+        },
+        {
+            "ticker": "AMGN",
+            "gate": "long",
+            "score": -0.0024617899242441233,
+            "decision": "below threshold",
+            "gap_percent": 1.8937654944449545,
+            "sentiment_score": 0.028765777125954628
+        },
+        {
+            "ticker": "ADI",
+            "gate": "long",
+            "score": -0.002303527426102423,
+            "decision": "below threshold",
+            "gap_percent": 4.658562673450506,
+            "sentiment_score": 0.1730431384828798
+        },
+        {
+            "ticker": "T",
+            "gate": "short",
+            "score": -0.002642337927824634,
+            "decision": "below threshold",
+            "gap_percent": -0.08964589870013029,
+            "sentiment_score": -0.22886616798076004
+        },
+        {
+            "ticker": "ADSK",
+            "gate": "long",
+            "score": -0.0015250064614107128,
+            "decision": "below threshold",
+            "gap_percent": 2.090150523560208,
+            "sentiment_score": 0.885327454701042
+        },
+        {
+            "ticker": "BIIB",
+            "gate": "long",
+            "score": -0.0003881586654575526,
+            "decision": "below threshold",
+            "gap_percent": 1.1659120958371627,
+            "sentiment_score": 0.025087688118219376
+        },
+        {
+            "ticker": "BLK",
+            "gate": "long",
+            "score": -0.0010157095408194871,
+            "decision": "below threshold",
+            "gap_percent": 2.7484297280615744,
+            "sentiment_score": 0.5573382777425101
+        },
+        {
+            "ticker": "BA",
+            "gate": "short",
+            "score": -0.0023207104123190514,
+            "decision": "below threshold",
+            "gap_percent": 1.918019116043368,
+            "sentiment_score": -0.7190841635225252
+        },
+        {
+            "ticker": "AVGO",
+            "gate": "short",
+            "score": -0.00245344480486052,
+            "decision": "below threshold",
+            "gap_percent": 4.773167767156128,
+            "sentiment_score": -0.7977610661675824
+        },
+        {
+            "ticker": "CB",
+            "gate": "long",
+            "score": -0.0015823895103159184,
+            "decision": "below threshold",
+            "gap_percent": 0.7776551946828691,
+            "sentiment_score": 0.8097799085080623
+        },
+        {
+            "ticker": "C",
+            "gate": "long",
+            "score": -0.0017690650474232526,
+            "decision": "below threshold",
+            "gap_percent": 2.151509672753571,
+            "sentiment_score": 0.5033027157187462
+        },
+        {
+            "ticker": "KO",
+            "gate": "short",
+            "score": -0.001038319002715935,
+            "decision": "below threshold",
+            "gap_percent": -0.25775853180740604,
+            "sentiment_score": -0.5640356802408857
+        },
+        {
+            "ticker": "CL",
+            "gate": "long",
+            "score": -0.00013164053236578268,
+            "decision": "below threshold",
+            "gap_percent": 0.5977104649984799,
+            "sentiment_score": 0.7601044112816453
+        },
+        {
+            "ticker": "COP",
+            "gate": "long",
+            "score": -0.0011246567812904645,
+            "decision": "below threshold",
+            "gap_percent": 0.4040552453717261,
+            "sentiment_score": 0.49098568968474865
+        },
+        {
+            "ticker": "CEG",
+            "gate": "long",
+            "score": -0.0015808410997827905,
+            "decision": "below threshold",
+            "gap_percent": 3.7108799123878544,
+            "sentiment_score": 0.8203531143312182
+        },
+        {
+            "ticker": "GLW",
+            "gate": "short",
+            "score": 0.000373090203416159,
+            "decision": "below threshold",
+            "gap_percent": 5.3263403263403175,
+            "sentiment_score": -0.21362218260765076
+        },
+        {
+            "ticker": "DG",
+            "gate": "long",
+            "score": -0.0020061889630347686,
+            "decision": "below threshold",
+            "gap_percent": 2.0531678541331644,
+            "sentiment_score": 0.05139405070711037
+        },
+        {
+            "ticker": "EQT",
+            "gate": "long",
+            "score": 1.1610611956787008e-05,
+            "decision": "below threshold",
+            "gap_percent": 0.2454489670689286,
+            "sentiment_score": 0.15186020080000162
+        },
+        {
+            "ticker": "FSLR",
+            "gate": "long",
+            "score": -0.0008115902008461132,
+            "decision": "below threshold",
+            "gap_percent": 3.9319718002761794,
+            "sentiment_score": 0.33828320167958736
+        },
+        {
+            "ticker": "F",
+            "gate": "short",
+            "score": 0.00039162824392844676,
+            "decision": "below threshold",
+            "gap_percent": 1.7905102954342,
+            "sentiment_score": -0.8616632558405399
+        },
+        {
+            "ticker": "FTNT",
+            "gate": "long",
+            "score": -0.002566975438748496,
+            "decision": "below threshold",
+            "gap_percent": 4.064145793192031,
+            "sentiment_score": 0.28996188659220934
+        },
+        {
+            "ticker": "GM",
+            "gate": "long",
+            "score": -0.0009549184712557967,
+            "decision": "below threshold",
+            "gap_percent": 2.756955914115111,
+            "sentiment_score": 0.03335641138255596
+        },
+        {
+            "ticker": "HD",
+            "gate": "short",
+            "score": 0.0006341923960906012,
+            "decision": "below threshold",
+            "gap_percent": 1.6340254837187151,
+            "sentiment_score": -0.7106939926743507
+        },
+        {
+            "ticker": "PODD",
+            "gate": "short",
+            "score": 0.002733215964492488,
+            "decision": "below threshold",
+            "gap_percent": -0.5706991064053368,
+            "sentiment_score": -0.41532161086797714
+        },
+        {
+            "ticker": "IQV",
+            "gate": "long",
+            "score": -0.0018350292786943373,
+            "decision": "below threshold",
+            "gap_percent": 1.2976975022374049,
+            "sentiment_score": 0.34052466228604317
+        },
+        {
+            "ticker": "JNJ",
+            "gate": "long",
+            "score": -0.0023856444658786344,
+            "decision": "below threshold",
+            "gap_percent": 0.9132251266314118,
+            "sentiment_score": 0.39966409746557474
+        },
+        {
+            "ticker": "KDP",
+            "gate": "long",
+            "score": -0.0032745997735100616,
+            "decision": "below threshold",
+            "gap_percent": 1.004592422502859,
+            "sentiment_score": 0.2812617477029562
+        },
+        {
+            "ticker": "KMB",
+            "gate": "long",
+            "score": -0.0019057117832354136,
+            "decision": "below threshold",
+            "gap_percent": 1.1607445008460227,
+            "sentiment_score": 0.751471033319831
+        },
+        {
+            "ticker": "KKR",
+            "gate": "long",
+            "score": 0.0003894982004895971,
+            "decision": "below threshold",
+            "gap_percent": 2.778405240569226,
+            "sentiment_score": 0.18974164128303528
+        },
+        {
+            "ticker": "LLY",
+            "gate": "long",
+            "score": -0.001142947764891267,
+            "decision": "below threshold",
+            "gap_percent": 0.6186057560258584,
+            "sentiment_score": 0.4744660223209534
+        },
+        {
+            "ticker": "LITE",
+            "gate": "short",
+            "score": -0.002159164370940719,
+            "decision": "below threshold",
+            "gap_percent": 5.992964780475085,
+            "sentiment_score": -0.9662970127537847
+        },
+        {
+            "ticker": "MDT",
+            "gate": "long",
+            "score": -0.0026628127697007455,
+            "decision": "below threshold",
+            "gap_percent": 1.4608765259155554,
+            "sentiment_score": 0.8993577361106873
+        },
+        {
+            "ticker": "MRK",
+            "gate": "long",
+            "score": -0.0017938442732097484,
+            "decision": "below threshold",
+            "gap_percent": 1.046963804965606,
+            "sentiment_score": 0.6937784386985151
+        },
+        {
+            "ticker": "META",
+            "gate": "short",
+            "score": -0.0012312444479371978,
+            "decision": "below threshold",
+            "gap_percent": 3.535322016974529,
+            "sentiment_score": -0.1596772213507607
+        },
+        {
+            "ticker": "MSFT",
+            "gate": "long",
+            "score": -0.0036127651698611056,
+            "decision": "below threshold",
+            "gap_percent": 2.9059687938578493,
+            "sentiment_score": 0.08323412852905335
+        },
+        {
+            "ticker": "MRNA",
+            "gate": "long",
+            "score": -0.0018567092839713198,
+            "decision": "below threshold",
+            "gap_percent": 3.384615384615386,
+            "sentiment_score": 0.15727555792202363
+        },
+        {
+            "ticker": "MDLZ",
+            "gate": "short",
+            "score": -7.796508668871376e-05,
+            "decision": "below threshold",
+            "gap_percent": 0.3470126735063417,
+            "sentiment_score": -0.9308264637365937
+        },
+        {
+            "ticker": "MCO",
+            "gate": "long",
+            "score": 0.003195749249264172,
+            "decision": "selected",
+            "gap_percent": 1.7501017501017513,
+            "sentiment_score": 0.8971005716584965
+        },
+        {
+            "ticker": "MSCI",
+            "gate": "long",
+            "score": -0.0008228456341546078,
+            "decision": "below threshold",
+            "gap_percent": 1.7232341763858017,
+            "sentiment_score": 0.8926791865378618
+        },
+        {
+            "ticker": "NUE",
+            "gate": "long",
+            "score": -0.0020450058701417515,
+            "decision": "below threshold",
+            "gap_percent": 2.9338118687922465,
+            "sentiment_score": 0.059427318163216114
+        },
+        {
+            "ticker": "PEP",
+            "gate": "short",
+            "score": -0.0003856763042639061,
+            "decision": "below threshold",
+            "gap_percent": -0.05692329585882394,
+            "sentiment_score": -0.18644204664315958
+        },
+        {
+            "ticker": "PSX",
+            "gate": "long",
+            "score": -0.003554064537096739,
+            "decision": "below threshold",
+            "gap_percent": 1.8293569548322397,
+            "sentiment_score": 0.8937066458165647
+        },
+        {
+            "ticker": "Q",
+            "gate": "long",
+            "score": 0.0003935660683653956,
+            "decision": "below threshold",
+            "gap_percent": 5.70841789890788,
+            "sentiment_score": 0.7292057892377938
+        },
+        {
+            "ticker": "SPGI",
+            "gate": "long",
+            "score": 0.0019695236969149814,
+            "decision": "below threshold",
+            "gap_percent": 1.9041335850945362,
+            "sentiment_score": 0.7319422547182082
+        },
+        {
+            "ticker": "CRM",
+            "gate": "long",
+            "score": -0.0032220862457430373,
+            "decision": "below threshold",
+            "gap_percent": 2.0208171852508006,
+            "sentiment_score": 0.17133391381361682
+        },
+        {
+            "ticker": "SNDK",
+            "gate": "short",
+            "score": -0.002887014784492237,
+            "decision": "below threshold",
+            "gap_percent": 5.726653205451804,
+            "sentiment_score": -0.5546747677407637
+        },
+        {
+            "ticker": "SO",
+            "gate": "short",
+            "score": -0.002242970704393659,
+            "decision": "below threshold",
+            "gap_percent": 0.23622892730592593,
+            "sentiment_score": -0.6505490716713159
+        },
+        {
+            "ticker": "LUV",
+            "gate": "short",
+            "score": 0.0013608940860333728,
+            "decision": "below threshold",
+            "gap_percent": 2.132486388384769,
+            "sentiment_score": -0.07137957215309143
+        },
+        {
+            "ticker": "TTWO",
+            "gate": "long",
+            "score": -0.0012374493209838854,
+            "decision": "below threshold",
+            "gap_percent": 3.809523809523818,
+            "sentiment_score": 0.08052683994174004
+        },
+        {
+            "ticker": "TSLA",
+            "gate": "long",
+            "score": 8.212288921570553e-05,
+            "decision": "below threshold",
+            "gap_percent": 4.901393788676178,
+            "sentiment_score": 0.745482431542062
+        },
+        {
+            "ticker": "TXN",
+            "gate": "long",
+            "score": -0.0007651625129291319,
+            "decision": "below threshold",
+            "gap_percent": 4.379146919431287,
+            "sentiment_score": 0.866813432636285
+        },
+        {
+            "ticker": "TPL",
+            "gate": "long",
+            "score": -0.0014599111278643451,
+            "decision": "below threshold",
+            "gap_percent": 2.4940173496859064,
+            "sentiment_score": 0.8991844840347767
+        },
+        {
+            "ticker": "TFC",
+            "gate": "long",
+            "score": -0.0019971403477989868,
+            "decision": "below threshold",
+            "gap_percent": 3.0124426981008368,
+            "sentiment_score": 0.9215163001790643
+        },
+        {
+            "ticker": "UBER",
+            "gate": "long",
+            "score": -0.0007766302885194366,
+            "decision": "below threshold",
+            "gap_percent": 2.4105876792185343,
+            "sentiment_score": 0.7815893430050711
+        },
+        {
+            "ticker": "VZ",
+            "gate": "short",
+            "score": 0.0009431559099967751,
+            "decision": "below threshold",
+            "gap_percent": -0.021514629948360398,
+            "sentiment_score": -0.8137254379689695
+        },
+        {
+            "ticker": "VRTX",
+            "gate": "long",
+            "score": -0.001530274645159644,
+            "decision": "below threshold",
+            "gap_percent": 0.9669527396994226,
+            "sentiment_score": 0.31977846287190914
+        },
+        {
+            "ticker": "VST",
+            "gate": "long",
+            "score": -0.002302355576961522,
+            "decision": "below threshold",
+            "gap_percent": 3.6876355748373113,
+            "sentiment_score": 0.24355460330843925
+        },
+        {
+            "ticker": "WMT",
+            "gate": "long",
+            "score": -0.0006814585351489366,
+            "decision": "below threshold",
+            "gap_percent": 0.4376709652207822,
+            "sentiment_score": 0.030030369758605957
+        },
+        {
+            "ticker": "DIS",
+            "gate": "short",
+            "score": -0.003112455626888124,
+            "decision": "selected",
+            "gap_percent": 0.8645533141210304,
+            "sentiment_score": -0.7027437522121535
+        },
+        {
+            "ticker": "WY",
+            "gate": "long",
+            "score": 5.189501385350964e-05,
+            "decision": "below threshold",
+            "gap_percent": 1.3093415007656928,
+            "sentiment_score": 0.9322038730606437
+        },
+        {
+            "ticker": "ZBH",
+            "gate": "long",
+            "score": -0.0013521104200498466,
+            "decision": "below threshold",
+            "gap_percent": 1.7705242334322469,
+            "sentiment_score": 0.772428716532886
+        }
+    ],
+    "targets": [
+        {
+            "ticker": "MCO",
+            "side": "long",
+            "sector": "Financials",
+            "score": 0.003195749249264172,
+            "threshold": 0.0030626992545541637,
+            "ref_price": 475.0,
+            "prev_close": 466.83,
+            "atr_pct": 2.8019800350883326,
+            "qty": 4,
+            "stop_price": 465.02,
+            "features": {
+                "gap_pct": 1.7501017501017513,
+                "excess_gap_pct": 0.04241993731829252,
+                "gap_atr": 0.015139271796044481,
+                "rvol": 19.744,
+                "trend": -0.0077694783207029605,
+                "dist_52w_high": -0.1314365125804564,
+                "news_today": 0.8971005716584965,
+                "baseline": 0.15289934030324878,
+                "surprise": 0.4961341542368318,
+                "news_volume": 0.5798184952529422,
+                "n_fresh": 4.0
+            },
+            "headlines": [
+                {
+                    "headline": "Moody's Improves Outlook for Hungary",
+                    "url": "https://www.milanofinanza.it/mfnewswires/ungheria-moody-s-migliora-outlook-grazie-a-progressi-in-rapporti-con-ue-202611231052029236",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-23T06:31:44-05:00",
+                    "score": 0.9377,
+                    "price_move": false
+                },
+                {
+                    "headline": "Moody's Upgrades Portugal's Credit Rating to A2",
+                    "url": "https://www.finanznachrichten.de/nachrichten-2026-11/70200664-moody-s-hebt-portugals-rating-auf-a2-an-015.htm",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-23T06:31:44-05:00",
+                    "score": 0.9341,
+                    "price_move": false
+                },
+                {
+                    "headline": "Moody's Ratings Assigns Aa2 Rating to New York State Housing Finance Agency Bonds",
+                    "url": "https://ratings.moodys.com/ratings-news",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-21T21:02:06-05:00",
+                    "score": 0.0985,
+                    "price_move": false
+                },
+                {
+                    "headline": "Moody's Ratings Reaffirms AFFIN Group's A3 Long-Term Credit Rating",
+                    "url": "https://www.sarawaktribune.com/sarawaks-backing-helps-affin-retain-a3-rating/",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-21T09:01:42-05:00",
+                    "score": 0.9231,
+                    "price_move": false
+                }
+            ],
+            "order_id": "1e1d8f45-2bb3-4240-aaaf-e533ef27d168",
+            "stop_order_id": "503d4a2e-807e-44c8-8afb-bb0983030743"
+        },
+        {
+            "ticker": "DIS",
+            "side": "short",
+            "sector": "Communication Services",
+            "score": -0.003112455626888124,
+            "threshold": 0.0030626992545541637,
+            "ref_price": 119.0,
+            "prev_close": 117.98,
+            "atr_pct": 2.5401097827349632,
+            "qty": 19,
+            "stop_price": 121.27,
+            "features": {
+                "gap_pct": 0.8645533141210304,
+                "excess_gap_pct": -1.3092194612764616,
+                "gap_atr": -0.515418455601872,
+                "rvol": 0.5104948250601327,
+                "trend": 0.07607974203022794,
+                "dist_52w_high": -0.03542190159682257,
+                "news_today": -0.7027437522121535,
+                "baseline": 0.47847504548253994,
+                "surprise": -0.708731278616816,
+                "news_volume": 0.1923718926474561,
+                "n_fresh": 3.0
+            },
+            "headlines": [
+                {
+                    "headline": "Phillip Securities Downgrades Walt Disney to Accumulate",
+                    "url": "https://www.marketscreener.com/news/phillip-securities-downgrades-walt-disney-to-accumulate-price-target-is-130-ce7851dad88af524",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-23T06:32:39-05:00",
+                    "score": -0.3236,
+                    "price_move": false
+                },
+                {
+                    "headline": "Distil plc Places Main Operating Subsidiary into Administration and CEO Resigns",
+                    "url": "https://www.investewire.com/news/distil-plc-places-main-operating-subsidiary-into-administration-and-ceo-resigns-after-strategic-investment-talks-collapse-pgawooe9",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-21T04:02:01-05:00",
+                    "score": -0.9278,
+                    "price_move": false
+                },
+                {
+                    "headline": "Walt Disney Company Insider Executes Significant Stock Sale",
+                    "url": "https://www.marketscreener.com/news/walt-disney-insider-sold-shares-worth-39-510-457-according-to-a-recent-sec-filing-ce785ed3dc8ff223",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-20T19:02:13-05:00",
+                    "score": 0.0398,
+                    "price_move": false
+                }
+            ],
+            "order_id": "cfe9b3f7-13c4-49aa-bb0e-a4234d8ce796",
+            "stop_order_id": "45452dde-fa12-4d04-baad-1dec91a77050"
+        }
+    ]
+}
