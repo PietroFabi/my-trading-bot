@@ -1,0 +1,431 @@
+{
+    "session_date": "2026-11-24",
+    "market_open": "2026-11-24T09:30:00-05:00",
+    "market_close": "2026-11-24T16:00:00-05:00",
+    "planned_at": "2026-11-24T08:55:54.114231-05:00",
+    "scan_as_of": "2026-11-24T08:55:00-05:00",
+    "strategy": "v2",
+    "strategy_name": "A",
+    "model_sha256": "da5aaaabc664b635f69bb805ab8e44d435f07e0a40982b9c153f6f9340e64744",
+    "entry": "open",
+    "stop_k": 0.75,
+    "score_threshold": 0.0030626992545541637,
+    "dry_run": false,
+    "equity": 99018.57,
+    "coverage": {
+        "daily": 1.0,
+        "premarket": 0.714,
+        "news": 0.249,
+        "members": 503
+    },
+    "scanned": 503,
+    "candidates": [
+        {
+            "ticker": "ABBV",
+            "gate": "long",
+            "score": -0.002743650612375968,
+            "decision": "below threshold",
+            "gap_percent": 1.212965851967418,
+            "sentiment_score": 0.7590630566701293
+        },
+        {
+            "ticker": "A",
+            "gate": "long",
+            "score": -0.007300140167967847,
+            "decision": "below threshold",
+            "gap_percent": 6.225857759600095,
+            "sentiment_score": 0.881530050188303
+        },
+        {
+            "ticker": "GOOG",
+            "gate": "short",
+            "score": -0.00044444578740484393,
+            "decision": "below threshold",
+            "gap_percent": -0.6296283046542395,
+            "sentiment_score": -0.9239683989435434
+        },
+        {
+            "ticker": "BAC",
+            "gate": "short",
+            "score": -0.0007853344501313899,
+            "decision": "below threshold",
+            "gap_percent": -0.6855006231823779,
+            "sentiment_score": -0.1464313566684723
+        },
+        {
+            "ticker": "BBY",
+            "gate": "long",
+            "score": -0.0012130771367708116,
+            "decision": "below threshold",
+            "gap_percent": 2.659793814432998,
+            "sentiment_score": 0.8096409137199738
+        },
+        {
+            "ticker": "BLK",
+            "gate": "long",
+            "score": -0.0005116958650492174,
+            "decision": "below threshold",
+            "gap_percent": -0.3442491175339901,
+            "sentiment_score": 0.7202230143026122
+        },
+        {
+            "ticker": "BE",
+            "gate": "short",
+            "score": -0.0009048818902655734,
+            "decision": "below threshold",
+            "gap_percent": -5.414808206958089,
+            "sentiment_score": -0.8794067464768887
+        },
+        {
+            "ticker": "BA",
+            "gate": "long",
+            "score": 0.0010806078176823423,
+            "decision": "below threshold",
+            "gap_percent": -0.5480633043906558,
+            "sentiment_score": 0.7676243756614108
+        },
+        {
+            "ticker": "BMY",
+            "gate": "short",
+            "score": 0.0010329060390273943,
+            "decision": "below threshold",
+            "gap_percent": -0.6016042780748743,
+            "sentiment_score": -0.04188966006040573
+        },
+        {
+            "ticker": "CI",
+            "gate": "long",
+            "score": -0.0031309392631009613,
+            "decision": "below threshold",
+            "gap_percent": 0.7838497374842879,
+            "sentiment_score": 0.03974039462087026
+        },
+        {
+            "ticker": "C",
+            "gate": "short",
+            "score": -0.0015252767952527399,
+            "decision": "below threshold",
+            "gap_percent": -1.1980760822037473,
+            "sentiment_score": -0.9403035845607519
+        },
+        {
+            "ticker": "KO",
+            "gate": "long",
+            "score": -0.0014149015307894286,
+            "decision": "below threshold",
+            "gap_percent": 0.7613683771380941,
+            "sentiment_score": 0.08379098397608827
+        },
+        {
+            "ticker": "COIN",
+            "gate": "short",
+            "score": -0.0023821570059392844,
+            "decision": "below threshold",
+            "gap_percent": -2.739474168045597,
+            "sentiment_score": -0.5513497047090289
+        },
+        {
+            "ticker": "CRWD",
+            "gate": "long",
+            "score": -0.0022055714946482012,
+            "decision": "below threshold",
+            "gap_percent": -1.531320285208393,
+            "sentiment_score": 0.7715637944638729
+        },
+        {
+            "ticker": "DG",
+            "gate": "long",
+            "score": -0.0018211091536684187,
+            "decision": "below threshold",
+            "gap_percent": 3.3686093307497167,
+            "sentiment_score": 0.008798668161034584
+        },
+        {
+            "ticker": "DLTR",
+            "gate": "long",
+            "score": -0.0025203951703112065,
+            "decision": "below threshold",
+            "gap_percent": 6.089144500359445,
+            "sentiment_score": 0.8171666488051414
+        },
+        {
+            "ticker": "DPZ",
+            "gate": "long",
+            "score": 0.0004885828645261103,
+            "decision": "below threshold",
+            "gap_percent": 0.8585503166784081,
+            "sentiment_score": 0.6491435125771464
+        },
+        {
+            "ticker": "FDS",
+            "gate": "long",
+            "score": -0.0015026441795500233,
+            "decision": "below threshold",
+            "gap_percent": 0.4864155652980928,
+            "sentiment_score": 0.725180035457015
+        },
+        {
+            "ticker": "FSLR",
+            "gate": "long",
+            "score": -0.0006691301938221975,
+            "decision": "below threshold",
+            "gap_percent": -1.248891012079445,
+            "sentiment_score": 0.8726362101733683
+        },
+        {
+            "ticker": "IT",
+            "gate": "long",
+            "score": -0.000660114179971003,
+            "decision": "below threshold",
+            "gap_percent": 0.19907855070815383,
+            "sentiment_score": 0.9195739310234785
+        },
+        {
+            "ticker": "GEV",
+            "gate": "short",
+            "score": -0.0008555428650333613,
+            "decision": "below threshold",
+            "gap_percent": -3.0487240818807826,
+            "sentiment_score": -0.3434022516012192
+        },
+        {
+            "ticker": "GM",
+            "gate": "long",
+            "score": -0.0024046906312653583,
+            "decision": "below threshold",
+            "gap_percent": 0.8206761391474693,
+            "sentiment_score": 0.8065829593688251
+        },
+        {
+            "ticker": "GS",
+            "gate": "short",
+            "score": -0.0035678063118997705,
+            "decision": "selected",
+            "gap_percent": -1.5322600228260597,
+            "sentiment_score": -0.5984862799048708
+        },
+        {
+            "ticker": "HUM",
+            "gate": "long",
+            "score": -0.0026274366296399035,
+            "decision": "below threshold",
+            "gap_percent": 1.6472060050041648,
+            "sentiment_score": 0.6446609478443861
+        },
+        {
+            "ticker": "INTU",
+            "gate": "short",
+            "score": 0.0010214523527945743,
+            "decision": "below threshold",
+            "gap_percent": -0.3485079503376065,
+            "sentiment_score": -0.5292174220085144
+        },
+        {
+            "ticker": "JBL",
+            "gate": "long",
+            "score": 0.00022885269404833853,
+            "decision": "below threshold",
+            "gap_percent": -2.9887714663143994,
+            "sentiment_score": 0.17339473962783813
+        },
+        {
+            "ticker": "JPM",
+            "gate": "long",
+            "score": -0.0010335880006828537,
+            "decision": "below threshold",
+            "gap_percent": -0.08210699172616076,
+            "sentiment_score": 0.5499426634936905
+        },
+        {
+            "ticker": "LMT",
+            "gate": "long",
+            "score": -0.0019997489285526076,
+            "decision": "below threshold",
+            "gap_percent": 0.5825038921055903,
+            "sentiment_score": 0.7137433020398022
+        },
+        {
+            "ticker": "MRVL",
+            "gate": "long",
+            "score": -0.0028858540554845087,
+            "decision": "below threshold",
+            "gap_percent": -5.347519690479485,
+            "sentiment_score": 0.8526021763682365
+        },
+        {
+            "ticker": "MDT",
+            "gate": "short",
+            "score": 0.008371540289359361,
+            "decision": "below threshold",
+            "gap_percent": -4.433081810961081,
+            "sentiment_score": -0.6765096411108971
+        },
+        {
+            "ticker": "MRK",
+            "gate": "long",
+            "score": -0.001411037924022049,
+            "decision": "below threshold",
+            "gap_percent": 0.9596220565438962,
+            "sentiment_score": 0.2961990647017956
+        },
+        {
+            "ticker": "META",
+            "gate": "short",
+            "score": -0.0005416351919142727,
+            "decision": "below threshold",
+            "gap_percent": -1.7235609103079086,
+            "sentiment_score": -0.15652463640748931
+        },
+        {
+            "ticker": "MSFT",
+            "gate": "long",
+            "score": -0.002524723984139455,
+            "decision": "below threshold",
+            "gap_percent": -0.7106598984771617,
+            "sentiment_score": 0.763181122019887
+        },
+        {
+            "ticker": "NKE",
+            "gate": "long",
+            "score": 0.0005355961068572245,
+            "decision": "below threshold",
+            "gap_percent": 0.4146919431279539,
+            "sentiment_score": 0.8701606458052993
+        },
+        {
+            "ticker": "PLTR",
+            "gate": "long",
+            "score": -0.0018631990118309345,
+            "decision": "below threshold",
+            "gap_percent": -2.7359437751004134,
+            "sentiment_score": 0.13416574895381927
+        },
+        {
+            "ticker": "HOOD",
+            "gate": "short",
+            "score": -0.0014498793958705402,
+            "decision": "below threshold",
+            "gap_percent": -2.8350898025827687,
+            "sentiment_score": -0.43020260093434176
+        },
+        {
+            "ticker": "RTX",
+            "gate": "long",
+            "score": -0.0020886018975130615,
+            "decision": "below threshold",
+            "gap_percent": 0.1180880012322083,
+            "sentiment_score": 0.8955643475055695
+        },
+        {
+            "ticker": "TPR",
+            "gate": "long",
+            "score": 0.0011027925179596023,
+            "decision": "below threshold",
+            "gap_percent": 0.015794045644801358,
+            "sentiment_score": 0.09959675744175911
+        },
+        {
+            "ticker": "TSLA",
+            "gate": "long",
+            "score": 0.0003968755813169709,
+            "decision": "below threshold",
+            "gap_percent": -1.190785036060804,
+            "sentiment_score": 0.7502676323056221
+        },
+        {
+            "ticker": "UNH",
+            "gate": "short",
+            "score": -0.0016448649627606175,
+            "decision": "below threshold",
+            "gap_percent": 0.24491192573197207,
+            "sentiment_score": -0.8825321830809116
+        },
+        {
+            "ticker": "V",
+            "gate": "long",
+            "score": -0.002759874687722172,
+            "decision": "below threshold",
+            "gap_percent": 0.21983390327309227,
+            "sentiment_score": 0.1737147286990629
+        },
+        {
+            "ticker": "WFC",
+            "gate": "long",
+            "score": -0.0007394955506868433,
+            "decision": "below threshold",
+            "gap_percent": -0.35000000000000586,
+            "sentiment_score": 0.008882129564881325
+        },
+        {
+            "ticker": "WDC",
+            "gate": "long",
+            "score": -0.000470035556776793,
+            "decision": "below threshold",
+            "gap_percent": -5.100084104289326,
+            "sentiment_score": 0.42881009448319674
+        }
+    ],
+    "targets": [
+        {
+            "ticker": "GS",
+            "side": "short",
+            "sector": "Financials",
+            "score": -0.0035678063118997705,
+            "threshold": 0.0030626992545541637,
+            "ref_price": 811.0,
+            "prev_close": 823.62,
+            "atr_pct": 3.826063963314768,
+            "qty": 1,
+            "stop_price": 834.27,
+            "features": {
+                "gap_pct": -1.5322600228260597,
+                "excess_gap_pct": -1.121416398740597,
+                "gap_atr": -0.2930992292583214,
+                "rvol": 0.3798774588842309,
+                "trend": -0.1000272544150822,
+                "dist_52w_high": -0.2972209464553419,
+                "news_today": -0.5984862799048708,
+                "baseline": 0.22009720367227184,
+                "surprise": -0.5457223223847617,
+                "news_volume": -0.30748469974796055,
+                "n_fresh": 4.0
+            },
+            "headlines": [
+                {
+                    "headline": "Goldman Sachs Acts as Financial Advisor to Insmed in Sanofi Acquisition",
+                    "url": "https://investingnews.com/sanofi-to-acquire-insmed-in-strategic-step-that-strengthens-long-term-future/",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-24T06:31:57-05:00",
+                    "score": 0.0661,
+                    "price_move": false
+                },
+                {
+                    "headline": "Goldman Sachs Adjusts Price Target on Coinbase Global",
+                    "url": "https://www.marketscreener.com/news/goldman-sachs-adjusts-price-target-on-coinbase-global-to-181-from-210-ce7851dbd98cf220",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-24T06:31:57-05:00",
+                    "score": -0.9017,
+                    "price_move": false
+                },
+                {
+                    "headline": "Goldman Sachs to Host Industrials and Materials Conference",
+                    "url": "https://www.prnewswire.com/news-releases/stanley-black--decker-to-present-at-the-goldman-sachs-industrials-and-materials-conference-302948377.html",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-23T17:32:18-05:00",
+                    "score": 0.0244,
+                    "price_move": false
+                },
+                {
+                    "headline": "Goldman Sachs Updates Price Target for Dubai Electricity and Water Authority",
+                    "url": "https://www.marketscreener.com/news/goldman-sachs-lifts-dewa-pt-maintains-neutral-rating-ce7851dada8bf625",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-23T17:32:18-05:00",
+                    "score": 0.135,
+                    "price_move": false
+                }
+            ],
+            "order_id": "412d5282-706c-4c81-b081-cf331ae39660",
+            "stop_order_id": "311c8cc2-4c29-4ee4-9665-77de95e6072e"
+        }
+    ]
+}
