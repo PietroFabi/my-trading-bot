@@ -1,0 +1,46 @@
+session_date,symbol,gate,sector,sector_etf,beta,score,decision,gap_atr,news_today,surprise,target,traded
+2026-11-25,GOOG,short,Communication Services,XLC,1.24067,-0.000590906,below threshold,-0.458022,-0.203212,-0.167299,-0.0054698,False
+2026-11-25,AMGN,long,Health Care,XLV,1.2732,-0.00178778,below threshold,0.255875,0.784305,0.0910202,-0.00445951,False
+2026-11-25,ADI,long,Information Technology,XLK,0.993531,-0.00365351,below threshold,0.107535,0.130036,-0.123853,0.0683625,False
+2026-11-25,APP,long,Communication Services,XLC,1.74696,0.00392412,selected,0.0285671,0.894954,0.091758,-0.0236282,True
+2026-11-25,T,long,Communication Services,XLC,0.354933,-0.00220587,below threshold,0.466338,0.876326,0.211219,-0.0132137,False
+2026-11-25,BBY,long,Consumer Discretionary,XLY,0.608849,-0.00327747,below threshold,0.351401,0.600041,-0.0327013,0.0212882,False
+2026-11-25,BLK,short,Financials,XLF,1.2811,-0.00262916,below threshold,-0.147802,-0.766568,-0.577119,-0.00431454,False
+2026-11-25,BA,long,Industrials,XLI,0.907396,0.00100369,below threshold,0.0902628,0.724873,0.384785,-0.00594075,False
+2026-11-25,BKNG,long,Consumer Discretionary,XLY,0.987289,-0.000648454,below threshold,0.136776,0.337712,0.0428453,0.00763109,False
+2026-11-25,BMY,long,Health Care,XLV,1.0442,-0.00111911,below threshold,0.417907,0.668581,0.251302,-0.00830555,False
+2026-11-25,C,short,Financials,XLF,1.35684,-0.00188927,below threshold,-0.263633,-0.290736,-0.209234,-0.00294183,False
+2026-11-25,KO,long,Consumer Staples,XLP,0.884905,-0.00107566,below threshold,0.0482495,0.906543,0.287865,-0.00564266,False
+2026-11-25,CL,long,Consumer Staples,XLP,1.15627,-0.00065385,below threshold,0.0491842,0.737912,0.153459,-0.00388205,False
+2026-11-25,CMCSA,long,Communication Services,XLC,0.681827,-0.00102616,below threshold,0.600565,0.785396,0.0524427,-0.00832057,False
+2026-11-25,GLW,long,Information Technology,XLK,1.76742,-0.00161787,below threshold,0.125788,0.314372,0.0191975,-0.00746998,False
+2026-11-25,CRWD,short,Information Technology,XLK,0.74898,-0.001426,below threshold,-0.173875,-0.584948,-0.363386,0.0118033,False
+2026-11-25,DDOG,short,Information Technology,XLK,0.899504,-0.00218991,below threshold,-0.115303,-0.053126,-0.186709,-0.0299848,False
+2026-11-25,DE,short,Industrials,XLI,0.866733,0.00277888,below threshold,-0.589383,-0.60967,-0.285443,0.0668967,False
+2026-11-25,DELL,long,Information Technology,XLK,1.6816,-0.000238581,below threshold,0.0591763,0.93581,0.453848,0.0552252,False
+2026-11-25,GE,long,Industrials,XLI,1.30984,-3.0862e-05,below threshold,0.0352099,0.701711,0.24555,-0.0162724,False
+2026-11-25,GM,long,Consumer Discretionary,XLY,0.926297,-0.000604801,below threshold,0.0971614,0.737823,0.299528,0.0133418,False
+2026-11-25,GS,short,Financials,XLF,1.32563,0.000211264,below threshold,-0.193925,-0.271543,-0.124587,0.00412071,False
+2026-11-25,HPQ,long,Information Technology,XLK,0.239903,-0.00193228,below threshold,0.706648,0.922721,0.13737,0.0311775,False
+2026-11-25,INTU,short,Information Technology,XLK,0,0.00324404,below threshold,-0.308045,-0.00778216,-0.0163301,-0.010989,False
+2026-11-25,JPM,short,Financials,XLF,1.20667,0.000223176,below threshold,-0.161764,-0.482793,-0.232146,-0.00101305,False
+2026-11-25,KEYS,long,Information Technology,XLK,1.11545,-0.000972416,below threshold,0.0762387,0.695048,0.234607,-0.00308322,False
+2026-11-25,LLY,long,Health Care,XLV,1.56085,-0.000869527,below threshold,0.19146,0.501815,-0.00103987,-0.00438725,False
+2026-11-25,MAR,long,Consumer Discretionary,XLY,0.606019,-0.00152783,below threshold,0.136542,0.740637,0.0452368,-0.00281465,False
+2026-11-25,MA,long,Financials,XLF,1.01324,-0.00220002,below threshold,0.18946,0.831571,0.1316,0.00582308,False
+2026-11-25,MRK,long,Health Care,XLV,1.19293,-0.00362046,below threshold,0.183154,0.18987,-0.175317,-0.009343,False
+2026-11-25,META,long,Communication Services,XLC,1.66392,-0.00276782,below threshold,0.340186,0.828369,0.309556,0.0141484,False
+2026-11-25,MU,long,Information Technology,XLK,2.21273,-0.00265036,below threshold,0.135534,0.854294,0.316281,-0.0289766,False
+2026-11-25,MNST,short,Consumer Staples,XLP,0.750642,-0.000287164,below threshold,-0.186295,-0.00893053,0.0173624,0.00834595,False
+2026-11-25,NEM,short,Materials,XLB,1.64157,-0.00129232,below threshold,-0.263876,-0.006171,-0.0121456,0.00758114,False
+2026-11-25,NVDA,short,Information Technology,XLK,1.23666,-0.00189584,below threshold,-0.0950586,-0.801147,-0.250964,-0.00371467,False
+2026-11-25,PLTR,short,Information Technology,XLK,0.936105,-0.00104915,below threshold,-0.147341,-0.0477062,-0.131682,0.0302393,False
+2026-11-25,PEP,long,Consumer Staples,XLP,1.0445,-0.000231843,below threshold,0.0166256,0.899338,0.217408,-0.00273797,False
+2026-11-25,PG,long,Consumer Staples,XLP,0.988956,-0.000574241,below threshold,0.0352838,0.678937,0.0980532,-0.00129557,False
+2026-11-25,QCOM,long,Information Technology,XLK,1.06342,0.0011839,below threshold,0.14947,0.576797,0.282597,0.0233915,False
+2026-11-25,SBUX,long,Consumer Discretionary,XLY,0.573645,-0.00120246,below threshold,0.188859,0.039565,0.0700441,0.0151486,False
+2026-11-25,TTWO,long,Communication Services,XLC,0.754803,-0.00125672,below threshold,0.0819496,0.146858,-0.0159292,0.0170605,False
+2026-11-25,TSLA,short,Consumer Discretionary,XLY,1.54249,-0.000780831,below threshold,-0.0604809,-0.103843,-0.251244,0.00439243,False
+2026-11-25,TYL,short,Information Technology,XLK,0,0.000883476,below threshold,-0.0360321,-0.890763,-0.507604,0.0146565,False
+2026-11-25,UBER,short,Industrials,XLI,0.394739,0.000558607,below threshold,-0.222089,-0.926914,-0.455169,0.0267983,False
+2026-11-25,V,long,Financials,XLF,0.969642,-0.00114225,below threshold,0.136757,0.788171,0.0803569,0.0046333,False
