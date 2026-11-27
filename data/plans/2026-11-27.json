@@ -1,0 +1,561 @@
+{
+    "session_date": "2026-11-27",
+    "market_open": "2026-11-27T09:30:00-05:00",
+    "market_close": "2026-11-27T13:00:00-05:00",
+    "planned_at": "2026-11-27T08:55:50.426624-05:00",
+    "scan_as_of": "2026-11-27T08:55:00-05:00",
+    "strategy": "v2",
+    "strategy_name": "A",
+    "model_sha256": "da5aaaabc664b635f69bb805ab8e44d435f07e0a40982b9c153f6f9340e64744",
+    "entry": "open",
+    "stop_k": 0.75,
+    "score_threshold": 0.0030626992545541637,
+    "dry_run": false,
+    "equity": 99100.94,
+    "coverage": {
+        "daily": 1.0,
+        "premarket": 0.775,
+        "news": 0.3,
+        "members": 503
+    },
+    "scanned": 503,
+    "candidates": [
+        {
+            "ticker": "ADBE",
+            "gate": "long",
+            "score": -0.001085004886540225,
+            "decision": "below threshold",
+            "gap_percent": 0.9577803547652808,
+            "sentiment_score": 0.9057421553879977
+        },
+        {
+            "ticker": "AMZN",
+            "gate": "long",
+            "score": -0.003078703881778898,
+            "decision": "below threshold",
+            "gap_percent": 2.5242400687313316,
+            "sentiment_score": 0.18196260672794193
+        },
+        {
+            "ticker": "AXP",
+            "gate": "short",
+            "score": -0.00019489980725603633,
+            "decision": "below threshold",
+            "gap_percent": 1.3156631134159325,
+            "sentiment_score": -0.6409014835953712
+        },
+        {
+            "ticker": "AMGN",
+            "gate": "long",
+            "score": -0.0010687953948921706,
+            "decision": "below threshold",
+            "gap_percent": 0.22589719546499687,
+            "sentiment_score": 0.7414128789678216
+        },
+        {
+            "ticker": "BLK",
+            "gate": "long",
+            "score": -0.0014168459215690371,
+            "decision": "below threshold",
+            "gap_percent": 1.8121485996532183,
+            "sentiment_score": 0.4047407678352131
+        },
+        {
+            "ticker": "BX",
+            "gate": "long",
+            "score": -0.00028806192846907164,
+            "decision": "below threshold",
+            "gap_percent": 2.1857923497267784,
+            "sentiment_score": 0.4597373232245445
+        },
+        {
+            "ticker": "BMY",
+            "gate": "long",
+            "score": -0.0017756395869699113,
+            "decision": "below threshold",
+            "gap_percent": 0.43859649122806044,
+            "sentiment_score": 0.8845461737364531
+        },
+        {
+            "ticker": "CAT",
+            "gate": "long",
+            "score": -0.0015002342530503374,
+            "decision": "below threshold",
+            "gap_percent": 3.08815685408963,
+            "sentiment_score": 0.8872366221621633
+        },
+        {
+            "ticker": "SCHW",
+            "gate": "long",
+            "score": -0.0012677958958651685,
+            "decision": "below threshold",
+            "gap_percent": 1.4446227929374,
+            "sentiment_score": 0.0771395368501544
+        },
+        {
+            "ticker": "CSCO",
+            "gate": "long",
+            "score": -0.0024343853301563518,
+            "decision": "below threshold",
+            "gap_percent": 2.7070063694267565,
+            "sentiment_score": 0.7828153986483812
+        },
+        {
+            "ticker": "C",
+            "gate": "long",
+            "score": -0.001540199407544649,
+            "decision": "below threshold",
+            "gap_percent": 2.3559516456366447,
+            "sentiment_score": 0.1744489684730302
+        },
+        {
+            "ticker": "COHR",
+            "gate": "long",
+            "score": -0.0007493960478064173,
+            "decision": "below threshold",
+            "gap_percent": 7.884346806667009,
+            "sentiment_score": 0.005011178553104401
+        },
+        {
+            "ticker": "COIN",
+            "gate": "long",
+            "score": -0.0024542042315810757,
+            "decision": "below threshold",
+            "gap_percent": 4.300038565368314,
+            "sentiment_score": 0.011177629232406616
+        },
+        {
+            "ticker": "CEG",
+            "gate": "long",
+            "score": -0.0015102464870599694,
+            "decision": "below threshold",
+            "gap_percent": 3.1111866712002723,
+            "sentiment_score": 0.06497460510581732
+        },
+        {
+            "ticker": "DELL",
+            "gate": "short",
+            "score": -0.004067710694656231,
+            "decision": "selected",
+            "gap_percent": 4.524338517471227,
+            "sentiment_score": -0.8326911007644773
+        },
+        {
+            "ticker": "ETN",
+            "gate": "long",
+            "score": -0.0021633693042467077,
+            "decision": "below threshold",
+            "gap_percent": 3.520971649727822,
+            "sentiment_score": 0.08142512291669846
+        },
+        {
+            "ticker": "XOM",
+            "gate": "short",
+            "score": -0.0037438104752021265,
+            "decision": "selected",
+            "gap_percent": 1.2778340080971562,
+            "sentiment_score": -0.625332883264132
+        },
+        {
+            "ticker": "GS",
+            "gate": "long",
+            "score": -0.00089593752030921,
+            "decision": "below threshold",
+            "gap_percent": 2.541727525810522,
+            "sentiment_score": 0.24581831811975963
+        },
+        {
+            "ticker": "HPE",
+            "gate": "short",
+            "score": -0.002949270513550267,
+            "decision": "below threshold",
+            "gap_percent": 3.650171484566389,
+            "sentiment_score": -0.2513888459278649
+        },
+        {
+            "ticker": "HD",
+            "gate": "short",
+            "score": 0.0004276992890638805,
+            "decision": "below threshold",
+            "gap_percent": 0.6200520400819309,
+            "sentiment_score": -0.026986275059483814
+        },
+        {
+            "ticker": "HON",
+            "gate": "long",
+            "score": 0.0014486708829933408,
+            "decision": "below threshold",
+            "gap_percent": 1.585961794757873,
+            "sentiment_score": 0.2677118042203488
+        },
+        {
+            "ticker": "HPQ",
+            "gate": "short",
+            "score": -0.0027389862441455507,
+            "decision": "below threshold",
+            "gap_percent": 0.2889245585874889,
+            "sentiment_score": -0.6479700988338665
+        },
+        {
+            "ticker": "IBM",
+            "gate": "long",
+            "score": 0.00014380491263944284,
+            "decision": "below threshold",
+            "gap_percent": 0.9980695773606607,
+            "sentiment_score": 0.8622186495922506
+        },
+        {
+            "ticker": "JNJ",
+            "gate": "short",
+            "score": -0.002688713146948256,
+            "decision": "below threshold",
+            "gap_percent": 0.05840695042711452,
+            "sentiment_score": -0.021606443156618346
+        },
+        {
+            "ticker": "MRVL",
+            "gate": "long",
+            "score": -0.002096912410682853,
+            "decision": "below threshold",
+            "gap_percent": 6.087222179790719,
+            "sentiment_score": 0.2768147438764572
+        },
+        {
+            "ticker": "MCD",
+            "gate": "short",
+            "score": -0.0007988552042195114,
+            "decision": "below threshold",
+            "gap_percent": 0.0,
+            "sentiment_score": -0.8735577074608418
+        },
+        {
+            "ticker": "META",
+            "gate": "long",
+            "score": -2.5642137802607524e-05,
+            "decision": "below threshold",
+            "gap_percent": 3.289117709750955,
+            "sentiment_score": 0.6237799111449883
+        },
+        {
+            "ticker": "MU",
+            "gate": "long",
+            "score": -0.001664297715578591,
+            "decision": "below threshold",
+            "gap_percent": 6.092124740124749,
+            "sentiment_score": 0.8278478290885687
+        },
+        {
+            "ticker": "MSFT",
+            "gate": "long",
+            "score": -0.0033835461049552045,
+            "decision": "below threshold",
+            "gap_percent": 1.9774457575572058,
+            "sentiment_score": 0.26785393550232145
+        },
+        {
+            "ticker": "MRNA",
+            "gate": "long",
+            "score": 9.05481952135494e-05,
+            "decision": "below threshold",
+            "gap_percent": 2.3365332367324854,
+            "sentiment_score": 0.8096435318848184
+        },
+        {
+            "ticker": "MDLZ",
+            "gate": "long",
+            "score": -0.0009900404053486997,
+            "decision": "below threshold",
+            "gap_percent": -0.19171213685296173,
+            "sentiment_score": 0.17742416076362133
+        },
+        {
+            "ticker": "MS",
+            "gate": "long",
+            "score": -0.0020732691065066013,
+            "decision": "below threshold",
+            "gap_percent": 2.9364368845120836,
+            "sentiment_score": 0.5895257768042885
+        },
+        {
+            "ticker": "NFLX",
+            "gate": "short",
+            "score": -0.0017651642918803472,
+            "decision": "below threshold",
+            "gap_percent": 1.3297424675980496,
+            "sentiment_score": -0.7098077492468777
+        },
+        {
+            "ticker": "NVDA",
+            "gate": "short",
+            "score": -0.00350635593197761,
+            "decision": "selected",
+            "gap_percent": 2.4581379772270484,
+            "sentiment_score": -0.5405696501607425
+        },
+        {
+            "ticker": "PLTR",
+            "gate": "long",
+            "score": -0.0019497173781733868,
+            "decision": "below threshold",
+            "gap_percent": 3.3070481080750724,
+            "sentiment_score": 0.8171965810470283
+        },
+        {
+            "ticker": "PANW",
+            "gate": "short",
+            "score": 0.0019023722762951862,
+            "decision": "below threshold",
+            "gap_percent": -2.454091087774468,
+            "sentiment_score": -0.18294058740139008
+        },
+        {
+            "ticker": "PYPL",
+            "gate": "long",
+            "score": -0.0013275139272688197,
+            "decision": "below threshold",
+            "gap_percent": 1.1070749005362313,
+            "sentiment_score": 0.09482933022081852
+        },
+        {
+            "ticker": "CRM",
+            "gate": "long",
+            "score": -0.003145500235622451,
+            "decision": "below threshold",
+            "gap_percent": 0.7961056741544459,
+            "sentiment_score": 0.046431124045048004
+        },
+        {
+            "ticker": "SNDK",
+            "gate": "long",
+            "score": -0.003234570393410473,
+            "decision": "below threshold",
+            "gap_percent": 10.70506724629805,
+            "sentiment_score": 0.11942288000136614
+        },
+        {
+            "ticker": "SBUX",
+            "gate": "short",
+            "score": 0.0001819839399155725,
+            "decision": "below threshold",
+            "gap_percent": 0.1577872656395085,
+            "sentiment_score": -0.9487410485744477
+        },
+        {
+            "ticker": "SMCI",
+            "gate": "short",
+            "score": -0.0012334906762868627,
+            "decision": "below threshold",
+            "gap_percent": 3.9703989703989695,
+            "sentiment_score": -0.9528139503672719
+        },
+        {
+            "ticker": "SNPS",
+            "gate": "long",
+            "score": -0.0017781584794271423,
+            "decision": "below threshold",
+            "gap_percent": 3.298032535979667,
+            "sentiment_score": 0.7655587741173804
+        },
+        {
+            "ticker": "TGT",
+            "gate": "long",
+            "score": -0.0034182253572831974,
+            "decision": "below threshold",
+            "gap_percent": 0.5225873882243715,
+            "sentiment_score": 0.4400320762231068
+        },
+        {
+            "ticker": "TJX",
+            "gate": "long",
+            "score": -0.002061905346735528,
+            "decision": "below threshold",
+            "gap_percent": 0.9651584639605693,
+            "sentiment_score": 0.10195653885602951
+        },
+        {
+            "ticker": "VLO",
+            "gate": "long",
+            "score": -0.0016199915181110336,
+            "decision": "below threshold",
+            "gap_percent": 1.8544891640866812,
+            "sentiment_score": 0.20195487700402737
+        },
+        {
+            "ticker": "WMT",
+            "gate": "long",
+            "score": -0.0012605007815293958,
+            "decision": "below threshold",
+            "gap_percent": 0.04547521600728466,
+            "sentiment_score": 0.8375247090089541
+        },
+        {
+            "ticker": "DIS",
+            "gate": "short",
+            "score": -0.001979433955128742,
+            "decision": "below threshold",
+            "gap_percent": 0.5493630573248476,
+            "sentiment_score": -0.20061567043026662
+        },
+        {
+            "ticker": "WFC",
+            "gate": "long",
+            "score": -0.0013304402560000883,
+            "decision": "below threshold",
+            "gap_percent": 1.6802569804793777,
+            "sentiment_score": 0.11988264953211407
+        }
+    ],
+    "targets": [
+        {
+            "ticker": "DELL",
+            "side": "short",
+            "sector": "Information Technology",
+            "score": -0.004067710694656231,
+            "threshold": 0.0030626992545541637,
+            "ref_price": 310.5,
+            "prev_close": 297.06,
+            "atr_pct": 12.808320293594496,
+            "qty": 1,
+            "stop_price": 340.33,
+            "features": {
+                "gap_pct": 4.524338517471227,
+                "excess_gap_pct": -0.06238228144962399,
+                "gap_atr": -0.00487044983414583,
+                "rvol": 1.4204858362619304,
+                "trend": -0.32030151030974563,
+                "dist_52w_high": -0.4785981763530419,
+                "news_today": -0.8326911007644773,
+                "baseline": 0.14600311743671032,
+                "surprise": -0.48934710910059387,
+                "news_volume": 0.12405264866997882,
+                "n_fresh": 2.0
+            },
+            "headlines": [
+                {
+                    "headline": "Wall Street Analysts Update Ratings and Price Targets for Dell Technologies",
+                    "url": "https://www.moomoo.com/news/post/1005908732/a-quick-look-at-today-s-ratings-for-dell-technologies",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-26T20:01:30-05:00",
+                    "score": 0.0482,
+                    "price_move": false
+                },
+                {
+                    "headline": "Dell Technologies Suspends Server Shipments to Select Southeast Asian Markets",
+                    "url": "https://www.thailand-business-news.com/trade/342449-nvidia-freezes-ai-server-deliveries-to-thailand-and-other-southeast-asian-countries",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-26T09:31:41-05:00",
+                    "score": -0.9382,
+                    "price_move": false
+                }
+            ],
+            "order_id": "c1021497-e5b7-43c4-b3db-d5f1c2762f78",
+            "stop_order_id": "a781fd2f-078d-4bd6-93f3-8af2228d9909"
+        },
+        {
+            "ticker": "XOM",
+            "side": "short",
+            "sector": "Energy",
+            "score": -0.0037438104752021265,
+            "threshold": 0.0030626992545541637,
+            "ref_price": 160.1,
+            "prev_close": 158.08,
+            "atr_pct": 2.502810914364154,
+            "qty": 14,
+            "stop_price": 163.11,
+            "features": {
+                "gap_pct": 1.2778340080971562,
+                "excess_gap_pct": -0.18978208771758043,
+                "gap_atr": -0.07582757715670067,
+                "rvol": 0.7101864994288813,
+                "trend": -0.05181215812527695,
+                "dist_52w_high": -0.15066312997347486,
+                "news_today": -0.625332883264132,
+                "baseline": 0.5259431345964329,
+                "surprise": -0.5756380089302824,
+                "news_volume": 0.10536051565782614,
+                "n_fresh": 2.0
+            },
+            "headlines": [
+                {
+                    "headline": "ExxonMobil Files Disclosure Regarding Threshold Crossing in Esso S.A.F.",
+                    "url": "https://www.globenewswire.com/news-release/2026/11/26/3411020/0/fr/communiqu%C3%A9-relatif-au-d%C3%A9p%C3%B4t-d-un-projet-d-offre-publique-d-achat-simplifi%C3%A9e.html",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-26T20:01:26-05:00",
+                    "score": -0.1024,
+                    "price_move": false
+                },
+                {
+                    "headline": "European Parliament Delays Methane Reporting Requirements for Fossil Fuel Importers",
+                    "url": "https://www.finanzen.at/nachrichten/aktien/eu-parlament-gibt-gruenes-licht-fuer-aufschub-von-klimaregeln-1036802896",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-26T14:01:25-05:00",
+                    "score": -0.7981,
+                    "price_move": false
+                }
+            ],
+            "order_id": "33e34dc9-a8c4-47f3-bff4-0b5dbe2e6ce8",
+            "stop_order_id": "3152646b-87e0-465a-9997-8249b454558e"
+        },
+        {
+            "ticker": "NVDA",
+            "side": "short",
+            "sector": "Information Technology",
+            "score": -0.00350635593197761,
+            "threshold": 0.0030626992545541637,
+            "ref_price": 152.97,
+            "prev_close": 149.3,
+            "atr_pct": 8.963644943164258,
+            "qty": 4,
+            "stop_price": 163.25,
+            "features": {
+                "gap_pct": 2.4581379772270484,
+                "excess_gap_pct": -0.9279087709671452,
+                "gap_atr": -0.10351913500040798,
+                "rvol": 0.695972915340396,
+                "trend": -0.24887456396719143,
+                "dist_52w_high": -0.37145087726506965,
+                "news_today": -0.5405696501607425,
+                "baseline": -0.1730529656099585,
+                "surprise": -0.245011123033856,
+                "news_volume": 0.0408219945202552,
+                "n_fresh": 4.0
+            },
+            "headlines": [
+                {
+                    "headline": "NVIDIA Faces New U.S. Export Controls and Regional Market Shifts",
+                    "url": "https://world.storm.mg/articles/1184970",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-27T08:01:27-05:00",
+                    "score": -0.842,
+                    "price_move": false
+                },
+                {
+                    "headline": "NVIDIA and Kioxia Announce Collaboration to Extend GPU Memory Capacity",
+                    "url": "https://natlawreview.com/press-releases/kioxia-and-nvidia-collaborate-expand-effective-high-bandwidth-memory",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-26T08:01:32-05:00",
+                    "score": 0.7852,
+                    "price_move": false
+                },
+                {
+                    "headline": "NVIDIA Orders Partners to Stop Server Shipments to ASEAN States",
+                    "url": "https://www.marketscreener.com/news/nvidia-orders-partners-to-stop-server-shipments-to-asean-states-ce7851d8de89f626",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-26T06:31:41-05:00",
+                    "score": -0.9415,
+                    "price_move": false
+                },
+                {
+                    "headline": "S&P Global Ratings Places NVIDIA on CreditWatch Negative",
+                    "url": "https://wjno.iheart.com/content/2026-11-26-sp-huang-drama-could-hurt-nvidias-credit-rating/",
+                    "source": "fiscal.ai",
+                    "created_at": "2026-11-26T06:31:41-05:00",
+                    "score": -0.9567,
+                    "price_move": false
+                }
+            ],
+            "order_id": "1eed301b-4c49-4459-8b44-c15b47a45e5d",
+            "stop_order_id": "482fd8ae-167d-4927-868f-20dfb2b115d6"
+        }
+    ]
+}
