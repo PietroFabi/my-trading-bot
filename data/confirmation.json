@@ -1,25 +1,25 @@
 {
-    "updated_after": "2026-11-25",
+    "updated_after": "2026-11-27",
     "first_session": "2026-11-23",
     "strategy_name": "A",
     "model_sha256": "da5aaaabc664b635f69bb805ab8e44d435f07e0a40982b9c153f6f9340e64744",
-    "sessions": 3,
-    "trades": 4,
+    "sessions": 4,
+    "trades": 7,
     "required": {
         "sessions": 60,
         "trades": 150,
         "ic_t": 2.0
     },
     "progress": {
-        "sessions": 0.05,
-        "trades": 0.027
+        "sessions": 0.067,
+        "trades": 0.047
     },
-    "ic": 0.0919,
-    "ic_t": 1.86,
-    "candidate_rows": 150,
-    "candidate_sessions": 3,
-    "mean_net_per_trade_pct": 0.7875,
-    "mean_net_t": 0.81,
+    "ic": 0.0859,
+    "ic_t": 2.43,
+    "candidate_rows": 198,
+    "candidate_sessions": 4,
+    "mean_net_per_trade_pct": -0.1114,
+    "mean_net_t": -0.15,
     "primary_passed": null,
     "secondary_passed": null,
     "status": "in progress"

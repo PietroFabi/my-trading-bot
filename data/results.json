@@ -2941,5 +2941,756 @@
                 }
             }
         }
+    },
+    {
+        "date": "2026-11-27",
+        "starting_balance": 99053.97,
+        "ending_balance": 99043.18,
+        "portfolio_curve": {
+            "Open": 99053.97,
+            "1_min": 99043.7,
+            "10_min": 99058.1,
+            "30_min": 99054.05,
+            "1_hour": 99040.56,
+            "5_hour": 99033.81,
+            "EOD": 99043.18
+        },
+        "invested_usd": 3143.32,
+        "sentiment_threshold": null,
+        "trades": [
+            {
+                "ticker": "DELL",
+                "sentiment_score": -0.8326911007644773,
+                "gap_percent": 4.524338517471227,
+                "headlines": [
+                    {
+                        "headline": "Wall Street Analysts Update Ratings and Price Targets for Dell Technologies",
+                        "url": "https://www.moomoo.com/news/post/1005908732/a-quick-look-at-today-s-ratings-for-dell-technologies",
+                        "source": "fiscal.ai",
+                        "created_at": "2026-11-26T20:01:30-05:00",
+                        "score": 0.0482,
+                        "price_move": false
+                    },
+                    {
+                        "headline": "Dell Technologies Suspends Server Shipments to Select Southeast Asian Markets",
+                        "url": "https://www.thailand-business-news.com/trade/342449-nvidia-freezes-ai-server-deliveries-to-thailand-and-other-southeast-asian-countries",
+                        "source": "fiscal.ai",
+                        "created_at": "2026-11-26T09:31:41-05:00",
+                        "score": -0.9382,
+                        "price_move": false
+                    }
+                ],
+                "qty": 1.0,
+                "allocation_usd": 305.05,
+                "open_price": 305.05,
+                "exit_price": 314.39,
+                "exit_status": "filled",
+                "performance_pct": {
+                    "1_min": -0.31,
+                    "10_min": 0.62,
+                    "30_min": -0.94,
+                    "1_hour": -2.34,
+                    "5_hour": -3.94,
+                    "EOD": -3.06
+                },
+                "pnl_usd": {
+                    "1_min": -0.95,
+                    "10_min": 1.9,
+                    "30_min": -2.86,
+                    "1_hour": -7.14,
+                    "5_hour": -12.02,
+                    "EOD": -9.34
+                },
+                "side": "short",
+                "score": -0.004067710694656231,
+                "features": {
+                    "gap_pct": 4.524338517471227,
+                    "excess_gap_pct": -0.06238228144962399,
+                    "gap_atr": -0.00487044983414583,
+                    "rvol": 1.4204858362619304,
+                    "trend": -0.32030151030974563,
+                    "dist_52w_high": -0.4785981763530419,
+                    "news_today": -0.8326911007644773,
+                    "baseline": 0.14600311743671032,
+                    "surprise": -0.48934710910059387,
+                    "news_volume": 0.12405264866997882,
+                    "n_fresh": 2.0
+                },
+                "stop_price": 340.33,
+                "exit_reason": "close",
+                "performance_pct_net": {
+                    "1_min": -0.41,
+                    "10_min": 0.52,
+                    "30_min": -1.04,
+                    "1_hour": -2.44,
+                    "5_hour": -4.04,
+                    "EOD": -3.16
+                },
+                "pnl_usd_net": {
+                    "1_min": -1.26,
+                    "10_min": 1.6,
+                    "30_min": -3.17,
+                    "1_hour": -7.45,
+                    "5_hour": -12.34,
+                    "EOD": -9.65
+                },
+                "bars_incomplete": false
+            },
+            {
+                "ticker": "XOM",
+                "sentiment_score": -0.625332883264132,
+                "gap_percent": 1.2778340080971562,
+                "headlines": [
+                    {
+                        "headline": "ExxonMobil Files Disclosure Regarding Threshold Crossing in Esso S.A.F.",
+                        "url": "https://www.globenewswire.com/news-release/2026/11/26/3411020/0/fr/communiqu%C3%A9-relatif-au-d%C3%A9p%C3%B4t-d-un-projet-d-offre-publique-d-achat-simplifi%C3%A9e.html",
+                        "source": "fiscal.ai",
+                        "created_at": "2026-11-26T20:01:26-05:00",
+                        "score": -0.1024,
+                        "price_move": false
+                    },
+                    {
+                        "headline": "European Parliament Delays Methane Reporting Requirements for Fossil Fuel Importers",
+                        "url": "https://www.finanzen.at/nachrichten/aktien/eu-parlament-gibt-gruenes-licht-fuer-aufschub-von-klimaregeln-1036802896",
+                        "source": "fiscal.ai",
+                        "created_at": "2026-11-26T14:01:25-05:00",
+                        "score": -0.7981,
+                        "price_move": false
+                    }
+                ],
+                "qty": 14.0,
+                "allocation_usd": 2244.62,
+                "open_price": 160.33,
+                "exit_price": 160.14,
+                "exit_status": "filled",
+                "performance_pct": {
+                    "1_min": -0.17,
+                    "10_min": -0.13,
+                    "30_min": -0.24,
+                    "1_hour": -0.54,
+                    "5_hour": 0.03,
+                    "EOD": 0.12
+                },
+                "pnl_usd": {
+                    "1_min": -3.85,
+                    "10_min": -2.94,
+                    "30_min": -5.39,
+                    "1_hour": -12.04,
+                    "5_hour": 0.69,
+                    "EOD": 2.66
+                },
+                "side": "short",
+                "score": -0.0037438104752021265,
+                "features": {
+                    "gap_pct": 1.2778340080971562,
+                    "excess_gap_pct": -0.18978208771758043,
+                    "gap_atr": -0.07582757715670067,
+                    "rvol": 0.7101864994288813,
+                    "trend": -0.05181215812527695,
+                    "dist_52w_high": -0.15066312997347486,
+                    "news_today": -0.625332883264132,
+                    "baseline": 0.5259431345964329,
+                    "surprise": -0.5756380089302824,
+                    "news_volume": 0.10536051565782614,
+                    "n_fresh": 2.0
+                },
+                "stop_price": 163.11,
+                "exit_reason": "close",
+                "performance_pct_net": {
+                    "1_min": -0.27,
+                    "10_min": -0.23,
+                    "30_min": -0.34,
+                    "1_hour": -0.64,
+                    "5_hour": -0.07,
+                    "EOD": 0.02
+                },
+                "pnl_usd_net": {
+                    "1_min": -6.1,
+                    "10_min": -5.19,
+                    "30_min": -7.64,
+                    "1_hour": -14.29,
+                    "5_hour": -1.55,
+                    "EOD": 0.42
+                },
+                "bars_incomplete": false
+            },
+            {
+                "ticker": "NVDA",
+                "sentiment_score": -0.5405696501607425,
+                "gap_percent": 2.4581379772270484,
+                "headlines": [
+                    {
+                        "headline": "NVIDIA Faces New U.S. Export Controls and Regional Market Shifts",
+                        "url": "https://world.storm.mg/articles/1184970",
+                        "source": "fiscal.ai",
+                        "created_at": "2026-11-27T08:01:27-05:00",
+                        "score": -0.842,
+                        "price_move": false
+                    },
+                    {
+                        "headline": "NVIDIA and Kioxia Announce Collaboration to Extend GPU Memory Capacity",
+                        "url": "https://natlawreview.com/press-releases/kioxia-and-nvidia-collaborate-expand-effective-high-bandwidth-memory",
+                        "source": "fiscal.ai",
+                        "created_at": "2026-11-26T08:01:32-05:00",
+                        "score": 0.7852,
+                        "price_move": false
+                    },
+                    {
+                        "headline": "NVIDIA Orders Partners to Stop Server Shipments to ASEAN States",
+                        "url": "https://www.marketscreener.com/news/nvidia-orders-partners-to-stop-server-shipments-to-asean-states-ce7851d8de89f626",
+                        "source": "fiscal.ai",
+                        "created_at": "2026-11-26T06:31:41-05:00",
+                        "score": -0.9415,
+                        "price_move": false
+                    },
+                    {
+                        "headline": "S&P Global Ratings Places NVIDIA on CreditWatch Negative",
+                        "url": "https://wjno.iheart.com/content/2026-11-26-sp-huang-drama-could-hurt-nvidias-credit-rating/",
+                        "source": "fiscal.ai",
+                        "created_at": "2026-11-26T06:31:41-05:00",
+                        "score": -0.9567,
+                        "price_move": false
+                    }
+                ],
+                "qty": 4.0,
+                "allocation_usd": 593.65,
+                "open_price": 148.41,
+                "exit_price": 149.44,
+                "exit_status": "filled",
+                "performance_pct": {
+                    "1_min": -0.92,
+                    "10_min": 0.87,
+                    "30_min": 1.4,
+                    "1_hour": 0.97,
+                    "5_hour": -1.49,
+                    "EOD": -0.69
+                },
+                "pnl_usd": {
+                    "1_min": -5.47,
+                    "10_min": 5.17,
+                    "30_min": 8.33,
+                    "1_hour": 5.77,
+                    "5_hour": -8.83,
+                    "EOD": -4.11
+                },
+                "side": "short",
+                "score": -0.00350635593197761,
+                "features": {
+                    "gap_pct": 2.4581379772270484,
+                    "excess_gap_pct": -0.9279087709671452,
+                    "gap_atr": -0.10351913500040798,
+                    "rvol": 0.695972915340396,
+                    "trend": -0.24887456396719143,
+                    "dist_52w_high": -0.37145087726506965,
+                    "news_today": -0.5405696501607425,
+                    "baseline": -0.1730529656099585,
+                    "surprise": -0.245011123033856,
+                    "news_volume": 0.0408219945202552,
+                    "n_fresh": 4.0
+                },
+                "stop_price": 163.25,
+                "exit_reason": "close",
+                "performance_pct_net": {
+                    "1_min": -1.02,
+                    "10_min": 0.77,
+                    "30_min": 1.3,
+                    "1_hour": 0.87,
+                    "5_hour": -1.59,
+                    "EOD": -0.79
+                },
+                "pnl_usd_net": {
+                    "1_min": -6.07,
+                    "10_min": 4.58,
+                    "30_min": 7.74,
+                    "1_hour": 5.18,
+                    "5_hour": -9.43,
+                    "EOD": -4.71
+                },
+                "bars_incomplete": false
+            }
+        ],
+        "rejected": [
+            {
+                "ticker": "ADBE",
+                "gap_percent": 0.9577803547652808,
+                "sentiment_score": 0.9057421553879977,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.001085004886540225
+            },
+            {
+                "ticker": "AMZN",
+                "gap_percent": 2.5242400687313316,
+                "sentiment_score": 0.18196260672794193,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.003078703881778898
+            },
+            {
+                "ticker": "AXP",
+                "gap_percent": 1.3156631134159325,
+                "sentiment_score": -0.6409014835953712,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": -0.00019489980725603633
+            },
+            {
+                "ticker": "AMGN",
+                "gap_percent": 0.22589719546499687,
+                "sentiment_score": 0.7414128789678216,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0010687953948921706
+            },
+            {
+                "ticker": "BLK",
+                "gap_percent": 1.8121485996532183,
+                "sentiment_score": 0.4047407678352131,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0014168459215690371
+            },
+            {
+                "ticker": "BX",
+                "gap_percent": 2.1857923497267784,
+                "sentiment_score": 0.4597373232245445,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.00028806192846907164
+            },
+            {
+                "ticker": "BMY",
+                "gap_percent": 0.43859649122806044,
+                "sentiment_score": 0.8845461737364531,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0017756395869699113
+            },
+            {
+                "ticker": "CAT",
+                "gap_percent": 3.08815685408963,
+                "sentiment_score": 0.8872366221621633,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0015002342530503374
+            },
+            {
+                "ticker": "SCHW",
+                "gap_percent": 1.4446227929374,
+                "sentiment_score": 0.0771395368501544,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0012677958958651685
+            },
+            {
+                "ticker": "CSCO",
+                "gap_percent": 2.7070063694267565,
+                "sentiment_score": 0.7828153986483812,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0024343853301563518
+            },
+            {
+                "ticker": "C",
+                "gap_percent": 2.3559516456366447,
+                "sentiment_score": 0.1744489684730302,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.001540199407544649
+            },
+            {
+                "ticker": "COHR",
+                "gap_percent": 7.884346806667009,
+                "sentiment_score": 0.005011178553104401,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0007493960478064173
+            },
+            {
+                "ticker": "COIN",
+                "gap_percent": 4.300038565368314,
+                "sentiment_score": 0.011177629232406616,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0024542042315810757
+            },
+            {
+                "ticker": "CEG",
+                "gap_percent": 3.1111866712002723,
+                "sentiment_score": 0.06497460510581732,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0015102464870599694
+            },
+            {
+                "ticker": "ETN",
+                "gap_percent": 3.520971649727822,
+                "sentiment_score": 0.08142512291669846,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0021633693042467077
+            },
+            {
+                "ticker": "GS",
+                "gap_percent": 2.541727525810522,
+                "sentiment_score": 0.24581831811975963,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.00089593752030921
+            },
+            {
+                "ticker": "HPE",
+                "gap_percent": 3.650171484566389,
+                "sentiment_score": -0.2513888459278649,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": -0.002949270513550267
+            },
+            {
+                "ticker": "HD",
+                "gap_percent": 0.6200520400819309,
+                "sentiment_score": -0.026986275059483814,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": 0.0004276992890638805
+            },
+            {
+                "ticker": "HON",
+                "gap_percent": 1.585961794757873,
+                "sentiment_score": 0.2677118042203488,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": 0.0014486708829933408
+            },
+            {
+                "ticker": "HPQ",
+                "gap_percent": 0.2889245585874889,
+                "sentiment_score": -0.6479700988338665,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": -0.0027389862441455507
+            },
+            {
+                "ticker": "IBM",
+                "gap_percent": 0.9980695773606607,
+                "sentiment_score": 0.8622186495922506,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": 0.00014380491263944284
+            },
+            {
+                "ticker": "JNJ",
+                "gap_percent": 0.05840695042711452,
+                "sentiment_score": -0.021606443156618346,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": -0.002688713146948256
+            },
+            {
+                "ticker": "MRVL",
+                "gap_percent": 6.087222179790719,
+                "sentiment_score": 0.2768147438764572,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.002096912410682853
+            },
+            {
+                "ticker": "MCD",
+                "gap_percent": 0.0,
+                "sentiment_score": -0.8735577074608418,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": -0.0007988552042195114
+            },
+            {
+                "ticker": "META",
+                "gap_percent": 3.289117709750955,
+                "sentiment_score": 0.6237799111449883,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -2.5642137802607524e-05
+            },
+            {
+                "ticker": "MU",
+                "gap_percent": 6.092124740124749,
+                "sentiment_score": 0.8278478290885687,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.001664297715578591
+            },
+            {
+                "ticker": "MSFT",
+                "gap_percent": 1.9774457575572058,
+                "sentiment_score": 0.26785393550232145,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0033835461049552045
+            },
+            {
+                "ticker": "MRNA",
+                "gap_percent": 2.3365332367324854,
+                "sentiment_score": 0.8096435318848184,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": 9.05481952135494e-05
+            },
+            {
+                "ticker": "MDLZ",
+                "gap_percent": -0.19171213685296173,
+                "sentiment_score": 0.17742416076362133,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0009900404053486997
+            },
+            {
+                "ticker": "MS",
+                "gap_percent": 2.9364368845120836,
+                "sentiment_score": 0.5895257768042885,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0020732691065066013
+            },
+            {
+                "ticker": "NFLX",
+                "gap_percent": 1.3297424675980496,
+                "sentiment_score": -0.7098077492468777,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": -0.0017651642918803472
+            },
+            {
+                "ticker": "PLTR",
+                "gap_percent": 3.3070481080750724,
+                "sentiment_score": 0.8171965810470283,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0019497173781733868
+            },
+            {
+                "ticker": "PANW",
+                "gap_percent": -2.454091087774468,
+                "sentiment_score": -0.18294058740139008,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": 0.0019023722762951862
+            },
+            {
+                "ticker": "PYPL",
+                "gap_percent": 1.1070749005362313,
+                "sentiment_score": 0.09482933022081852,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0013275139272688197
+            },
+            {
+                "ticker": "CRM",
+                "gap_percent": 0.7961056741544459,
+                "sentiment_score": 0.046431124045048004,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.003145500235622451
+            },
+            {
+                "ticker": "SNDK",
+                "gap_percent": 10.70506724629805,
+                "sentiment_score": 0.11942288000136614,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.003234570393410473
+            },
+            {
+                "ticker": "SBUX",
+                "gap_percent": 0.1577872656395085,
+                "sentiment_score": -0.9487410485744477,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": 0.0001819839399155725
+            },
+            {
+                "ticker": "SMCI",
+                "gap_percent": 3.9703989703989695,
+                "sentiment_score": -0.9528139503672719,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": -0.0012334906762868627
+            },
+            {
+                "ticker": "SNPS",
+                "gap_percent": 3.298032535979667,
+                "sentiment_score": 0.7655587741173804,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0017781584794271423
+            },
+            {
+                "ticker": "TGT",
+                "gap_percent": 0.5225873882243715,
+                "sentiment_score": 0.4400320762231068,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0034182253572831974
+            },
+            {
+                "ticker": "TJX",
+                "gap_percent": 0.9651584639605693,
+                "sentiment_score": 0.10195653885602951,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.002061905346735528
+            },
+            {
+                "ticker": "VLO",
+                "gap_percent": 1.8544891640866812,
+                "sentiment_score": 0.20195487700402737,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0016199915181110336
+            },
+            {
+                "ticker": "WMT",
+                "gap_percent": 0.04547521600728466,
+                "sentiment_score": 0.8375247090089541,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0012605007815293958
+            },
+            {
+                "ticker": "DIS",
+                "gap_percent": 0.5493630573248476,
+                "sentiment_score": -0.20061567043026662,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "short",
+                "score": -0.001979433955128742
+            },
+            {
+                "ticker": "WFC",
+                "gap_percent": 1.6802569804793777,
+                "sentiment_score": 0.11988264953211407,
+                "headlines": [],
+                "reason": "below threshold",
+                "side": "long",
+                "score": -0.0013304402560000883
+            }
+        ],
+        "strategy": "v2",
+        "strategy_name": "A",
+        "model_sha256": "da5aaaabc664b635f69bb805ab8e44d435f07e0a40982b9c153f6f9340e64744",
+        "score_thresholds": {
+            "long": 0.0030626992545541637,
+            "short": -0.0030626992545541637
+        },
+        "costs_bps": 5,
+        "portfolio_curve_net": {
+            "Open": 99053.97,
+            "1_min": 99040.55,
+            "10_min": 99054.96,
+            "30_min": 99050.91,
+            "1_hour": 99037.41,
+            "5_hour": 99030.65,
+            "EOD": 99040.03
+        },
+        "ending_balance_net": 99040.03,
+        "by_side": {
+            "long": {
+                "trades": 0,
+                "invested_usd": 0.0,
+                "pnl_usd": {
+                    "1_min": 0.0,
+                    "10_min": 0.0,
+                    "30_min": 0.0,
+                    "1_hour": 0.0,
+                    "5_hour": 0.0,
+                    "EOD": 0.0
+                },
+                "pnl_usd_net": {
+                    "1_min": 0.0,
+                    "10_min": 0.0,
+                    "30_min": 0.0,
+                    "1_hour": 0.0,
+                    "5_hour": 0.0,
+                    "EOD": 0.0
+                },
+                "return_pct": {
+                    "1_min": 0.0,
+                    "10_min": 0.0,
+                    "30_min": 0.0,
+                    "1_hour": 0.0,
+                    "5_hour": 0.0,
+                    "EOD": 0.0
+                }
+            },
+            "short": {
+                "trades": 3,
+                "invested_usd": 3143.32,
+                "pnl_usd": {
+                    "1_min": -10.27,
+                    "10_min": 4.13,
+                    "30_min": 0.08,
+                    "1_hour": -13.41,
+                    "5_hour": -20.16,
+                    "EOD": -10.79
+                },
+                "pnl_usd_net": {
+                    "1_min": -13.42,
+                    "10_min": 0.99,
+                    "30_min": -3.06,
+                    "1_hour": -16.56,
+                    "5_hour": -23.32,
+                    "EOD": -13.94
+                },
+                "return_pct": {
+                    "1_min": -0.33,
+                    "10_min": 0.13,
+                    "30_min": 0.0,
+                    "1_hour": -0.43,
+                    "5_hour": -0.64,
+                    "EOD": -0.34
+                }
+            }
+        }
     }
 ]
